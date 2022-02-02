@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.header {
+        font-size: 50px;
+        margin: 0px 0px 0px 0px;
+        width: 100%;
+        background-color: #FA8BFF;
+        background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+        transition: all .5s ease-out;
+        background-size: 1px 100px;
+        background-position: 0 -10px;
+}
+
+.list-weather {
+    color: gold;
+    font-size: 23px;
+}
+
+.divblock {
+   display: inline-block;
+   flex-wrap: wrap;
+}
+
+.list-group {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+.list-group p {
+    text-align: center;
+    width: 200px;
+    font-size: 20px;    
+}
+
+.list-group img {
+    background-color: aqua; 
+    width: 200px;  
+}
+
+.temp {
+    text-align: center;
+    
+    font-size: 20px;    
+    background-color: aliceblue;
+}
+
+.list-group div {
+    text-align: center;
+    width: 210px;
+    margin: 15px;
+    border: 5px solid orange;
+    
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}
+
+.none {
+    display: none;
+}
+.bg {
+    background-color: black;
+    width: auto;
+}
+.none {
+    display: none;
+}
+
+.current-weather {
+    width: 100%;
+    background-color: chartreuse;
+}
+
+.city-weather {
+    width: 100%;
+}
+
+.five-day {
+    background-color: blueviolet;
+}
+h2 {
+    font-size: 40px;
+}
