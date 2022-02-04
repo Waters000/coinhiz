@@ -102,6 +102,7 @@ h2 {
     direction: rtl;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .media-item {
@@ -118,13 +119,22 @@ h2 {
     padding: 15px;
     border-radius: 10px;
     margin: 5px;
+    z-index: 0;
+    transition: 400ms;
 }
 
 .left-button-container {
     transform: translateX(22px);
 }
 
+.left-button-container:hover {
+    transform: translateX(10px);
+}
+
 .right-button-container {
     transform: translateX(-22px);
-    z-index: -1;
+}
+
+.right-button-container:hover {
+    transform: translateX(-10px);
 }
