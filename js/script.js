@@ -3,6 +3,7 @@ var hotCryptos = document.querySelector(".hot-cryptos");
 var crytposHere = document.querySelector(".cryptos-here");
 var scrollEl = document.querySelector("#media-scroller");
 var scrollContainerEl = document.querySelector(".media-scroller-container");
+let myInterval;
 
 // set up variables for functions.
 var crypto;
@@ -77,29 +78,32 @@ var getCrypto = function (crypto) {
 
 // getCrypto();
 
-scrollEl.scrollTo({
-  left: -100000,
-  behavior: "smooth"
-})
 
-const scrollInterval = () => {
-  setInterval(function() {
-    scrollEl.scrollTo({
-      left: scrollEl.scrollLeft + 250, // Increment scroll
-      behavior: "smooth",
-    })
-
+const startScroll = () => {
+  myInterval = setInterval(function() {
     // If at the end of the list, scroll to start
     if (scrollEl.scrollLeft == 0) {
       scrollEl.scrollTo({
         left: -100000, // Dummy value so that it always scrolls back to start
         behavior: "smooth"
       })
+    } else {
+      scrollEl.scrollTo({
+        left: scrollEl.scrollLeft + 250, // Increment scroll
+        behavior: "smooth",
+      })
     }
-  }, 5000);
+  }, 2500);
 }
 
-// scrollInterval();
+const scrollIntervalHandler = (start, pause) => {
+  if (start) {
+    startScroll();
+  } else if (pause) {
+    clearInterval(myInterval);
+    startScroll();
+  }
+}
 
 const scrollButtonHandler = event => {
   let targetEl = event.target;
@@ -107,8 +111,26 @@ const scrollButtonHandler = event => {
   if (targetEl.className === "left-button-container") {
     console.log("Gotcha");
   } else if (targetEl.className === "right-button-container") {
-    console.log("On the right");
+    scrollIntervalHandler(false, true); // Restart timer
+    if (scrollEl.scrollLeft == 0) {
+      scrollEl.scrollTo({
+        left: -100000,
+        behavior: "smooth"
+      })
+    } else {
+      scrollEl.scrollTo({
+        left: scrollEl.scrollLeft + 250,
+        behavior: "smooth"
+      })
+    }
   }
 }
+
+scrollEl.scrollTo({
+  left: -100000,
+  behavior: "smooth"
+})
+
+// scrollIntervalHandler(true, false);
 
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
