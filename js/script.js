@@ -78,7 +78,15 @@ var getCrypto = function (crypto) {
 
 setInterval(function() {
   scrollEl.scrollTo({
-    left: scrollEl.scrollLeft + 40,
+    left: scrollEl.scrollLeft + 40, // Increment scroll
     behavior: "smooth",
   })
+
+  // If at the end of the list, scroll to start
+  if (scrollEl.scrollLeft == 0) {
+    scrollEl.scrollTo({
+      left: -100000, // Dummy value so that it always scrolls back to start
+      behavior: "smooth"
+    })
+  }
 }, 1000);
