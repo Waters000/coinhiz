@@ -82,7 +82,7 @@ var getCrypto = function (crypto) {
 const startScroll = () => {
   myInterval = setInterval(function() {
     // If at the end of the list, scroll to start
-    if (scrollEl.scrollLeft == 0) {
+    if (scrollEl.scrollLeft >= -10) {
       scrollEl.scrollTo({
         left: -100000, // Dummy value so that it always scrolls back to start
         behavior: "smooth"
@@ -93,7 +93,7 @@ const startScroll = () => {
         behavior: "smooth",
       })
     }
-  }, 3000);
+  }, 2500);
 }
 
 const scrollIntervalHandler = (start, pause) => {
@@ -115,8 +115,9 @@ const scrollButtonHandler = event => {
       behavior: "smooth"
     })
   } else if (targetEl.className === "right-button-container" || targetEl.className === "right-arrow") {
+    console.log(scrollEl.scrollLeft);
     scrollIntervalHandler(false, true); // Restart timer
-    if (scrollEl.scrollLeft == 0) {
+    if (scrollEl.scrollLeft >= -10) {
       scrollEl.scrollTo({
         left: -100000,
         behavior: "smooth"
