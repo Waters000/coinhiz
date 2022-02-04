@@ -90,6 +90,10 @@ h2 {
     justify-content: center;
 }
 
+.media-scroller-container p {
+    user-select: none;
+}
+
 .media-scroller {
     height: 250px; /* !!!TAKE OUT HEIGHT PROP!!! */
     width: 90%;
@@ -109,6 +113,7 @@ h2 {
     aspect-ratio: 1;
     background-color: white;
     margin: 10px;
+    border-radius: 10px;
 }
 
 .left-button-container,

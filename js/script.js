@@ -93,7 +93,7 @@ const startScroll = () => {
         behavior: "smooth",
       })
     }
-  }, 2500);
+  }, 3000);
 }
 
 const scrollIntervalHandler = (start, pause) => {
@@ -108,9 +108,13 @@ const scrollIntervalHandler = (start, pause) => {
 const scrollButtonHandler = event => {
   let targetEl = event.target;
 
-  if (targetEl.className === "left-button-container") {
-    console.log("Gotcha");
-  } else if (targetEl.className === "right-button-container") {
+  if (targetEl.className === "left-button-container" || targetEl.className === "left-arrow") {
+    scrollIntervalHandler(false, true);
+    scrollEl.scrollTo({
+      left: scrollEl.scrollLeft - 250,
+      behavior: "smooth"
+    })
+  } else if (targetEl.className === "right-button-container" || targetEl.className === "right-arrow") {
     scrollIntervalHandler(false, true); // Restart timer
     if (scrollEl.scrollLeft == 0) {
       scrollEl.scrollTo({
@@ -131,6 +135,6 @@ scrollEl.scrollTo({
   behavior: "smooth"
 })
 
-// scrollIntervalHandler(true, false);
+scrollIntervalHandler(true, false);
 
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
