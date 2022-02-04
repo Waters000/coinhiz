@@ -37,20 +37,24 @@ var getCrypto = function (crypto){
             var cryptoSupply = document.createElement('p')
            cryptoSupply.classList = "";
         //    cryptoSupply = response.data[i].csupply;
-            cryptoSupply.textContent = "Current Mined Supply " + response.data[i].csupply;
+            cryptoSupply.textContent = "Current Mined Supply " +  parseInt(response.data[i].csupply).toLocaleString("en-US");
 
             var cryptoTotalSupply = document.createElement('p')
           cryptoTotalSupply.classList = "";
          
-            cryptoTotalSupply.textContent = "Total Supply " + response.data[i].msupply;
+            cryptoTotalSupply.textContent = "Total Supply " +  parseInt(response.data[i].msupply).toLocaleString("en-US");
           //  cryptoTotalSupply = response.data[i].msupply;
 
-           
+          var cryptoPrice = document.createElement('p')
+            cryptoPrice.classList = "";
+            cryptoPrice.textContent = "Price: " + "$"+response.data[i].price_usd
+
+
             var percentMined = document.createElement('p')
             percentMined.classList = "";
             percentMined.textContent = "Percent Mined" + (cryptoTotalSupply /  cryptoSupply);
            
-            hotCryptos.append(crytpoName, cryptoSupply, cryptoTotalSupply, percentMined)
+            hotCryptos.append(crytpoName, cryptoPrice, cryptoSupply, cryptoTotalSupply, percentMined)
            
             }
 
