@@ -80,18 +80,29 @@
     display: none;
 }
 
-.current-weather {
-    width: 100%;
-    background-color: chartreuse;
-}
-
-.city-weather {
-    width: 100%;
-}
-
-.five-day {
-    background-color: blueviolet;
-}
 h2 {
     font-size: 40px;
+}
+
+/* Social Media Horizontal Scroll Styles */
+.media-scroller-container {
+    display: flex;
+    justify-content: center;
+}
+
+.media-scroller {
+    height: 250px; /* !!!TAKE OUT HEIGHT PROP!!! */
+    width: 90%;
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    background-color: rgb(192, 192, 192);
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+.media-item {
+    aspect-ratio: 1;
+    background-color: white;
+    margin: 10px;
 }

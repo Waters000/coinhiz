@@ -1,6 +1,7 @@
 // Create DOM elements from IDs and Class
 var hotCryptos = document.querySelector(".hot-cryptos");
 var crytposHere = document.querySelector(".cryptos-here");
+var scrollEl = document.querySelector("#media-scroller");
 
 // set up variables for functions.
 var crypto;
@@ -73,4 +74,11 @@ var getCrypto = function (crypto) {
   });
 };
 
-getCrypto();
+// getCrypto();
+
+setInterval(function() {
+  scrollEl.scrollTo({
+    left: scrollEl.scrollLeft + 40,
+    behavior: "smooth",
+  })
+}, 1000);
