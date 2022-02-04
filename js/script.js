@@ -1,6 +1,6 @@
 // Create DOM elements from IDs and Class 
 var hotCryptos = document.querySelector(".hot-cryptos")
-var crytposHere = document.querySelector(".cryptos-here")
+var cryptosHere = document.querySelector(".cryptos-here")
 
 // set up variables for functions.
 var crypto;
@@ -27,9 +27,9 @@ var getCrypto = function (crypto){
 
 
         for (var i = 0; i < 100; i++){
-             var crytpoName = document.createElement('h2')
-             crytpoName.classList = "";
-             crytpoName.textContent = "Coin Name: " + response.data[i].name;
+             var cryptoName = document.createElement('h2')
+             cryptoName.classList = "";
+             cryptoName.textContent = "Coin Name: " + response.data[i].name;
             
             
             var cryptoSupply = document.createElement('p')
@@ -48,7 +48,7 @@ var getCrypto = function (crypto){
             percentMined.classList = "";
             percentMined.textContent = "Percent Mined" + (cryptoTotalSupply /  cryptoSupply);
            
-            hotCryptos.append(crytpoName, cryptoSupply, cryptoTotalSupply, percentMined)
+            hotCryptos.append(cryptoName, cryptoSupply, cryptoTotalSupply, percentMined)
            
             }
 
@@ -316,6 +316,20 @@ var cityListNames = function () {
         $(".city-list").append(citiesListpast)
     }
 }
+var getCoinMrktCap = function() {
+    var coinApiKey = '8b2fdf23-c7f8-4ff3-a051-6a6916396f28'
+    var coinUrl = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=${coinApiKey}&start=1&limit=10&convert=USD`;
+    
+    fetch(coinUrl)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+    })
+    
+}
+
 
 // start screen by running cityList to show previous storage cities
 getCrypto();
