@@ -2,6 +2,7 @@
 var hotCryptos = document.querySelector(".hot-cryptos");
 var crytposHere = document.querySelector(".cryptos-here");
 var scrollEl = document.querySelector("#media-scroller");
+var scrollContainerEl = document.querySelector(".media-scroller-container");
 
 // set up variables for functions.
 var crypto;
@@ -76,17 +77,38 @@ var getCrypto = function (crypto) {
 
 // getCrypto();
 
-setInterval(function() {
-  scrollEl.scrollTo({
-    left: scrollEl.scrollLeft + 40, // Increment scroll
-    behavior: "smooth",
-  })
+scrollEl.scrollTo({
+  left: -100000,
+  behavior: "smooth"
+})
 
-  // If at the end of the list, scroll to start
-  if (scrollEl.scrollLeft == 0) {
+const scrollInterval = () => {
+  setInterval(function() {
     scrollEl.scrollTo({
-      left: -100000, // Dummy value so that it always scrolls back to start
-      behavior: "smooth"
+      left: scrollEl.scrollLeft + 250, // Increment scroll
+      behavior: "smooth",
     })
+
+    // If at the end of the list, scroll to start
+    if (scrollEl.scrollLeft == 0) {
+      scrollEl.scrollTo({
+        left: -100000, // Dummy value so that it always scrolls back to start
+        behavior: "smooth"
+      })
+    }
+  }, 5000);
+}
+
+// scrollInterval();
+
+const scrollButtonHandler = event => {
+  let targetEl = event.target;
+
+  if (targetEl.className === "left-button-container") {
+    console.log("Gotcha");
+  } else if (targetEl.className === "right-button-container") {
+    console.log("On the right");
   }
-}, 1000);
+}
+
+scrollContainerEl.addEventListener("click", scrollButtonHandler);
