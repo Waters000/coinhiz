@@ -3,10 +3,10 @@ var hotCryptos = document.querySelector(".hot-cryptos");
 var crytposHere = document.querySelector(".cryptos-here");
 var scrollEl = document.querySelector("#media-scroller");
 var scrollContainerEl = document.querySelector(".media-scroller-container");
-let myInterval;
 
 // set up variables for functions.
 var crypto;
+let myInterval;
 
 var getCrypto = function (crypto) {
   const settings = {
@@ -76,9 +76,7 @@ var getCrypto = function (crypto) {
   });
 };
 
-// getCrypto();
-
-
+// START MEDIA SCROLLER LOGIC
 const startScroll = () => {
   myInterval = setInterval(function() {
     // If at the end of the list, scroll to start
@@ -130,6 +128,7 @@ const scrollButtonHandler = event => {
     }
   }
 }
+// END MEDIA SCROLLER LOGIC
 
 scrollEl.scrollTo({
   left: -100000,
@@ -137,5 +136,7 @@ scrollEl.scrollTo({
 })
 
 scrollIntervalHandler(true, false);
+
+// getCrypto();
 
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
