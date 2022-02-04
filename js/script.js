@@ -13,7 +13,7 @@ var getCrypto = function (crypto){
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.coinlore.net/api/tickers/?start=200&limit=100",
+        "url": "https://api.coinlore.net/api/tickers/",
         "method": "GET",
         "headers": {
            
@@ -36,23 +36,27 @@ var getCrypto = function (crypto){
             
             var cryptoSupply = document.createElement('p')
            cryptoSupply.classList = "";
-        //    cryptoSupply = response.data[i].csupply;
+           var cryptoSupplyInt;
+           cryptoSupplyInt = response.data[i].csupply;
             cryptoSupply.textContent = "Current Mined Supply " +  parseInt(response.data[i].csupply).toLocaleString("en-US");
-
+           // console.log(cryptoSupplyInt)
+           
+          
             var cryptoTotalSupply = document.createElement('p')
+             var totalSupplyInt;
           cryptoTotalSupply.classList = "";
-         
+          totalSupplyInt = response.data[i].msupply
             cryptoTotalSupply.textContent = "Total Supply " +  parseInt(response.data[i].msupply).toLocaleString("en-US");
-          //  cryptoTotalSupply = response.data[i].msupply;
+          //  console.log(totalSupplyInt)
 
           var cryptoPrice = document.createElement('p')
             cryptoPrice.classList = "";
-            cryptoPrice.textContent = "Price: " + "$"+response.data[i].price_usd
+            cryptoPrice.textContent = "Price: " + "$"+ response.data[i].price_usd
 
 
             var percentMined = document.createElement('p')
             percentMined.classList = "";
-            percentMined.textContent = "Percent Mined" + (cryptoTotalSupply /  cryptoSupply);
+            percentMined.textContent = "Percent Mined: " + parseInt((cryptoSupplyInt /  totalSupplyInt)*100)+ "%";
            
             hotCryptos.append(crytpoName, cryptoPrice, cryptoSupply, cryptoTotalSupply, percentMined)
            
@@ -65,7 +69,7 @@ var getCrypto = function (crypto){
     const feed = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.coinlore.net/api/ticker/?id=90",
+        "url": "https://api.coinlore.net/api/coin/social_stats/?id=80",
         "method": "GET",
         "headers": {
            
@@ -95,31 +99,7 @@ var getCrypto = function (crypto){
 
 }
 
-/// Start Functions
-// Get the weather from city value and add to feed 1.
-// var getCrypto = function (city) {
-//     // Single day weather info
-//     var apiUrl = "https://api.coinlore.net/api/tickers/";
 
-//     fetch(apiUrl).then(function (response) {
-//         // request was success
-//         if (response.ok) {
-//             response.json().then(function (city) {
-//                 // console log to test response feed is working
-//                   console.log(response)
-//                 //when working, run displayWeather function
-//                // displayWeather(city);
-
-//             });
-//             // if not found, window alert no weather found
-//         } else {
-//             alert("No Weather found");
-//         }
-//     })
-//         .catch(function (error) {
-
-//         })
-// };
 
 // from line 248 - set attribute with event to make button on 
 // city list fun the GetWeather function
