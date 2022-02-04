@@ -27,7 +27,9 @@ var getCrypto = function (crypto){
 
 
         for (var i = 0; i < 100; i++){
-             var crytpoName = document.createElement('h2')
+            
+            
+            var crytpoName = document.createElement('h2')
              crytpoName.classList = "";
              crytpoName.textContent = "Coin Name: " + response.data[i].name;
             
