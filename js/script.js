@@ -325,3 +325,12 @@ getCrypto();
 
 
 // autocomplete
+function () {
+    var availableCoins = [
+        "pometeus",
+        "bitcoin",
+    ];
+}
+crytpoName.autocomplete({
+    source:availableCoins
+})
