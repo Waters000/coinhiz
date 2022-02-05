@@ -104,10 +104,7 @@ var getCrypto = function (){
 
             holderFour.append(cryptoPrice)
 
-            var rank = document.createElement('p')
-            rank.classList = "";
-            rank.textContent = "Rank: " + response.data[i].rank
-
+        
             var holderFive = document.createElement('div')
             holderFive.classList = "holderFive";
 
@@ -117,9 +114,16 @@ var getCrypto = function (){
            
             holderFive.append(percentMined)
 
+            var holderSix = document.createElement('div')
+            holderSix.classList = "holderSix";
 
+            var cryptoButton = document.createElement('button')
+            cryptoButton.classList = "button";
+            cryptoButton.innerText = "Social Stats";
 
-            hotCryptoElementsHolder.append( holderTwo,  holderOne, holderThree, holderFour, holderFive)
+            holderSix.append(cryptoButton)
+
+            hotCryptoElementsHolder.append( holderTwo,  holderThree, holderFour, holderFive, holderSix)
            
             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
             crytposHere.append(hotCryptoDivHolder)
