@@ -322,3 +322,6 @@ getCrypto();
 
 // listens for a click on the form, run form City to add name and start functions.
 //submitBtnEl.addEventListener('click', formCityName)
+
+
+// autocomplete
