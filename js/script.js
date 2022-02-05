@@ -5,12 +5,12 @@ var tbl = document.querySelector(".table")
 
 // set up variables for functions.
 var crypto;
-
+var id;
 // set up API key as variable...API key can not go in URL string or
 // browser will say there is a security issue
 
 
-var getCrypto = function (crypto){
+var getCrypto = function (){
     const settings = {
         "async": true,
         "crossDomain": true,
@@ -62,7 +62,7 @@ var getCrypto = function (crypto){
             var cryptoId = document.createElement('p')
             cryptoId.classList = "";
             cryptoId.textContent = "ID: " + response.data[i].id
-            
+            var id = response.data[i].id
             holderOne.append(cryptoId)
             
             
@@ -82,9 +82,6 @@ var getCrypto = function (crypto){
 
            holderTwo.append(cryptoSupply)
 
-
-
-           
            var holderThree = document.createElement('div')
            holderThree.classList = "holderThree";
           
@@ -126,18 +123,18 @@ var getCrypto = function (crypto){
            
             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
             crytposHere.append(hotCryptoDivHolder)
-
-            }
+ 
+        }
         
+ 
+          
 
-    });
 
-   
 
     const feed = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.coinlore.net/api/coin/social_stats/?id=80",
+        "url": "https://api.coinlore.net/api/coin/social_stats/?=" + id,
         "method": "GET",
         "headers": {
            
@@ -145,31 +142,22 @@ var getCrypto = function (crypto){
         
     };
 
+ $.ajax(feed).done(function (response) {
 
-    
-    $.ajax(feed).done(function (response) {
-        console.log(response);
+    console.log(response)
+    // var cryptoList = response.reddit.avg_active_users
+    // console.log(cryptoList)
 
-        // for (var i = 0; i < response.length; i++){
-        //     var cryptoList = document.createElement('h2')
-        //     cryptoList.classList = "";
-        //     cryptoList.textContent = response[i].symbol
-        
-        //     hotCryptos.append(cryptoList)
-           
-        //     }
-
+    for (var i = 0; i < response.length; i++) {
+            var cryptoList = id[i].reddit.avg_active_users
+            console.log(cryptoList)
+    }
     });
+  
 
-
-
-
+});
 
 }
-
-
-
-
 // start screen by running cityList to show previous storage cities
 getCrypto();
 

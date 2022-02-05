@@ -14,12 +14,11 @@
 }
 
 .holderone {
-    color:rgb(255, 102, 0)
-    flex-wrap: wrap;
+    color:rgb(255, 102, 0);
     background-color: black;
     padding:1em;
-    
 }
+
 .holdertwo {
     flex-wrap: wrap;
     background-color: #2BD2FF;
