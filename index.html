@@ -1,58 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
-  <link rel="stylesheet" href="./assets/style.css" />
-  <title>CoinHiz</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>CoinHiz</title>
+  </head>
 
-<header class="container-flud w-110 text-center">
-  <h1 class="header w-100">CoinHiz</h1>
-</header>
-<!--Main class to hold main day data-->
-<main class="row">
-  <body class="container-flud">
-    <div class="col-12 p-2 border-0 col-lg-3 bg-primary text-light sticky-top d-flex flex-column p-4 p-lg-3">
+  <body>
+    <header class="container-flud w-110 text-center">
+      <h1 class="header w-100">CoinHiz</h1>
+    </header>
 
-      <!--Holds list and form data-->
-      <div class="card">
-        <h3 class=" bg-secondary border-0 text-uppercase">Search Crypto</h3>
-        <div class="input-group mb-6">
-          <input name="city-name" id="cityname" type="text" autofocus="true" class="form-control" />
-          <button type="submit" id="submitBtn" class="input-group-append btn text-white bg-success">Find
-            Crypto</button>
-        </div>    <div class=" city-list city-list-button bg-primary cryptos-here" id="cityListId"> Add list of search here</div>
+    <main class="container-flud">
+      <div class="col-12 p-2 border-0 col-lg-3 bg-primary text-light sticky-top d-flex flex-column p-4 p-lg-3">
+
+        <div class="card">
+          <h3 class=" bg-secondary border-0 text-uppercase">Search Crypto</h3>
+          <div class="input-group mb-6">
+            <input name="city-name" id="cityname" type="text" autofocus="true" class="form-control" />
+            <button type="submit" id="submitBtn" class="input-group-append btn text-white bg-success">
+              Find Crypto
+            </button>
+          </div>    
+        </div>
+      </div>
+    </main>
+
+    <div class="container-fluid">
+      <div class="hot-cryptos">
+        <h3 class=" row justify-content-md-center hot-cryptos ">Hot Cryptos</h3>
+        <div class="row flex-row col-12 list-group justify-content-md-center"></div>
       </div>
     </div>
-    <div id="current-weather"
-      class=" current-weather col-12 col-lg-9 p-5 border-0 d-flex justify-content-md-center text-center">
-      <div class="justify-space-between list-weather" id="city-weather"></div>
-    </div>
-</main>
 
-
-<!--Holds 5 day data-->
-<div class="container-fluid">
-  <div class="hot-cryptos">
-    <h3 class=" row justify-content-md-center hot-cryptos ">Hot Cryptos</h3>
-    <div class="five-day row flex-row col-12 list-group justify-content-md-center"></div>
-  </div>
-</div>
-</div>
-
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="js/script.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 
 </html>
