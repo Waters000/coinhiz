@@ -161,9 +161,43 @@ var getCrypto = function (){
 
 });
 
+fetch("https://coin-mc-analyser.p.rapidapi.com/currencies", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "coin-mc-analyser.p.rapidapi.com",
+		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
+	}
+})
+.then(response => {
+	console.log(response);
+})
+.catch(err => {
+	console.error(err);
+});
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+  
+
 // start screen by running cityList to show previous storage cities
 getCrypto();
-
-// listens for a click on the form, run form City to add name and start functions.
-//submitBtnEl.addEventListener('click', formCityName)
