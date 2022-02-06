@@ -202,11 +202,23 @@ $.ajax(investingNews).done(function (response) {
         //console.log(cryptoNews)
     }
 });
-
-
 }
-
-
+// search coin filter
+function searchCrypto() {
+  var input = document.getElementById("search");
+  var divs = document.getElementsByClassName("crypto-div");
+  filter = input.value.toUpperCase();
+  for (i = 0; i < divs.length; i++) {
+    h2 = divs[i].getElementsByTagName("h2")[0];
+    console.log(h2);
+    txtValue = h2.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      divs[i].style.display = "";
+    } else {
+      divs[i].style.display = "none";
+    }
+  }
+}
 
 
 
