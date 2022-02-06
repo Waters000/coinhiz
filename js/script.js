@@ -226,16 +226,16 @@ $.ajax(investingNews).done(function (response) {
             topGainer.textContent = response.result[i].name
             
 
-            var priceChange = document.createElement('p')
-            priceChange.classList = "";
-            priceChange.textContent = response.result[i].priceChange.priceChange1h;
+            var priceChange = document.createElement('h7')
+            priceChange.classList = "green";
+            priceChange.textContent = "Price: $" + parseInt(response.result[i].priceChange.price);
           
 
             var gainerRank = document.createElement('p')
             gainerRank.classList = "";
-            gainerRank.textContent = response.result[i].rank;
+            gainerRank.textContent = "  rank: "+ response.result[i].rank;
 
-            topGainers.append(topGainer, gainerRank)
+            topGainers.append(topGainer, priceChange, gainerRank)
 
 
         }
