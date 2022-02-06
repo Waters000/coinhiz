@@ -3,6 +3,7 @@ var hotCryptos = document.querySelector(".hot-cryptos")
 var crytposHere = document.querySelector(".cryptos-here")
 var tbl = document.querySelector(".table")
 var cryptoNews = document.querySelector(".crypto-news")
+var topGainers = document.querySelector(".top-gainers")
 
 // set up variables for functions.
 var crypto;
@@ -179,7 +180,7 @@ const investingNews = {
 };
 
 $.ajax(investingNews).done(function (response) {
-    console.log(response)
+  //  console.log(response)
 	for (var i = 0; i < 10; i++) {
 
         var cryptoHeadline = document.createElement('h5')
@@ -189,7 +190,7 @@ $.ajax(investingNews).done(function (response) {
 
         var cryptoImageLink = document.createElement('img')
         cryptoImageLink.src = response.data[0].screen_data.news[i].related_image;
-        console.log(cryptoImageLink)
+       // console.log(cryptoImageLink)
      
 
         var provider = document.createElement('p')
@@ -198,9 +199,50 @@ $.ajax(investingNews).done(function (response) {
 
         cryptoNews.append(cryptoHeadline, cryptoImageLink, provider)
 
-        
         //console.log(cryptoNews)
     }
+
+
+
+
+    const gainers = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://cryptocurrency-markets.p.rapidapi.com/general/gainer",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "cryptocurrency-markets.p.rapidapi.com",
+            "x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
+        }
+    };
+ 
+
+    $.ajax(gainers).done(function (response) {
+        console.log(response);
+        for (var i = 0; i < 10; i++){
+
+            var topGainer = document.createElement('h3')
+            topGainer.classList = "";
+            topGainer.textContent = response.result[i].name
+            
+
+            var priceChange = document.createElement('p')
+            priceChange.classList = "";
+            priceChange.textContent = response.result[i].priceChange.priceChange1h;
+          
+
+            var gainerRank = document.createElement('p')
+            gainerRank.classList = "";
+            gainerRank.textContent = response.result[i].rank;
+
+            topGainers.append(topGainer, gainerRank)
+
+
+        }
+        
+    });
+
+
 });
 }
 // search coin filter
