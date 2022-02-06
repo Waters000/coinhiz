@@ -2,6 +2,7 @@
 var hotCryptos = document.querySelector(".hot-cryptos")
 var crytposHere = document.querySelector(".cryptos-here")
 var tbl = document.querySelector(".table")
+var cryptoNews = document.querySelector(".crypto-news")
 
 // set up variables for functions.
 var crypto;
@@ -155,29 +156,52 @@ var getCrypto = function (){
     for (var i = 0; i < response.length; i++) {
             var cryptoList = id[i].reddit.avg_active_users
             console.log(cryptoList)
+
+
+
+
+            
     }
     });
   
 
 });
 
-fetch("https://coin-mc-analyser.p.rapidapi.com/currencies", {
+const investingNews = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://investing-cryptocurrency-markets.p.rapidapi.com/coins/get-news?pair_ID=1057391&page=1&time_utc_offset=28800&lang_ID=1",
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-host": "coin-mc-analyser.p.rapidapi.com",
+		"x-rapidapi-host": "investing-cryptocurrency-markets.p.rapidapi.com",
 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
 	}
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.error(err);
+};
+
+$.ajax(investingNews).done(function (response) {
+    console.log(response)
+	for (var i = 0; i < 10; i++) {
+
+        var cryptoHeadline = document.createElement('h5')
+        cryptoHeadline.classList = "";
+        cryptoHeadline.textContent = response.data[0].screen_data.news[i].HEADLINE
+
+
+        var cryptoImageLink = document.createElement('img')
+        cryptoImageLink.src = response.data[0].screen_data.news[i].related_image;
+        console.log(cryptoImageLink)
+     
+
+        var provider = document.createElement('p')
+        provider.classList = "";
+        provider.textContent = response.data[0].screen_data.news[i].news_provider_name
+
+        cryptoNews.append(cryptoHeadline, cryptoImageLink, provider)
+
+        
+        //console.log(cryptoNews)
+    }
 });
-
-
-
-
 
 
 }
