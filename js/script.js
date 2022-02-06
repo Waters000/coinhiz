@@ -43,7 +43,7 @@ var getCrypto = function (){
             
             var crytpoName = document.createElement('h2')
             crytpoName.classList = "cryptoheader row";
-            crytpoName.textContent = response.data[i].name;
+            crytpoName.innerHTML = `<a href="#${response.data[i].name}" onclick="seeGraph()">${response.data[i].name}</a>`;
 
             var rank = document.createElement('p')
             rank.classList = "row";
@@ -262,6 +262,9 @@ function searchCrypto() {
   }
 }
 
+function seeGraph(e) {
+console.log("crypto");
+}
 
 
 
