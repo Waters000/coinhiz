@@ -8,6 +8,7 @@ var crypto;
 // set up API key as variable...API key can not go in URL string or
 // browser will say there is a security issue
 
+var listCryptos = [];
 
 var getCrypto = function (crypto){
     const settings = {
@@ -27,6 +28,7 @@ var getCrypto = function (crypto){
 
 
         for (var i = 0; i < 100; i++){
+            listCryptos.push(response.data[i].name);
              var crytpoName = document.createElement('h2')
              crytpoName.classList = "";
              crytpoName.textContent = "Coin Name: " + response.data[i].name;
@@ -51,6 +53,27 @@ var getCrypto = function (crypto){
             hotCryptos.append(crytpoName, cryptoSupply, cryptoTotalSupply, percentMined)
            
             }
+            console.log("lista: ")
+            
+            console.log(listCryptos)
+            
+            document.querySelector("#cityname").addEventListener('keyup',function(event){
+                crytposHere.innerHTML = ""
+                if(event.target.value != ""){
+                    var autocomplete = listCryptos.filter((item) => item.toLowerCase().includes(event.target.value.toLowerCase()))
+                    console.log(autocomplete);
+                    autocomplete.forEach(item=>{
+                        var elem = document.createElement("button")
+                        elem.innerHTML = item
+                        elem.addEventListener("click",function(){
+                            document.querySelector("#cityname").value = item
+                            crytposHere.innerHTML = ""
+                        })
+                        crytposHere.appendChild(elem)
+                    })
+                }
+
+            })
 
     });
 
@@ -70,8 +93,6 @@ var getCrypto = function (crypto){
 
     
     $.ajax(feed).done(function (response) {
-        console.log(response);
-
         // for (var i = 0; i < response.length; i++){
         //     var cryptoList = document.createElement('h2')
         //     cryptoList.classList = "";
@@ -322,15 +343,3 @@ getCrypto();
 
 // listens for a click on the form, run form City to add name and start functions.
 //submitBtnEl.addEventListener('click', formCityName)
-
-
-// autocomplete
-function () {
-    var availableCoins = [
-        "pometeus",
-        "bitcoin",
-    ];
-}
-crytpoName.autocomplete({
-    source:availableCoins
-})
