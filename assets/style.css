@@ -95,8 +95,8 @@ h2 {
 }
 
 .media-scroller {
-    height: 250px; /* !!!TAKE OUT HEIGHT PROP!!! */
-    width: 90%;
+    height: 270px; /* !!!TAKE OUT HEIGHT PROP!!! */
+    /* width: 90%; */
     border-radius: 15px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
     background-color: rgb(192, 192, 192);
@@ -114,6 +114,52 @@ h2 {
     background-color: white;
     margin: 10px;
     border-radius: 10px;
+    transition: 150ms;
+    direction: ltr;
+}
+
+.media-item:hover {
+    transform: scale(1.02);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-info img {
+    width: 18%;
+    aspect-ratio: 1;
+    flex: 1;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.text-container {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-container p {
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.handle {
+    color: gray;
+}
+
+.tweet-content {
+    padding: 0 10px 0 10px;
+    font-size: 15px;
+}
+
+.tweet-content p {
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .left-button-container,
