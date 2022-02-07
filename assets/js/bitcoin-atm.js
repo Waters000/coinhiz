@@ -33,7 +33,7 @@ function getGeo(city) {
       latlng.lng = data.results[0].geometry.location.lng;
       initMap();
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => (message.textContent = "City not found"));
 }
 
 // Initialize the map
@@ -164,13 +164,29 @@ function createMarker(place) {
   });
 }
 
+// City input validation
+function isValid() {
+  if (city.value.length < 1) {
+    message.innerText = "Please enter a city";
+    return false;
+  }
+  if (!isNaN(city.value)) {
+    message.innerText = "City name can't contain numbers.";
+    return false;
+  }
+  return true;
+}
+
 // ATM Search Handler
 var atmSearchHandler = function (e) {
   e.preventDefault();
   // Clear the previous search
   atmInfoEl.innerHTML = "";
   var cityName = city.value.trim();
-  getGeo(cityName);
+  if (isValid()) {
+    message.textContent = "";
+    getGeo(cityName);
+  }
   city.value = "";
 };
 
