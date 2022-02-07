@@ -36,6 +36,32 @@
     </section>
     <!-- End Hero -->
 
+    <!-- Favorites -->
+    <section>
+        <div class="d-flex flex-column align-items-center">
+            <div class="col-12 col-md-8 p-2">
+                <h2 class="p-3 text-center border-bottom fw-bold">Find Bitcoin ATM</h2>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center container">
+                <form class="col-11 col-md-4">
+                    <div class="input-group mb-3">
+                        <input id="city" type="text" class="form-control" placeholder="Enter a City"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button id="btc-atm-search" class="btn btn-outline-primary">Search<img class="img-search"
+                                    src="/assets/img/bitcoin.png" alt=""></button>
+                        </div>
+                    </div>
+                </form>
+                <p>or</p>
+                <button id="my-location" class="btn btn-primary"><img class="gps" src="./assets/img/gps.png" alt="">
+                    location <span id="loading" class="spinner-border spinner-border-sm" role="status"></span></button>
+                <div id="message" class="mt-4"></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Favorites -->
+
     <script src="./assets/js/bitcoin-atm.js"></script>
 </body>
 
