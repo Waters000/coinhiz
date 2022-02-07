@@ -58,3 +58,14 @@ footer p{
 #map {
     height: 500px;
 }
+
+.map-h1 {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-body h2{
+    font-size: 20px;
+    font-weight: bold;
+}
