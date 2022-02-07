@@ -13,6 +13,28 @@ var myLocation = document.querySelector("#my-location");
 var message = document.querySelector("#message");
 var loading = document.querySelector("#loading");
 
+// Get coordinates from city
+function getGeo(city) {
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${geoKey}`,
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // Set the latitude and longitude for the global variables
+      lat = data.results[0].geometry.location.lat;
+      lng = data.results[0].geometry.location.lng;
+      initMap();
+    })
+    .catch((error) => console.log("error", error));
+}
+
+// Initialize the map
 function initMap() {
   loading.style.display = "none";
   var location = new google.maps.LatLng(lat, lng);
@@ -32,12 +54,33 @@ function initMap() {
   service.textSearch(request, callback);
 }
 
+// Callback function for the text search
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    atmInfoEl.innerHTML = "";
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i];
+      service.getDetails(
+        {
+          placeId: place.place_id,
+        },
+        function (result, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            console.log(result);
+          }
+        }
+      );
+    }
+  }
+}
+
+// ATM Search Handler
 var atmSearchHandler = function (e) {
   e.preventDefault();
   // Clear the previous search
   atmInfoEl.innerHTML = "";
   var cityName = city.value.trim();
-  console.log(cityName);
+  getGeo(cityName);
   city.value = "";
 };
 
@@ -52,6 +95,7 @@ function success(pos) {
   var crd = pos.coords;
   lat = crd.latitude;
   lng = crd.longitude;
+  initMap();
 }
 
 function error(err) {
@@ -64,6 +108,7 @@ function error(err) {
   message.style.color = "red";
 }
 
+// Get the user current location
 function geoLocationHandler() {
   loading.style.display = "";
   navigator.geolocation.getCurrentPosition(success, error, options);
