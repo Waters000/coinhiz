@@ -4,6 +4,8 @@ var crytposHere = document.querySelector(".cryptos-here")
 var tbl = document.querySelector(".table")
 var cryptoNews = document.querySelector(".crypto-news")
 var topGainers = document.querySelector(".top-gainers")
+var cryptoNameArr = [];
+var nomicsApiKey = 'e4679446b20fba0d142a141f118e6089f643ab5b'
 
 // set up variables for functions.
 var crypto;
@@ -267,19 +269,31 @@ function searchCrypto() {
 
 
 function filterGraphByName(response) {
-var cryptoNameArr = [];
 for (var i = 0; i < response.data.length; i++) {
   var namePush = response.data[i].name;
   // console.log(namePush);
   cryptoNameArr.push(namePush);
 }
-
 console.log(cryptoNameArr);
 // cryptoName.addEventListener("click", function(e) {
 //   console.log()
 // })
+getTradeHistory();
 }
 
+
+function getTradeHistory () {
+  apiUrl = `https://api.nomics.com/v1/global-ticker?key=${nomicsApiKey}`;
+  fetch(apiUrl)
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    }
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+}
 
 
 
