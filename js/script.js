@@ -284,7 +284,8 @@ getTradeHistory();
 
 function getTradeHistory () {
   apiUrl = `https://api.nomics.com/v1/global-ticker?key=${nomicsApiKey}`;
-  fetch(apiUrl)
+  encodedUrl = "https://api.allorigins.win/raw?url=" + `encodedURIComponent('${apiUrl}')`;
+  fetch(encodedUrl)
   .then(function(response) {
     if (response.ok) {
       return response.json();
