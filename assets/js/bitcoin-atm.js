@@ -6,12 +6,14 @@ var atmInfoEl = document.querySelector("#atm-info");
 var map;
 var service;
 var infowindow;
-var lat = 28.5383832;
-var lng = -81.3789269;
 var isOpen = false;
 var myLocation = document.querySelector("#my-location");
 var message = document.querySelector("#message");
 var loading = document.querySelector("#loading");
+var latlng = {
+  lat: 28.5383832,
+  lng: -81.3789269,
+};
 
 // Get coordinates from city
 function getGeo(city) {
@@ -27,8 +29,8 @@ function getGeo(city) {
     .then((response) => response.json())
     .then((data) => {
       // Set the latitude and longitude for the global variables
-      lat = data.results[0].geometry.location.lat;
-      lng = data.results[0].geometry.location.lng;
+      latlng.lat = data.results[0].geometry.location.lat;
+      latlng.lng = data.results[0].geometry.location.lng;
       initMap();
     })
     .catch((error) => console.log("error", error));
@@ -37,7 +39,7 @@ function getGeo(city) {
 // Initialize the map
 function initMap() {
   loading.style.display = "none";
-  var location = new google.maps.LatLng(lat, lng);
+  var location = new google.maps.LatLng(latlng.lat, latlng.lng);
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: location,
@@ -67,6 +69,7 @@ function callback(results, status) {
         function (result, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             createMarker(result);
+            createElement(result);
           }
         }
       );
@@ -74,37 +77,92 @@ function callback(results, status) {
   }
 }
 
+// Create Atm Info Element
+function createElement(p) {
+  var photo;
+  if (p.photos) {
+    photo = p.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 });
+  } else {
+    photo = "./assets/img/200x200-bitcoin.png";
+  }
+
+  var place = {
+    name: p.name,
+    address: p.formatted_address,
+    photo: photo,
+    url: p.url,
+  };
+
+  var div = document.createElement("div");
+  var div2 = document.createElement("div");
+  var div3 = document.createElement("div");
+  div.classList.add(
+    "d-flex",
+    "align-items-center",
+    "col-11",
+    "col-md-10",
+    "col-lg-8",
+    "col-xl-6",
+    "rounded",
+    "shadow",
+    "mt-4",
+    "p-2",
+    "border"
+  );
+  var h2 = document.createElement("h2");
+  h2.innerText = place.name;
+  var p1 = document.createElement("p");
+  p1.innerText = place.address;
+  var img = document.createElement("img");
+  var a = document.createElement("a");
+  if (place.photo) {
+    img.setAttribute("src", place.photo);
+  }
+  a.classList.add("btn", "btn-primary", "btn-block", "mt-2");
+  a.setAttribute("href", place.url);
+  a.setAttribute("target", "_blank");
+  a.textContent = "View on Google Maps";
+  img.classList.add("img-fluid", "rounded");
+  div2.classList.add("col-3");
+  div2.appendChild(img);
+  div3.setAttribute("class", "card-body");
+  div.appendChild(div2);
+  div3.append(h2, p1, a);
+  div.appendChild(div3);
+  atmInfoEl.appendChild(div);
+}
+
 // Set marker on the map
 function createMarker(place) {
-    if (!place.geometry || !place.geometry.location) return;
-    const iconBase = "./assets/img/location.png";
-    var contentString = `<h1 class="map-h1">${place.name}</h1> <p>${place.formatted_address}</p>`;
-  
-    var infoWindow = new google.maps.InfoWindow({
-      content: contentString,
+  if (!place.geometry || !place.geometry.location) return;
+  const iconBase = "./assets/img/location.png";
+  var contentString = `<h1 class="map-h1">${place.name}</h1> <p>${place.formatted_address}</p>`;
+
+  var infoWindow = new google.maps.InfoWindow({
+    content: contentString,
+  });
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+    title: place.name,
+    icon: iconBase,
+  });
+
+  google.maps.event.addListener(marker, "click", function (event) {
+    if (!marker.open) {
+      infoWindow.open(map, marker);
+      marker.open = true;
+    } else {
+      infoWindow.close();
+      marker.open = false;
+    }
+    google.maps.event.addListener(map, "click", function () {
+      infoWindow.close();
+      marker.open = false;
     });
-  
-    const marker = new google.maps.Marker({
-      map,
-      position: place.geometry.location,
-      title: place.name,
-      icon: iconBase,
-    });
-  
-    google.maps.event.addListener(marker, "click", function (event) {
-      if (!marker.open) {
-        infoWindow.open(map, marker);
-        marker.open = true;
-      } else {
-        infoWindow.close();
-        marker.open = false;
-      }
-      google.maps.event.addListener(map, "click", function () {
-        infoWindow.close();
-        marker.open = false;
-      });
-    });
-  }
+  });
+}
 
 // ATM Search Handler
 var atmSearchHandler = function (e) {
@@ -125,8 +183,8 @@ var options = {
 function success(pos) {
   message.textContent = "";
   var crd = pos.coords;
-  lat = crd.latitude;
-  lng = crd.longitude;
+  latlng.lat = crd.latitude;
+  latlng.lng = crd.longitude;
   initMap();
 }
 
