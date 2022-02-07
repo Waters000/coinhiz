@@ -54,3 +54,7 @@ footer p{
     width: 20px;
     height: 20px;
 }
+
+#map {
+    height: 500px;
+}
