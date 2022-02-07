@@ -28,3 +28,13 @@
     text-align: end;
     border-right: 2px solid #fff;
 }
+
+.star{
+    width: 30px;
+    top: 11px;
+    right: 20px;
+}
+
+.items{
+    font-size: .8rem;
+}
