@@ -24,9 +24,9 @@ var getCrypto = function (){
     };
     
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        // console.log(response);
 
-        console.log(response.data[0].csupply)
+        // console.log(response.data[0].csupply)
 
        
 
@@ -43,7 +43,7 @@ var getCrypto = function (){
             
             var crytpoName = document.createElement('h2')
             crytpoName.classList = "cryptoheader row";
-            crytpoName.innerHTML = `<a href="#${response.data[i].name}" onclick="seeGraph()">${response.data[i].name}</a>`;
+            crytpoName.innerHTML = `<a href="#${response.data[i].name}"><span id='${response.data[i].name}'>${response.data[i].name}</span></a>`;
 
             var rank = document.createElement('p')
             rank.classList = "row";
@@ -130,7 +130,9 @@ var getCrypto = function (){
             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
             crytposHere.append(hotCryptoDivHolder)
  
-        }
+          }
+          filterGraphByName(response);
+          
         
  
           
@@ -150,13 +152,13 @@ var getCrypto = function (){
 
  $.ajax(feed).done(function (response) {
 
-    console.log(response)
+    // console.log(response)
     // var cryptoList = response.reddit.avg_active_users
     // console.log(cryptoList)
 
     for (var i = 0; i < response.length; i++) {
             var cryptoList = id[i].reddit.avg_active_users
-            console.log(cryptoList)
+            // console.log(cryptoList)
 
 
 
@@ -218,7 +220,7 @@ $.ajax(investingNews).done(function (response) {
  
 
     $.ajax(gainers).done(function (response) {
-        console.log(response);
+        // console.log(response);
         for (var i = 0; i < 10; i++){
 
             var topGainer = document.createElement('h3')
@@ -252,7 +254,7 @@ function searchCrypto() {
   filter = input.value.toUpperCase();
   for (i = 0; i < divs.length; i++) {
     h2 = divs[i].getElementsByTagName("h2")[0];
-    console.log(h2);
+    // console.log(h2);
     txtValue = h2.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       divs[i].style.display = "";
@@ -262,8 +264,20 @@ function searchCrypto() {
   }
 }
 
-function seeGraph(e) {
-console.log("crypto");
+
+
+function filterGraphByName(response) {
+var cryptoNameArr = [];
+for (var i = 0; i < response.data.length; i++) {
+  var namePush = response.data[i].name;
+  // console.log(namePush);
+  cryptoNameArr.push(namePush);
+}
+
+console.log(cryptoNameArr);
+// cryptoName.addEventListener("click", function(e) {
+//   console.log()
+// })
 }
 
 
