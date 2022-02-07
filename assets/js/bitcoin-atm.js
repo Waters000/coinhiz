@@ -66,13 +66,45 @@ function callback(results, status) {
         },
         function (result, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
-            console.log(result);
+            createMarker(result);
           }
         }
       );
     }
   }
 }
+
+// Set marker on the map
+function createMarker(place) {
+    if (!place.geometry || !place.geometry.location) return;
+    const iconBase = "./assets/img/location.png";
+    var contentString = `<h1 class="map-h1">${place.name}</h1> <p>${place.formatted_address}</p>`;
+  
+    var infoWindow = new google.maps.InfoWindow({
+      content: contentString,
+    });
+  
+    const marker = new google.maps.Marker({
+      map,
+      position: place.geometry.location,
+      title: place.name,
+      icon: iconBase,
+    });
+  
+    google.maps.event.addListener(marker, "click", function (event) {
+      if (!marker.open) {
+        infoWindow.open(map, marker);
+        marker.open = true;
+      } else {
+        infoWindow.close();
+        marker.open = false;
+      }
+      google.maps.event.addListener(map, "click", function () {
+        infoWindow.close();
+        marker.open = false;
+      });
+    });
+  }
 
 // ATM Search Handler
 var atmSearchHandler = function (e) {
