@@ -1,0 +1,49 @@
+/* navbar links */
+.navbar a{
+    font-size: 1rem;
+    padding: 2px 10px;
+    text-decoration: none;
+    color: #212529;
+    border: 2px solid #f8f9fa;
+}
+
+/* on hover border bottom */
+.navbar a:hover{
+    border-bottom: 2px solid #212529;
+}   
+
+/* hero image */
+.hero {
+    display: flex;
+    justify-content: center;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+        url(/assets/img/bitcoin.jpg) no-repeat center center;
+    background-size: cover;
+    height: 400px;
+    width: 100%;
+}
+
+/* hero title */
+.hero-title {
+    text-align: end;
+    border-right: 2px solid #fff;
+}
+
+/* star size and position */
+.star{
+    width: 30px;
+    top: 11px;
+    right: 20px;
+}
+
+/* card p elements size */
+.items{
+    font-size: .8rem;
+}
+
+/* footer p elements size */
+footer p{
+    font-size: .8rem;
+}
