@@ -255,8 +255,15 @@ function getTradeHistory() {
       "https://api.nomics.com/v1/currencies/ticker?key=97fcaab1eed91e04fd85a3acd9c69b85c0ccfeb4&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR&platform-currency=ETH&per-page=100&page=1"
     )}`
   )
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+    // .then((response) => response.json())
+    .then((data) => {
+      var cryptoArr = data.contents;
+
+      console.log(data);
+      for (var i = 0; i < 100; i++) {
+      console.log(cryptoArr[i]);
+      }
+    })
 
   
   
