@@ -138,6 +138,36 @@
     
 }
 
+.modal {
+    
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.modal-content {
+    background-color: bisque;
+    margin: 20% auto;
+    padding: 20px;
+    width: 70%;
+    box-shadow: 0 5px 8px black;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 100}
+  to {top: 0; opacity: 1}
+}
+
 .image-size {
     width: 200px;
     height: 200px;

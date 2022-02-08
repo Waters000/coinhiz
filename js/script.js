@@ -5,6 +5,8 @@ var tbl = document.querySelector(".table")
 var cryptoNews = document.querySelector(".crypto-news")
 var topGainers = document.querySelector(".top-gainers")
 
+var modal = document.getElementById('coin-form-modal')
+
 // set up variables for functions.
 var crypto;
 var id;
@@ -39,14 +41,14 @@ var getCrypto = function (){
 
             // div header holder
             var hotCryptoHeader = document.createElement("div")
-            hotCryptoHeader.classList = "row ";         
+            hotCryptoHeader.classList = "flex flex-row ";         
             
             var crytpoName = document.createElement('h2')
-            crytpoName.classList = "cryptoheader row";
+            crytpoName.classList = "cryptoheader flex flex-row";
             crytpoName.textContent = response.data[i].name;
 
             var rank = document.createElement('p')
-            rank.classList = "row";
+            rank.classList = "flex flex-row";
             rank.textContent = "Rank: " + response.data[i].rank
 
 
@@ -54,7 +56,7 @@ var getCrypto = function (){
 
 
             var hotCryptoElementsHolder = document.createElement('div')
-            hotCryptoElementsHolder.classList = "row";
+            hotCryptoElementsHolder.classList = "flex flex-row";
 
             var holderOne = document.createElement('div')
             holderOne.classList = "holderone";
@@ -120,8 +122,9 @@ var getCrypto = function (){
             holderSix.classList = "holderSix";
 
             var cryptoButton = document.createElement('button')
-            cryptoButton.classList = "button";
+            cryptoButton.classList = "button onclick()";
             cryptoButton.innerText = "Social Stats";
+            cryptoButton.setAttribute("onClick", "openModal(event)")
 
             holderSix.append(cryptoButton)
 
@@ -168,36 +171,36 @@ var getCrypto = function (){
 
 });
 
-const coinRanking = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://coinranking1.p.rapidapi.com/stats?referenceCurrencyUuid=yhjMzLPhuIDl",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "coinranking1.p.rapidapi.com",
-		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
-	}
-};
+// const coinRanking = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://coinranking1.p.rapidapi.com/stats?referenceCurrencyUuid=yhjMzLPhuIDl",
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "coinranking1.p.rapidapi.com",
+// 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
+// 	}
+// };
 
-$.ajax(coinRanking).done(function (response) {
-	console.log(response);
-});
+// $.ajax(coinRanking).done(function (response) {
+// 	console.log(response);
+// });
 
-//crypto News 2000/mo
-const investing = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://crypto-news15.p.rapidapi.com/news/",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "crypto-news15.p.rapidapi.com",
-		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
-	}
-};
+// //crypto News 2000/mo
+// const investing = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://crypto-news15.p.rapidapi.com/news/",
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "crypto-news15.p.rapidapi.com",
+// 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
+// 	}
+// };
 
-$.ajax(investing).done(function (response) {
-	console.log(response);
-});
+// $.ajax(investing).done(function (response) {
+// 	console.log(response);
+// });
 
 const cryptoPulse = {
 	"async": true,
@@ -223,7 +226,7 @@ $.ajax(cryptoPulse).done(function (response) {
         var cryptoImageLink = document.createElement('img')
         cryptoImageLink.src = response[i].tags[0].icon
         cryptoImageLink.classList = "image-size";
-        console.log(cryptoImageLink)
+       // console.log(cryptoImageLink)
      
 
         var provider = document.createElement('p')
@@ -305,20 +308,14 @@ function searchCrypto() {
   }
 }
 
-
-
-
-
-
-    
-
-
-
-
-
-
-
-  
+function openModal() {
+  event.preventDefault();
+  modal.style.display = "block";
+   alert("openwindow")
+ 
+}
 
 // start screen by running cityList to show previous storage cities
 getCrypto();
+
+
