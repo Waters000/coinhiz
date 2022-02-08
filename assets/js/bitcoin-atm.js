@@ -10,33 +10,35 @@ var isOpen = false;
 var myLocation = document.querySelector("#my-location");
 var message = document.querySelector("#message");
 var loading = document.querySelector("#loading");
+var apiKey = "2c55cf825b3d6637f09bec8a5d37fed0";
 var latlng = {
   lat: 28.5383832,
   lng: -81.3789269,
 };
 
 // Get coordinates from city
-function getGeo(place) {
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-  };
 
-  fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=${geoKey}`,
-    requestOptions
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      // Set the latitude and longitude for the global variables
-      latlng.lat = data.results[0].geometry.location.lat;
-      latlng.lng = data.results[0].geometry.location.lng;
-      initMap();
+function getGeo(place) {
+  var url = `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${apiKey}&units=imperial`;
+  fetch(url)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(async function (data) {
+          var coords = {
+            lat: data.coord.lat,
+            lng: data.coord.lon,
+          };
+          latlng = coords;
+          initMap();
+        });
+      } else {
+        // message on city not found
+        message.textContent = "City not found";
+      }
     })
-    .catch((error) => {
-      console.log(error);
-      message.textContent = "City not found";
+    .catch(function (e) {
+      // message on connection error
+      message.textContent = "Check your connection and try again";
     });
 }
 
