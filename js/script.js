@@ -168,41 +168,74 @@ var getCrypto = function (){
 
 });
 
-const investingNews = {
+const coinRanking = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://investing-cryptocurrency-markets.p.rapidapi.com/coins/get-news?pair_ID=1057391&page=1&time_utc_offset=28800&lang_ID=1",
+	"url": "https://coinranking1.p.rapidapi.com/stats?referenceCurrencyUuid=yhjMzLPhuIDl",
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-host": "investing-cryptocurrency-markets.p.rapidapi.com",
+		"x-rapidapi-host": "coinranking1.p.rapidapi.com",
 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
 	}
 };
 
-$.ajax(investingNews).done(function (response) {
-  //  console.log(response)
-	for (var i = 0; i < 10; i++) {
+$.ajax(coinRanking).done(function (response) {
+	console.log(response);
+});
+
+//crypto News 2000/mo
+const investing = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://crypto-news15.p.rapidapi.com/news/",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "crypto-news15.p.rapidapi.com",
+		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
+	}
+};
+
+$.ajax(investing).done(function (response) {
+	console.log(response);
+});
+
+const cryptoPulse = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://crypto-pulse.p.rapidapi.com/news",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "crypto-pulse.p.rapidapi.com",
+		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
+	}
+};
+
+$.ajax(cryptoPulse).done(function (response) {
+	console.log(response);
+
+	for (var i = 0; i < 15; i++) {
 
         var cryptoHeadline = document.createElement('h5')
         cryptoHeadline.classList = "";
-        cryptoHeadline.textContent = response.data[0].screen_data.news[i].HEADLINE
+        cryptoHeadline.textContent = response[i].description
 
 
         var cryptoImageLink = document.createElement('img')
-        cryptoImageLink.src = response.data[0].screen_data.news[i].related_image;
-       // console.log(cryptoImageLink)
+        cryptoImageLink.src = response[i].tags[0].icon
+        cryptoImageLink.classList = "image-size";
+        console.log(cryptoImageLink)
      
 
         var provider = document.createElement('p')
         provider.classList = "";
-        provider.textContent = response.data[0].screen_data.news[i].news_provider_name
+        provider.textContent = response[i].source
 
-        cryptoNews.append(cryptoHeadline, cryptoImageLink, provider)
+        cryptoNews.append(cryptoHeadline, provider, cryptoImageLink)
 
         //console.log(cryptoNews)
     }
 
-
+  });
 
 
     const gainers = {
@@ -218,7 +251,8 @@ $.ajax(investingNews).done(function (response) {
  
 
     $.ajax(gainers).done(function (response) {
-        console.log(response);
+      //  console.log(response);
+       
         for (var i = 0; i < 10; i++){
 
             var topGainer = document.createElement('h3')
@@ -229,13 +263,18 @@ $.ajax(investingNews).done(function (response) {
             var priceChange = document.createElement('h7')
             priceChange.classList = "green";
             priceChange.textContent = "Price: $" + parseInt(response.result[i].priceChange.price);
-          
+            
+            var priceChangePercent = document.createElement('h7')
+            priceChangePercent.classList = "green";
+            priceChangePercent.textContent = "% Gain" + parseInt(response.result[i].priceChange.priceChange24h)+ "%";
+
+
 
             var gainerRank = document.createElement('p')
             gainerRank.classList = "";
             gainerRank.textContent = "  rank: "+ response.result[i].rank;
 
-            topGainers.append(topGainer, priceChange, gainerRank)
+            topGainers.append(topGainer, priceChange, priceChangePercent, gainerRank)
 
 
         }
@@ -243,7 +282,11 @@ $.ajax(investingNews).done(function (response) {
     });
 
 
-});
+
+
+
+
+
 }
 // search coin filter
 function searchCrypto() {
