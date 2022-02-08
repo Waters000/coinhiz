@@ -472,38 +472,9 @@ function genCryptoNameArr(response) {
   for (var i = 0; i < response.data.length; i++) {
     var namePush = response.data[i].name;
     cryptoNameArr.push(namePush);
-    console.log(cryptoNameArr);
   }
-  // console.log(cryptoNameArr);
-  // cryptoName.addEventListener("click", function(e) {
-  //   console.log()
-  // })
-  // getTradeHistory();
+  console.log(cryptoNameArr);
 }
-
-// function getTradeHistory() {
-//   var apiUrl = `https://api.nomics.com/v1?key=${nomicsApiKey}`;
-//   var encodedUrl = `https://api.allorigins.win/raw?url=encodeURIComponent('${apiUrl}')`;
-//   // var urlHeader = new Headers(`Access-Control-Allow-Origin: api.nomics.com`);
-
-//   fetch(
-//     `https://api.allorigins.win/get?url=${encodeURIComponent(
-//       "https://api.nomics.com/v1/currencies/ticker?key=97fcaab1eed91e04fd85a3acd9c69b85c0ccfeb4&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR&platform-currency=ETH&per-page=100&page=1"
-//     )}`
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       var cryptoArr = [];
-//       var contentsPush = data.contents;
-//       console.log(data.contents);
-//       cryptoArr.push(contentsPush);
-//       // console.log(cryptoArr);
-
-//       // console.log(data.contents[100]);
-//       for (var i = 0; i < 100; i++) {
-//       // console.log(cryptoArr[i]);
-//       }
-//     })
 
 
 function openModal() {
