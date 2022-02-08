@@ -1,5 +1,5 @@
 // Set all the variables
-var geoKey = "AIzaSyAaopXuVG7doXd2oLPj9OMYGsUr2mlkKyU";
+var geoKey = "AIzaSyCfsTw_5244tEy2A8CcYLP3Ov3Arn2C9js";
 var btcAtmSearch = document.querySelector("#btc-atm-search");
 var city = document.querySelector("#city");
 var atmInfoEl = document.querySelector("#atm-info");
