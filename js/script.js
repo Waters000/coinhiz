@@ -35,7 +35,7 @@ var getCrypto = function (){
 
            ///div holder to hold everything
             var hotCryptoDivHolder = document.createElement("div")
-            hotCryptoDivHolder.classList = "crypto-div";
+            hotCryptoDivHolder.classList = "";
 
             // div header holder
             var hotCryptoHeader = document.createElement("div")
