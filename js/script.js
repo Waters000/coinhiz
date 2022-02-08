@@ -246,41 +246,20 @@ function filterGraphByName(response) {
 }
 
 function getTradeHistory() {
-  // var apiUrl = `https://api.nomics.com/v1?key=${nomicsApiKey}`;
-  // var encodedUrl = `https://api.allorigins.win/raw?url=encodeURIComponent('${apiUrl}')`;
-  // // var urlHeader = new Headers(`Access-Control-Allow-Origin: api.nomics.com`);
+  var apiUrl = `https://api.nomics.com/v1?key=${nomicsApiKey}`;
+  var encodedUrl = `https://api.allorigins.win/raw?url=encodeURIComponent('${apiUrl}')`;
+  // var urlHeader = new Headers(`Access-Control-Allow-Origin: api.nomics.com`);
+
+  fetch(
+    "https://api.allorigins.win/raw?url=" + encodeURIComponent(apiUrl)
+  )
+    .then((response) => {
+      if (response.ok) return response.json();
+      throw new Error("Network response was not ok.");
+    })
+    .then((data) => console.log(data.contents));
 
   
-  // var axios = require("axios").default;
-  
-  var apiUrl = {
-    method: "GET",
-    url: "https://coingecko.p.rapidapi.com/simple/price",
-    params: { ids: `${cryptoNameArr}`, vs_currencies: "USD" },
-    headers: {
-      "x-rapidapi-host": "coingecko.p.rapidapi.com",
-      "x-rapidapi-key": "536342fa06mshe6ae089395e1aa3p1c598bjsn13df8290a8ff",
-    },
-  };
-
-  // fetch(apiUrl)
-  //   .then(function (response) {
-  //     if (response.ok) {
-  //       console.log(response.json());
-  //     }
-  //   })
-    // .then(function (data) {
-    //   console.log(data);
-    // });
-  
-  // axios
-  //   .request(options)
-  //   .then(function (response) {
-  //     console.log(response.data);
-  //   })
-  //   .catch(function (error) {
-  //     console.error(error);
-  //   });
   
 }
 
