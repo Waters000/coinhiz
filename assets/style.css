@@ -93,6 +93,18 @@
 .columns {
     flex-direction: column;
 }
+body {
+    background-color: black;
+}
+
+h2 {
+    color: white;
+
+}
+
+h5 {
+    color: white;
+}
 
 
 .header {

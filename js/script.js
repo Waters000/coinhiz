@@ -4,7 +4,7 @@ var crytposHere = document.querySelector(".cryptos-here")
 var tbl = document.querySelector(".table")
 var cryptoNews = document.querySelector(".crypto-news")
 var topGainers = document.querySelector(".top-gainers")
-var modalContent = document.querySelector(".modal-content")
+var modalContent = document.querySelector(".modals")
 
 
 var modal = document.getElementById('coin-form-modal')
