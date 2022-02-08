@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css" />
   <title>CoinHiz</title>
 </head>
@@ -21,6 +22,28 @@
 
   </div>
 </header>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="cards">
+      <span class="close">&times;</span>
+    <div class="symbol">
+      <div class="asset-info">
+        <div class="title">
+          <h1></h1>
+        </div>
+        <div class="details">
+          <h2 class="asset-price" id="Price"></h2>
+        </div>
+      </div>
+      <canvas id="chart"></canvas>
+    </div>
+    </div>
+  </div>
+</div>
+
 <!--Main class to hold main day data-->
 <main class="row">
   <body class="container-flud">
@@ -59,6 +82,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
 <script src="js/script.js"></script>
 </body>
 

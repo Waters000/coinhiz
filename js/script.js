@@ -38,7 +38,7 @@ var getCrypto = function () {
 
       var crytpoName = document.createElement("h2");
       crytpoName.classList = "cryptoheader row";
-      crytpoName.innerHTML = `<a href="#${response.data[i].name}"><span id='${response.data[i].name}'>${response.data[i].name}</span></a>`;
+      crytpoName.innerHTML = `<a class="${response.data[i].name}" href="#${response.data[i].name}"><span id='${response.data[i].name}'>${response.data[i].name}</span></a>`;
 
       var rank = document.createElement("p");
       rank.classList = "row";
@@ -115,6 +115,11 @@ var getCrypto = function () {
       cryptoButton.classList = "button";
       cryptoButton.innerText = "Social Stats";
 
+      var cryptoNameSeeGraph = document.getElementByClassName(response.data[i].name)
+
+      cryptoButton.setAttribute("symbol", response.data[i].symbol);
+      cryptoButton.addEventListener("click", modalhandler);
+
       holderSix.append(cryptoButton);
 
       hotCryptoElementsHolder.append(
@@ -128,7 +133,7 @@ var getCrypto = function () {
       hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder);
       crytposHere.append(hotCryptoDivHolder);
     }
-    filterGraphByName(response);
+    // filterGraphByName(response);
 
     const feed = {
       async: true,
@@ -232,6 +237,161 @@ function searchCrypto() {
   }
 }
 
+function resetModal(){
+  modal.innerHTML = "";
+  var modalContent = document.createElement("div");
+  var span = document.createElement("span");
+  var symbol = document.createElement("div");
+  var asset = document.createElement("div");
+  var title = document.createElement("div");
+  var h1 = document.createElement("h1");
+  var h2 = document.createElement("h2");
+  var details = document.createElement("div");
+  var canvas = document.createElement("canvas");
+  var card = document.createElement("div");
+  card.classList = "cards";
+  modalContent.classList = "modal-content";
+  span.classList = "close";
+  symbol.classList = "symbol";
+  asset.classList = "asset-info";
+  title.classList = "title";
+  details.classList = "details";
+  h2.classList = "asset-price";
+  h2.setAttribute("id", "Price");
+  canvas.setAttribute("id", "chart");
+  span.innerHTML = "&times;";
+  title.append(h1);
+  details.append(h2);
+  asset.append(title, details);
+  symbol.append(asset, canvas);
+  card.append(symbol);
+  modalContent.append(card, span);
+  modal.append(modalContent);
+}
+
+function getChart(symbol) {
+  var url = `https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=119&api_key=0646cc7b8a4d4b54926c74e0b20253b57fd4ee406df79b3d57d5439874960146`;
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      var h1 = document.querySelector(".title h1");
+      h1.textContent = symbol;
+      const data = json.Data.Data;
+      const times = data.map((obj) => obj.time);
+      const prices = data.map((obj) => obj.high);
+      let currentPrice = prices[prices.length - 1].toFixed(2);
+      document.querySelector("#Price").textContent = "$" + currentPrice;
+      var chart = document.getElementById("chart").getContext("2d");
+      var gradient = chart.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, "rgba(247,147,26,.5)");
+      gradient.addColorStop(0.425, "rgba(253, 70, 70, 0.15)");
+
+      Chart.defaults.global.defaultFontFamily = "Red Hat Text";
+      Chart.defaults.global.defaultFontSize = 12;
+      createChart = new Chart(chart, {
+        type: "line",
+        data: {
+          labels: times,
+          datasets: [
+            {
+              label: "$",
+              data: prices,
+              backgroundColor: gradient,
+              borderColor: "rgba(253, 70, 70, 0.15)",
+              borderJoinStyle: "round",
+              borderCapStyle: "round",
+              borderWidth: 3,
+              pointRadius: 0,
+              pointHitRadius: 10,
+              lineTension: 0.2,
+            },
+          ],
+        },
+
+        options: {
+          title: {
+            display: false,
+            text: "Heckin Chart!",
+            fontSize: 35,
+          },
+
+          legend: {
+            display: false,
+          },
+
+          layout: {
+            padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            },
+          },
+
+          // removes the grid lines 
+          scales: {
+            xAxes: [
+              {
+                display: false,
+                gridLines: {},
+              },
+            ],
+            yAxes: [
+              {
+                display: false,
+                gridLines: {},
+              },
+            ],
+          },
+
+          tooltips: {
+            callbacks: {
+              //This removes the tooltip title
+              title: function () {},
+            },
+            //this removes legend color
+            displayColors: false,
+            yPadding: 10,
+            xPadding: 10,
+            position: "nearest",
+            caretSize: 10,
+            backgroundColor: "rgba(255,255,255,.9)",
+            bodyFontSize: 15,
+            bodyFontColor: "#303030",
+          },
+        },
+      });
+    });
+}
+
+function modalhandler() {
+  modal.style.display = "block";
+  var symbol = this.getAttribute("symbol");
+  getChart(symbol);
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close");
+// When the user clicks on <span> (x), close the modal
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    resetModal();
+    modal.style.display = "none";
+  }
+  for (i = 0; i < span.length; i++) {
+    span[i].onclick = function () {
+      resetModal();
+      modal.style.display = "none";
+    };
+  }
+};
+
 function filterGraphByName(response) {
   for (var i = 0; i < response.data.length; i++) {
     var namePush = response.data[i].name;
@@ -255,13 +415,17 @@ function getTradeHistory() {
       "https://api.nomics.com/v1/currencies/ticker?key=97fcaab1eed91e04fd85a3acd9c69b85c0ccfeb4&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR&platform-currency=ETH&per-page=100&page=1"
     )}`
   )
-    // .then((response) => response.json())
+    .then((response) => response.json())
     .then((data) => {
-      var cryptoArr = data.contents;
+      var cryptoArr = [];
+      var contentsPush = data.contents;
+      console.log(data.contents);
+      cryptoArr.push(contentsPush);
+      // console.log(cryptoArr);
 
-      console.log(data);
+      // console.log(data.contents[100]);
       for (var i = 0; i < 100; i++) {
-      console.log(cryptoArr[i]);
+      // console.log(cryptoArr[i]);
       }
     })
 
