@@ -5,20 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css" />
   <title>CoinHiz</title>
 </head>
 
 <header class="container-flud w-110 text-center">
   <h1 class="row header w-100 ">CoinHiz</h1>
   <h3> Top Gainers</h3>
-  <div class="row top-gainers">
+  <div class="row top-gainers flex flex-row">
 
   </div>
 </header>
@@ -44,13 +46,23 @@
   </div>
 </div>
 
+<!--Modal-->
+<div class="modal flex flex-row" id="coin-form-modal"> 
+  <div class="modal-content">
+    <h2>Modal Form I am the modal, can you see me?</h2>
+
+
+  </div>
+</div>
+
+
 <!--Main class to hold main day data-->
-<main class="row">
+<main class="flex flex-row">
   <body class="container-flud">
     <div class="col-12 p-2 border-0 col-lg-3 bg-primary text-light sticky-top d-flex flex-column p-4 p-lg-3">
 
       <!--Holds list and form data-->
-      <div class="card">
+      <div class="flex flex-row">
         <h3 class=" bg-secondary border-0 text-uppercase">Search Crypto</h3>
         <div class="input-group mb-6">
           <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control" />
@@ -62,9 +74,9 @@
 
 
     <div id=""
-      class=" current-weather col-12 col-lg-9 p-5 border-0 d-flex justify-content-md-center text-center">
+      class="   ">
 
-      <div class="justify-space-between list-weather cryptos-here" id="city-weather"></div>
+      <div class=" cryptos-here" id=""></div>
     </div>
 </main>
 
@@ -77,6 +89,7 @@
   </div>
 </div>
 </div>
+
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
