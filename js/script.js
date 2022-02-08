@@ -1,11 +1,10 @@
-// Create DOM elements from IDs and Class 
-var hotCryptos = document.querySelector(".hot-cryptos")
-var crytposHere = document.querySelector(".cryptos-here")
-var tbl = document.querySelector(".table")
-var cryptoNews = document.querySelector(".crypto-news")
-var topGainers = document.querySelector(".top-gainers")
-var modalContent = document.querySelector(".modal-content")
-
+// Create DOM elements from IDs and Class
+var hotCryptos = document.querySelector(".hot-cryptos");
+var crytposHere = document.querySelector(".cryptos-here");
+var tbl = document.querySelector(".table");
+var cryptoNews = document.querySelector(".crypto-news");
+var topGainers = document.querySelector(".top-gainers");
+var cryptoNameArr = [];
 
 var modal = document.getElementById('coin-form-modal')
 var closeBtn = document.getElementById('closeBtn')
@@ -46,16 +45,18 @@ var getCrypto = function (){
             var hotCryptoHeader = document.createElement("div")
             hotCryptoHeader.classList = "flex flex-row ";         
             
-            var crytpoName = document.createElement('h2')
-            crytpoName.classList = "cryptoheader flex flex-row";
-            crytpoName.textContent = response.data[i].name;
+            var cryptoName = document.createElement('h2')
+            cryptoName.classList = "cryptoheader flex flex-row";
+            cryptoName.innerHTML = `<a class="${response.data[i].name}" href="#${response.data[i].name}"><span id='${response.data[i].name}'>${response.data[i].name}</span></a>`;
+            cryptoName.setAttribute("symbol", response.data[i].symbol);
+            // cryptoName.setAttribute("onClick", "modalhandler(event)")
 
             var rank = document.createElement('p')
             rank.classList = "flex flex-row";
             rank.textContent = "Rank: " + response.data[i].rank
 
 
-            hotCryptoHeader.append(crytpoName, rank)
+            hotCryptoHeader.append(cryptoName, rank)
 
 
             var hotCryptoElementsHolder = document.createElement('div')
@@ -94,8 +95,8 @@ var getCrypto = function (){
           
             var cryptoTotalSupply = document.createElement('p')
              var totalSupplyInt;
-          cryptoTotalSupply.classList = "";
-          totalSupplyInt = response.data[i].msupply
+            cryptoTotalSupply.classList = "";
+            totalSupplyInt = response.data[i].msupply
             cryptoTotalSupply.textContent = "Total Supply " +  parseInt(response.data[i].msupply).toLocaleString("en-US");
        
             holderThree.append(cryptoTotalSupply)
@@ -105,7 +106,7 @@ var getCrypto = function (){
             var holderFour = document.createElement('div')
             holderFour.classList = "holderFour";
 
-          var cryptoPrice = document.createElement('p')
+            var cryptoPrice = document.createElement('p')
             cryptoPrice.classList = "";
             cryptoPrice.textContent = "Price: " + "$"+ response.data[i].price_usd
 
@@ -127,7 +128,9 @@ var getCrypto = function (){
             var cryptoButton = document.createElement('button')
             cryptoButton.classList = "button onclick()";
             cryptoButton.innerText = "Social Stats";
-            cryptoButton.setAttribute("onClick", "openModal(event)")
+            // cryptoButton.setAttribute("onClick", "openModal(event)")
+            // cryptoButton.setAttribute("symbol", response.data[i].symbol);
+      
 
             holderSix.append(cryptoButton)
 
@@ -135,14 +138,13 @@ var getCrypto = function (){
            
             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
             crytposHere.append(hotCryptoDivHolder)
- 
+
+            // cryptoButton.addEventListener("click", modalhandler);
+            cryptoName.addEventListener("click", modalhandler);
         }
         
- 
+        genCryptoNameArr(response);
           
-
-
-
     const feed = {
         "async": true,
         "crossDomain": true,
@@ -310,6 +312,170 @@ function searchCrypto() {
     }
   }
 }
+
+function resetModal(){
+  modal.innerHTML = "";
+  var modalContent = document.createElement("div");
+  var span = document.createElement("span");
+  var symbol = document.createElement("div");
+  var asset = document.createElement("div");
+  var title = document.createElement("div");
+  var h1 = document.createElement("h1");
+  var h2 = document.createElement("h2");
+  var details = document.createElement("div");
+  var canvas = document.createElement("canvas");
+  var card = document.createElement("div");
+  card.classList = "cards";
+  modalContent.classList = "modal-content";
+  span.classList = "close";
+  symbol.classList = "symbol";
+  asset.classList = "asset-info";
+  title.classList = "title";
+  details.classList = "details";
+  h2.classList = "asset-price";
+  h2.setAttribute("id", "Price");
+  canvas.setAttribute("id", "chart");
+  span.innerHTML = "&times;";
+  title.append(h1);
+  details.append(h2);
+  asset.append(title, details);
+  symbol.append(asset, canvas);
+  card.append(symbol);
+  modalContent.append(card, span);
+  modal.append(modalContent);
+}
+
+function getChart(symbol) {
+  var url = `https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=119&api_key=0646cc7b8a4d4b54926c74e0b20253b57fd4ee406df79b3d57d5439874960146`;
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      var h1 = document.querySelector(".title h1");
+      h1.textContent = symbol;
+      const data = json.Data.Data;
+      const times = data.map((obj) => obj.time);
+      const prices = data.map((obj) => obj.high);
+      let currentPrice = prices[prices.length - 1].toFixed(2);
+      document.querySelector("#Price").textContent = "$" + currentPrice;
+      var chart = document.getElementById("chart").getContext("2d");
+      var gradient = chart.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, "rgba(247,147,26,.5)");
+      gradient.addColorStop(0.425, "rgba(253, 70, 70, 0.15)");
+
+      Chart.defaults.global.defaultFontFamily = "Red Hat Text";
+      Chart.defaults.global.defaultFontSize = 12;
+      createChart = new Chart(chart, {
+        type: "line",
+        data: {
+          labels: times,
+          datasets: [
+            {
+              label: "$",
+              data: prices,
+              backgroundColor: gradient,
+              borderColor: "rgba(253, 70, 70, 0.15)",
+              borderJoinStyle: "round",
+              borderCapStyle: "round",
+              borderWidth: 3,
+              pointRadius: 0,
+              pointHitRadius: 10,
+              lineTension: 0.2,
+            },
+          ],
+        },
+
+        options: {
+          title: {
+            display: false,
+            text: "Heckin Chart!",
+            fontSize: 35,
+          },
+
+          legend: {
+            display: false,
+          },
+
+          layout: {
+            padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            },
+          },
+
+          // removes the grid lines 
+          scales: {
+            xAxes: [
+              {
+                display: false,
+                gridLines: {},
+              },
+            ],
+            yAxes: [
+              {
+                display: false,
+                gridLines: {},
+              },
+            ],
+          },
+
+          tooltips: {
+            callbacks: {
+              //This removes the tooltip title
+              title: function () {},
+            },
+            //this removes legend color
+            displayColors: false,
+            yPadding: 10,
+            xPadding: 10,
+            position: "nearest",
+            caretSize: 10,
+            backgroundColor: "rgba(255,255,255,.9)",
+            bodyFontSize: 15,
+            bodyFontColor: "#303030",
+          },
+        },
+      });
+    });
+}
+
+function modalhandler() {
+  modal.style.display = "block";
+  var symbol = this.getAttribute("symbol");
+  getChart(symbol);
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close");
+// When the user clicks on <span> (x), close the modal
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    resetModal();
+    modal.style.display = "none";
+  }
+  for (i = 0; i < span.length; i++) {
+    span[i].onclick = function () {
+      resetModal();
+      modal.style.display = "none";
+    };
+  }
+};
+
+function genCryptoNameArr(response) {
+  for (var i = 0; i < response.data.length; i++) {
+    var namePush = response.data[i].name;
+    cryptoNameArr.push(namePush);
+  }
+  console.log(cryptoNameArr);
+}
+
 
 function openModal() {
   console.log(event.id)
