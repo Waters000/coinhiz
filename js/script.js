@@ -4,8 +4,11 @@ var crytposHere = document.querySelector(".cryptos-here")
 var tbl = document.querySelector(".table")
 var cryptoNews = document.querySelector(".crypto-news")
 var topGainers = document.querySelector(".top-gainers")
+var modalContent = document.querySelector(".modal-content")
+
 
 var modal = document.getElementById('coin-form-modal')
+var closeBtn = document.getElementById('closeBtn')
 
 // set up variables for functions.
 var crypto;
@@ -26,9 +29,9 @@ var getCrypto = function (){
     };
     
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        //console.log(response);
 
-        console.log(response.data[0].csupply)
+        //console.log(response.data[0].csupply)
 
        
 
@@ -309,13 +312,52 @@ function searchCrypto() {
 }
 
 function openModal() {
-  event.preventDefault();
+  console.log(event.id)
   modal.style.display = "block";
-   alert("openwindow")
+
+  const socials = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://api.coinlore.net/api/coin/social_stats/?id=80",
+    "method": "GET",
+    "headers": {
+       
+    }
+    
+};
+
+$.ajax(socials).done(function (response) {
+
+console.log(response)
+
+var redditSocial = document.createElement('h3')
+redditSocial.classList = "";
+redditSocial.textContent = "Redddit Users Avg " + response.reddit.avg_active_users
+
+
+modalContent.append(redditSocial)
+// var cryptoList = response.reddit.avg_active_users
+// console.log(cryptoList)
+
+// for (var i = 0; i < response.length; i++) {
+//         var cryptoList = id[i].reddit.avg_active_users
+       
+
+
+});
+
+ 
+ 
+}
+
+function closeModal(){
+  modal.style.display = "none";
  
 }
 
 // start screen by running cityList to show previous storage cities
 getCrypto();
 
+
+closeBtn.addEventListener('click', closeModal)
 

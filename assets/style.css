@@ -20,6 +20,16 @@
     width: auto;
 }
 
+.crypto-news {
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.coins-holder {
+    background-color: greenyellow;
+}
+
 .holdertwo {
     flex-wrap: wrap;
     background-color: #2BD2FF;
@@ -194,6 +204,12 @@
 }
 .none {
     display: none;
+}
+
+.top-row-gainers {
+    background-color: bisque;
+    flex-wrap: wrap;
+    width: 90%;
 }
 
 .current-weather {
