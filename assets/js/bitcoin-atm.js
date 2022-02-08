@@ -1,5 +1,5 @@
 // Set all the variables
-var geoKey = "AIzaSyAY0aUhmoBFuEw8NhIcYCP9CsR5qj7wA6o";
+var geoKey = "AIzaSyAaopXuVG7doXd2oLPj9OMYGsUr2mlkKyU";
 var btcAtmSearch = document.querySelector("#btc-atm-search");
 var city = document.querySelector("#city");
 var atmInfoEl = document.querySelector("#atm-info");
@@ -16,24 +16,28 @@ var latlng = {
 };
 
 // Get coordinates from city
-function getGeo(city) {
+function getGeo(place) {
   var requestOptions = {
     method: "GET",
     redirect: "follow",
   };
 
   fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${geoKey}`,
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=${geoKey}`,
     requestOptions
   )
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       // Set the latitude and longitude for the global variables
       latlng.lat = data.results[0].geometry.location.lat;
       latlng.lng = data.results[0].geometry.location.lng;
       initMap();
     })
-    .catch((error) => (message.textContent = "City not found"));
+    .catch((error) => {
+      console.log(error);
+      message.textContent = "City not found";
+    });
 }
 
 // Initialize the map
