@@ -251,13 +251,12 @@ function getTradeHistory() {
   // var urlHeader = new Headers(`Access-Control-Allow-Origin: api.nomics.com`);
 
   fetch(
-    "https://api.allorigins.win/raw?url=" + encodeURIComponent(apiUrl)
+    `https://api.allorigins.win/get?url=${encodeURIComponent(
+      "https://api.nomics.com/v1/currencies/ticker?key=97fcaab1eed91e04fd85a3acd9c69b85c0ccfeb4&ids=BTC,ETH,XRP&interval=1d,30d&convert=EUR&platform-currency=ETH&per-page=100&page=1"
+    )}`
   )
-    .then((response) => {
-      if (response.ok) return response.json();
-      throw new Error("Network response was not ok.");
-    })
-    .then((data) => console.log(data.contents));
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 
   
   
