@@ -1,3 +1,4 @@
+// Create DOM elements from IDs and Class 
 var hotCryptos = document.querySelector(".hot-cryptos")
 var crytposHere = document.querySelector(".cryptos-here")
 var tbl = document.querySelector(".table")
@@ -49,7 +50,6 @@ var getCrypto = function (){
             cryptoName.classList = "cryptoheader flex flex-row";
             cryptoName.innerHTML = `<a class="${response.data[i].name}" href="#${response.data[i].name}"><span id='${response.data[i].name}'>${response.data[i].name}</span></a>`;
             cryptoName.setAttribute("symbol", response.data[i].symbol);
-
 
             var rank = document.createElement('p')
             rank.classList = "flex flex-row";
@@ -136,15 +136,9 @@ var getCrypto = function (){
            
             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
             crytposHere.append(hotCryptoDivHolder)
-
-            // cryptoName.addEventListener("click", modalhandler);
  
-        }
-        
- 
-          
-
-
+            cryptoName.addEventListener("click", modalHandler);
+          }
 
     const feed = {
         "async": true,
@@ -443,6 +437,31 @@ function getChart(symbol) {
     });
 }
 
+function modalHandler() {
+  modal.style.display = "block";
+  var symbol = this.getAttribute("symbol");
+  getChart(symbol);
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close");
+// When the user clicks on <span> (x), close the modal
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    resetModal();
+    modal.style.display = "none";
+  }
+  for (i = 0; i < span.length; i++) {
+    span[i].onclick = function () {
+      resetModal();
+      modal.style.display = "none";
+    };
+  }
+};
 
 function openModal() {
   console.log(event.id)
