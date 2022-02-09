@@ -216,7 +216,7 @@ function createCryptoEl(response) {
 
   // div header holder
   var hotCryptoHeader = document.createElement("div");
-  hotCryptoHeader.classList = "flex flex-row";
+  hotCryptoHeader.classList = "rank-class-header flex flex-row";
 
   var cryptoFave = document.createElement("button");
   cryptoFave.classList = "fa fa-star text-3xl mx-2";
@@ -231,7 +231,7 @@ function createCryptoEl(response) {
   crytpoName.textContent = response.name;
 
   var rank = document.createElement("p");
-  rank.classList = "flex flex-row";
+  rank.classList = "rank-class ";
   rank.textContent = "Rank: " + response.rank;
 
   hotCryptoHeader.append(cryptoFave, crytpoName, rank);
@@ -301,6 +301,7 @@ function createCryptoEl(response) {
 
   var cryptoButton = document.createElement("button");
   cryptoButton.innerText = "Price History Chart";
+  cryptoButton.classList = "button-chart"
   cryptoButton.setAttribute('symbol', response.symbol)
   cryptoButton.addEventListener("click", modalHandler);
   holderSix.append(cryptoButton);
