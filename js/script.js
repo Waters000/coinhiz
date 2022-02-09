@@ -216,10 +216,6 @@ var getCrypto = function () {
   };
 
   $.ajax(settings).done(function (response) {
-    //console.log(response);
-
-    //console.log(response.data[0].csupply)
-
     for (var i = 0; i < 100; i++) {
       ///div holder to hold everything
       var hotCryptoDivHolder = document.createElement("div");
@@ -261,7 +257,6 @@ var getCrypto = function () {
       cryptoSupply.textContent =
         "Current Mined Supply " +
         parseInt(response.data[i].csupply).toLocaleString("en-US");
-      // console.log(cryptoSupplyInt)
 
       holderTwo.append(cryptoSupply);
 
@@ -278,7 +273,6 @@ var getCrypto = function () {
 
       holderThree.append(cryptoTotalSupply);
 
-      //  console.log(totalSupplyInt)
 
       var holderFour = document.createElement("div");
       holderFour.classList = "holderFour";
@@ -331,13 +325,10 @@ var getCrypto = function () {
     };
 
     $.ajax(feed).done(function (response) {
-      console.log(response);
       // var cryptoList = response.reddit.avg_active_users
-      // console.log(cryptoList)
 
       for (var i = 0; i < response.length; i++) {
         var cryptoList = id[i].reddit.avg_active_users;
-        console.log(cryptoList);
       }
     });
   });
@@ -354,8 +345,6 @@ var getCrypto = function () {
   };
 
   $.ajax(cryptoPulse).done(function (response) {
-    console.log(response);
-
     for (var i = 0; i < 15; i++) {
       var cryptoHeadline = document.createElement("h5");
       cryptoHeadline.classList = "";
@@ -364,15 +353,12 @@ var getCrypto = function () {
       var cryptoImageLink = document.createElement("img");
       cryptoImageLink.src = response[i].tags[0].icon;
       cryptoImageLink.classList = "image-size";
-      // console.log(cryptoImageLink)
 
       var provider = document.createElement("p");
       provider.classList = "";
       provider.textContent = response[i].source;
 
       cryptoNews.append(cryptoHeadline, provider, cryptoImageLink);
-
-      //console.log(cryptoNews)
     }
   });
 
@@ -388,8 +374,6 @@ var getCrypto = function () {
   };
 
   $.ajax(gainers).done(function (response) {
-    //  console.log(response);
-
     for (var i = 0; i < 10; i++) {
       var topGainer = document.createElement("h3");
       topGainer.classList = "";
@@ -415,14 +399,13 @@ var getCrypto = function () {
     }
   });
 };
-// search coin filter
+
 function searchCrypto() {
   var input = document.getElementById("search");
   var divs = document.getElementsByClassName("crypto-div");
   filter = input.value.toUpperCase();
   for (i = 0; i < divs.length; i++) {
     h2 = divs[i].getElementsByTagName("h2")[0];
-    console.log(h2);
     txtValue = h2.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       divs[i].style.display = "";
@@ -562,7 +545,6 @@ function getChart(symbol) {
 }
 
 function modalHandler() {
-  console.log('hello')
   modal.style.display = "block";
   var symbol = this.getAttribute("symbol");
   getChart(symbol);
@@ -595,8 +577,6 @@ window.onclick = function (event) {
 
 // start screen by running cityList to show previous storage cities
 getCrypto();
-
-// closeBtn.addEventListener("click", closeModal);
 
 const populateMediaScroller = (twitterRes) => {
   for (let i = 0; i < twitterRes.data.length; i++) {
@@ -685,7 +665,6 @@ const scrollButtonHandler = (event) => {
     targetEl.className === "right-button-container" ||
     targetEl.className === "right-arrow"
   ) {
-    console.log(scrollEl.scrollLeft);
     scrollIntervalHandler(false, true); // Restart timer
     if (scrollEl.scrollLeft >= -10) {
       scrollEl.scrollTo({
@@ -717,7 +696,6 @@ async function altGetReq() {
     if (response.ok) {
       response.json().then((data) => {
         populateMediaScroller(data);
-        console.log("Request Successful");
       });
     }
   });
@@ -730,7 +708,7 @@ scrollEl.scrollTo({
 
 scrollIntervalHandler(true, false);
 
-// getCrypto();
-populateMediaScroller(twitterRes); // Comment this out to test api
-// altGetReq(); // Uncomment this to test api
+populateMediaScroller(twitterRes); 
+
+
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
