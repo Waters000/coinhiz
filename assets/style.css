@@ -233,8 +233,8 @@ h2 {
 .close {
     color: #aaa;
     position: absolute;
-    right: 25px;
-    top: 0;
+    right: 11vw;
+    top: 15vw;
     font-size: 28px;
     font-weight: bold;
 }
