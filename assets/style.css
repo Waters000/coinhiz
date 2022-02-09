@@ -160,30 +160,6 @@ h5 {
     
 }
 
-.modal {
-    
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-.modal-content {
-    background-color: bisque;
-    margin: 20% auto;
-    padding: 20px;
-    width: 70%;
-    box-shadow: 0 5px 8px black;
-}
-
 /* Add Animation */
 @keyframes animatetop {
   from {top: -300px; opacity: 100}
@@ -218,24 +194,6 @@ h5 {
     display: none;
 }
 
-.top-row-gainers {
-    background-color: bisque;
-    flex-wrap: wrap;
-    width: 90%;
-}
-
-.current-weather {
-    width: 100%;
-    background-color: chartreuse;
-}
-
-.city-weather {
-    width: 100%;
-}
-
-.five-day {
-    background-color: blueviolet;
-}
 h2 {
     font-size: 40px;
 }
@@ -243,33 +201,22 @@ h2 {
 /* The Modal (background) */
 .modal {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 100000;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
 }
-/* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
-    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    /* Could be more or less, depending on screen size */
 }
 .modal-content h1{
     font-size: 1.5em;
@@ -339,4 +286,109 @@ h2 {
     grid-area: chart;
     border-radius: 0px 0px 30px 30px;
     margin-top: auto;
+}
+/* Social Media Horizontal Scroll Styles */
+.media-scroller-container {
+    display: flex;
+    justify-content: center;
+}
+
+.media-scroller-container p {
+    user-select: none;
+}
+
+.media-scroller {
+    height: 270px; /* !!!TAKE OUT HEIGHT PROP!!! */
+    /* width: 90%; */
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    background-color: rgb(192, 192, 192);
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    direction: rtl;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.media-item {
+    aspect-ratio: 1;
+    background-color: white;
+    margin: 10px;
+    border-radius: 10px;
+    transition: 150ms;
+    direction: ltr;
+}
+
+.media-item:hover {
+    transform: scale(1.02);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-info img {
+    width: 18%;
+    aspect-ratio: 1;
+    flex: 1;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.text-container {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-container p {
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.handle {
+    color: gray;
+}
+
+.tweet-content {
+    padding: 0 10px 0 10px;
+    font-size: 15px;
+}
+
+.tweet-content p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.left-button-container,
+.right-button-container {
+    display: flex;
+    align-items: center;
+    background-color: burlywood;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 5px;
+    z-index: 0;
+    transition: 400ms;
+}
+
+.left-button-container {
+    transform: translateX(22px);
+}
+
+.left-button-container:hover {
+    transform: translateX(10px);
+}
+
+.right-button-container {
+    transform: translateX(-22px);
+}
+
+.right-button-container:hover {
+    transform: translateX(-10px);
 }
