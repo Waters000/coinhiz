@@ -226,6 +226,14 @@ var getCrypto = function () {
       var hotCryptoHeader = document.createElement("div");
       hotCryptoHeader.classList = "flex flex-row";
 
+      var cryptoFave = document.createElement("button");
+      cryptoFave.classList = "fa fa-star text-3xl mx-2";
+      cryptoFave.setAttribute = `${response.data[i].name}-fave`
+      cryptoFave.addEventListener('click', function() {
+        this.classList.toggle("text-yellow-500");
+      });
+      cryptoFave.addEventListener('click', storeCrypto);
+
       var crytpoName = document.createElement("h2");
       crytpoName.classList = "cryptoheader flex flex-row";
       crytpoName.textContent = response.data[i].name;
@@ -234,7 +242,7 @@ var getCrypto = function () {
       rank.classList = "flex flex-row";
       rank.textContent = "Rank: " + response.data[i].rank;
 
-      hotCryptoHeader.append(crytpoName, rank);
+      hotCryptoHeader.append(cryptoFave, crytpoName, rank);
 
       var hotCryptoElementsHolder = document.createElement("div");
       hotCryptoElementsHolder.classList = "flex flex-row";
@@ -315,6 +323,11 @@ var getCrypto = function () {
 
       hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder);
       crytposHere.append(hotCryptoDivHolder);
+
+      function storeCrypto(e) {
+        console.log('success');
+        cryptoFave.classList.toggle ='text-red-900';
+      }
     }
 
     const feed = {
