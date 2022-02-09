@@ -160,30 +160,6 @@ h5 {
     
 }
 
-.modal {
-    
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-.modal-content {
-    background-color: bisque;
-    margin: 20% auto;
-    padding: 20px;
-    width: 70%;
-    box-shadow: 0 5px 8px black;
-}
-
 /* Add Animation */
 @keyframes animatetop {
   from {top: -300px; opacity: 100}
@@ -222,6 +198,95 @@ h2 {
     font-size: 40px;
 }
 
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.modal-content h1{
+    font-size: 1.5em;
+}
+.modal-content h2 {
+    font-size: 1.25em;
+}
+.modal-content h1, .modal-content h2{
+    padding-top: 15px;
+    font-family: 'Red Hat Text', sans-serif;
+    color: #303030;
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    position: absolute;
+    right: 25px;
+    top: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cards{
+    width: 90%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.symbol {
+    /* center */
+    display: grid;
+    max-width: 300px;
+    min-width: 250px;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(50px, 60px) 1fr;
+    grid-template:
+        "info"
+        "chart";
+    border-radius: 30px;
+}
+.symbol {
+    border: 1px solid rgba(124, 19, 19, 0.15);
+    box-shadow: 10px 10px 20px 1px rgba(253, 70, 70, 0.15);
+}
+.asset-info {
+    grid-area: info;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5% 0 5%;
+}
+.title {
+    display: inline-flex;
+}
+.asset-info h1 {
+    margin-left: 10px;
+}
+#chart {
+    grid-area: chart;
+    border-radius: 0px 0px 30px 30px;
+    margin-top: auto;
+}
 /* Social Media Horizontal Scroll Styles */
 .media-scroller-container {
     display: flex;
