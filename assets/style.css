@@ -226,6 +226,7 @@ h2 {
 .media-scroller-container {
     display: flex;
     justify-content: center;
+    margin: 25px 0;
 }
 
 .media-scroller-container p {
@@ -284,6 +285,7 @@ h2 {
 .text-container p {
     margin-bottom: 0;
     font-size: 13px;
+    text-align: left;
 }
 
 .handle {

@@ -332,7 +332,7 @@ const truncateTweetStatus = status => {
 }
 
 const redirectToTweetSource = src => {
-  console.log(src);
+  window.open(src, '_blank');
 }
 
 const populateMediaScroller = (twitterRes) => {
@@ -364,7 +364,7 @@ const populateMediaScroller = (twitterRes) => {
     let handleEl = document.createElement("p");
     handleEl.className = "handle";
     handleEl.innerHTML = "@" + twitterRes[i].user_name;
-    textContainerEl.append(handleEl);
+    // textContainerEl.append(handleEl);
 
     userInfoEl.append(textContainerEl);
     mediaItemEl.append(userInfoEl);
@@ -456,11 +456,14 @@ async function getTweets() {
 }
 
 const tweetClickHandler = event => {
-  const targetEl = event.target;
+  let targetEl = event.target;
 
   // TODO: Refactor this, this sucks
   if (targetEl.className === "media-item" || targetEl.className === "username" || targetEl.className === "handle" || targetEl.className === "userImg" || targetEl.className === "tweet-text") {
-    console.log("Woohoo");
+    if (targetEl.className !== "media-item") {
+      targetEl = targetEl.closest(".media-item");
+    }
+    redirectToTweetSource(targetEl.getAttribute("data-tweet-source"));
   }
 }
 
