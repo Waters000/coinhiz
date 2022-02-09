@@ -218,7 +218,7 @@ var getCrypto = function () {
 
       // div header holder
       var hotCryptoHeader = document.createElement("div");
-      hotCryptoHeader.classList = "flex flex-row ";
+      hotCryptoHeader.classList = "flex flex-row";
 
       var crytpoName = document.createElement("h2");
       crytpoName.classList = "cryptoheader flex flex-row";
@@ -434,8 +434,14 @@ var getCrypto = function () {
       gainerRank.classList = "";
       gainerRank.textContent = "  rank: " + response.result[i].rank;
 
-      topGainers.append(topGainer, priceChange, priceChangePercent, gainerRank);
+      var topCoins = document.createElement("div")
+      topCoins.classList = "top-coins"
+
+
+      topCoins.append(topGainer, priceChange, priceChangePercent, gainerRank);
+      topGainers.append(topCoins);
     }
+    
   });
 };
 // search coin filter
