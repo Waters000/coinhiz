@@ -1,4 +1,3 @@
-var cryptoNameArr = [];
 // Create DOM elements from IDs and Class
 var hotCryptos = document.querySelector(".hot-cryptos");
 var crytposHere = document.querySelector(".cryptos-here");
@@ -6,6 +5,8 @@ var tbl = document.querySelector(".table");
 var cryptoNews = document.querySelector(".crypto-news");
 var topGainers = document.querySelector(".top-gainers");
 var modalContent = document.querySelector(".modals");
+
+var storeCryptoArray = [];
 
 var modal = document.getElementById("myModal");
 var closeBtn = document.getElementById("closeBtn");
@@ -228,7 +229,7 @@ var getCrypto = function () {
 
       var cryptoFave = document.createElement("button");
       cryptoFave.classList = "fa fa-star text-3xl mx-2";
-      cryptoFave.setAttribute = `${response.data[i].name}-fave`
+      cryptoFave.setAttribute('id',`${response.data[i].name}`);
       cryptoFave.addEventListener('click', function() {
         this.classList.toggle("text-yellow-500");
       });
@@ -323,11 +324,6 @@ var getCrypto = function () {
 
       hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder);
       crytposHere.append(hotCryptoDivHolder);
-
-      function storeCrypto(e) {
-        console.log('success');
-        cryptoFave.classList.toggle ='text-red-900';
-      }
     }
 
     const feed = {
@@ -433,6 +429,24 @@ function searchCrypto() {
       divs[i].style.display = "none";
     }
   }
+}
+
+function storeCrypto(e) {
+  e.preventDefault();
+  var id = e.target.getAttribute("id");
+  const cryptoObject = {
+    id: id
+  }
+  if (storeCryptoArray.length) {
+    for (var i = 0; i < storeCryptoArray.length; i++) {
+      if (storeCryptoArray[i].id === id) {
+        storeCryptoArray.splice(i, 1);
+      }
+    }
+  }
+  storeCryptoArray.push(cryptoObject);
+
+  console.log(storeCryptoArray);
 }
 
 function resetModal(){
