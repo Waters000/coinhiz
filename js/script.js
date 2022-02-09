@@ -137,7 +137,7 @@ var getCrypto = function (){
             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
             crytposHere.append(hotCryptoDivHolder)
 
-            cryptoName.addEventListener("click", modalhandler);
+            // cryptoName.addEventListener("click", modalhandler);
  
         }
         
