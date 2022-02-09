@@ -713,14 +713,6 @@ scrollEl.scrollTo({
   behavior: "smooth",
 });
 
-function genCryptoNameArr(response) {
-  for (var i = 0; i < response.data.length; i++) {
-    var namePush = response.data[i].name;
-    cryptoNameArr.push(namePush);
-  }
-  console.log(cryptoNameArr);
-}
-
 scrollIntervalHandler(true, false);
 
 populateMediaScroller(twitterRes); 
@@ -728,3 +720,11 @@ populateMediaScroller(twitterRes);
 
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
 
+
+function genCryptoNameArr(response) {
+  for (var i = 0; i < response.data.length; i++) {
+    var namePush = response.data[i].name;
+    cryptoNameArr.push(namePush);
+  }
+  console.log(cryptoNameArr);
+}
