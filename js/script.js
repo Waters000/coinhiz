@@ -208,6 +208,115 @@ var twitterRes = {
 var crypto;
 let myInterval;
 
+function createCryptoEl(response) {
+  console.log(response)
+  ///div holder to hold everything
+  var hotCryptoDivHolder = document.createElement("div");
+  hotCryptoDivHolder.classList = "crypto-div";
+
+  // div header holder
+  var hotCryptoHeader = document.createElement("div");
+  hotCryptoHeader.classList = "flex flex-row";
+
+  var cryptoFave = document.createElement("button");
+  cryptoFave.classList = "fa fa-star text-3xl mx-2";
+  cryptoFave.setAttribute('id',`${response.name}`);
+  cryptoFave.addEventListener('click', function() {
+    this.classList.toggle("text-yellow-500");
+  });
+  cryptoFave.addEventListener('click', storeCrypto);
+
+  var crytpoName = document.createElement("h2");
+  crytpoName.classList = "cryptoheader flex flex-row";
+  crytpoName.textContent = response.name;
+
+  var rank = document.createElement("p");
+  rank.classList = "flex flex-row";
+  rank.textContent = "Rank: " + response.rank;
+
+  hotCryptoHeader.append(cryptoFave, crytpoName, rank);
+
+  var hotCryptoElementsHolder = document.createElement("div");
+  hotCryptoElementsHolder.classList = "flex flex-row";
+
+  var holderOne = document.createElement("div");
+  holderOne.classList = "holderone";
+
+  var cryptoId = document.createElement("p");
+  cryptoId.classList = "";
+  cryptoId.textContent = "ID: " + response.id;
+  var id = response.id;
+  holderOne.append(cryptoId);
+
+  var holderTwo = document.createElement("div");
+  holderTwo.classList = "holdertwo";
+
+  var cryptoSupply = document.createElement("p");
+  cryptoSupply.classList = "";
+  var cryptoSupplyInt;
+  cryptoSupplyInt = response.csupply;
+  cryptoSupply.textContent =
+    "Current Mined Supply " +
+    parseInt(response.csupply).toLocaleString("en-US");
+
+  holderTwo.append(cryptoSupply);
+
+  var holderThree = document.createElement("div");
+  holderThree.classList = "holderThree";
+
+  var cryptoTotalSupply = document.createElement("p");
+  var totalSupplyInt;
+  cryptoTotalSupply.classList = "";
+  totalSupplyInt = response.msupply;
+  cryptoTotalSupply.textContent =
+    "Total Supply " +
+    parseInt(response.msupply).toLocaleString("en-US");
+
+  holderThree.append(cryptoTotalSupply);
+
+
+  var holderFour = document.createElement("div");
+  holderFour.classList = "holderFour";
+
+  var cryptoPrice = document.createElement("p");
+  cryptoPrice.classList = "";
+  cryptoPrice.textContent = "Price: " + "$" + response.price_usd;
+
+  holderFour.append(cryptoPrice);
+
+  var holderFive = document.createElement("div");
+  holderFive.classList = "holderFive";
+
+  var percentMined = document.createElement("p");
+  percentMined.classList = "";
+  percentMined.textContent =
+    "Percent Mined: " +
+    parseInt((cryptoSupplyInt / totalSupplyInt) * 100) +
+    "%";
+
+  holderFive.append(percentMined);
+
+  var holderSix = document.createElement("div");
+  holderSix.classList = "holderSix";
+
+  var cryptoButton = document.createElement("button");
+  cryptoButton.innerText = "Price History Chart";
+  cryptoButton.setAttribute('symbol', response.symbol)
+  cryptoButton.addEventListener("click", modalHandler);
+  holderSix.append(cryptoButton);
+
+  hotCryptoElementsHolder.append(
+    holderTwo,
+    holderThree,
+    holderFour,
+    holderFive,
+    holderSix
+  );
+
+  hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder);
+  crytposHere.append(hotCryptoDivHolder);
+}
+
 var getCrypto = function () {
   const settings = {
     async: true,
@@ -219,111 +328,7 @@ var getCrypto = function () {
 
   $.ajax(settings).done(function (response) {
     for (var i = 0; i < 100; i++) {
-      ///div holder to hold everything
-      var hotCryptoDivHolder = document.createElement("div");
-      hotCryptoDivHolder.classList = "crypto-div";
-
-      // div header holder
-      var hotCryptoHeader = document.createElement("div");
-      hotCryptoHeader.classList = "flex flex-row";
-
-      var cryptoFave = document.createElement("button");
-      cryptoFave.classList = "fa fa-star text-3xl mx-2";
-      cryptoFave.setAttribute('id',`${response.data[i].name}`);
-      cryptoFave.addEventListener('click', function() {
-        this.classList.toggle("text-yellow-500");
-      });
-      cryptoFave.addEventListener('click', storeCrypto);
-
-      var crytpoName = document.createElement("h2");
-      crytpoName.classList = "cryptoheader flex flex-row";
-      crytpoName.textContent = response.data[i].name;
-
-      var rank = document.createElement("p");
-      rank.classList = "flex flex-row";
-      rank.textContent = "Rank: " + response.data[i].rank;
-
-      hotCryptoHeader.append(cryptoFave, crytpoName, rank);
-
-      var hotCryptoElementsHolder = document.createElement("div");
-      hotCryptoElementsHolder.classList = "flex flex-row";
-
-      var holderOne = document.createElement("div");
-      holderOne.classList = "holderone";
-
-      var cryptoId = document.createElement("p");
-      cryptoId.classList = "";
-      cryptoId.textContent = "ID: " + response.data[i].id;
-      var id = response.data[i].id;
-      holderOne.append(cryptoId);
-
-      var holderTwo = document.createElement("div");
-      holderTwo.classList = "holdertwo";
-
-      var cryptoSupply = document.createElement("p");
-      cryptoSupply.classList = "";
-      var cryptoSupplyInt;
-      cryptoSupplyInt = response.data[i].csupply;
-      cryptoSupply.textContent =
-        "Current Mined Supply " +
-        parseInt(response.data[i].csupply).toLocaleString("en-US");
-
-      holderTwo.append(cryptoSupply);
-
-      var holderThree = document.createElement("div");
-      holderThree.classList = "holderThree";
-
-      var cryptoTotalSupply = document.createElement("p");
-      var totalSupplyInt;
-      cryptoTotalSupply.classList = "";
-      totalSupplyInt = response.data[i].msupply;
-      cryptoTotalSupply.textContent =
-        "Total Supply " +
-        parseInt(response.data[i].msupply).toLocaleString("en-US");
-
-      holderThree.append(cryptoTotalSupply);
-
-
-      var holderFour = document.createElement("div");
-      holderFour.classList = "holderFour";
-
-      var cryptoPrice = document.createElement("p");
-      cryptoPrice.classList = "";
-      cryptoPrice.textContent = "Price: " + "$" + response.data[i].price_usd;
-
-      holderFour.append(cryptoPrice);
-
-      var holderFive = document.createElement("div");
-      holderFive.classList = "holderFive";
-
-      var percentMined = document.createElement("p");
-      percentMined.classList = "";
-      percentMined.textContent =
-        "Percent Mined: " +
-        parseInt((cryptoSupplyInt / totalSupplyInt) * 100) +
-        "%";
-
-      holderFive.append(percentMined);
-
-      var holderSix = document.createElement("div");
-      holderSix.classList = "holderSix";
-
-      var cryptoButton = document.createElement("button");
-      cryptoButton.innerText = "Price History Chart";
-      cryptoButton.setAttribute('symbol', response.data[i].symbol)
-      cryptoButton.addEventListener("click", modalHandler);
-      holderSix.append(cryptoButton);
-
-      hotCryptoElementsHolder.append(
-        holderTwo,
-        holderThree,
-        holderFour,
-        holderFive,
-        holderSix
-      );
-
-      hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder);
-      crytposHere.append(hotCryptoDivHolder);
+      createCryptoEl(response.data[i])
     }
 
     const feed = {
