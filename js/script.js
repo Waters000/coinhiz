@@ -23,195 +23,6 @@ var apiUrl =
 var apiBearerToken =
   "AAAAAAAAAAAAAAAAAAAAALljYwEAAAAASl%2BKPo2KBcpLkazky1jIgCG%2FzeY%3DEZJ4YlPiXm8KisMDSM8TEbXfaSZoS94eQj9h19cXqm3LjMJLPZ";
 
-// var getCrypto = function (){
-//     const settings = {
-//         "async": true,
-//         "crossDomain": true,
-//         "url": "https://api.coinlore.net/api/tickers/",
-//         "method": "GET",
-//         "headers": {
-           
-//         }
-//     };
-    
-//     $.ajax(settings).done(function (response) {
-//         // console.log(response);
-
-//         //console.log(response.data[0].csupply)
-
-       
-
-
-//         for (var i = 0; i < 100; i++){
-
-//            ///div holder to hold everything
-//             var hotCryptoDivHolder = document.createElement("div")
-//             hotCryptoDivHolder.classList = "crypto-div";
-
-//             // div header holder
-//             var hotCryptoHeader = document.createElement("div")
-//             hotCryptoHeader.classList = "flex flex-row ";         
-            
-//             var cryptoName = document.createElement('h2')
-//             cryptoName.classList = "cryptoheader flex flex-row";
-//             cryptoName.innerHTML = `<a href="#${response.data[i].name}">${response.data[i].name}</a>`;
-//             // cryptoName.setAttribute('onclick', 'modalHandler()')
-//             // cryptoName.setAttribute("symbol", response.data[i].symbol);
-
-//             var rank = document.createElement('p')
-//             rank.classList = "flex flex-row";
-//             rank.textContent = "Rank: " + response.data[i].rank
-
-
-//             hotCryptoHeader.append(cryptoName, rank)
-
-
-//             var hotCryptoElementsHolder = document.createElement('div')
-//             hotCryptoElementsHolder.classList = "flex flex-row";
-
-//             var holderOne = document.createElement('div')
-//             holderOne.classList = "holderone";
-            
-
-
-//             var cryptoId = document.createElement('p')
-//             cryptoId.classList = "";
-//             cryptoId.textContent = "ID: " + response.data[i].id
-//             var id = response.data[i].id
-//             holderOne.append(cryptoId)
-            
-            
-//             var holderTwo = document.createElement('div')
-//             holderTwo.classList = "holdertwo";
-
-
-
-
-//             var cryptoSupply = document.createElement('p')
-//            cryptoSupply.classList = "";
-//            var cryptoSupplyInt;
-//            cryptoSupplyInt = response.data[i].csupply;
-//             cryptoSupply.textContent = "Current Mined Supply " +  parseInt(response.data[i].csupply).toLocaleString("en-US");
-//            // console.log(cryptoSupplyInt)
-           
-
-//            holderTwo.append(cryptoSupply)
-
-//            var holderThree = document.createElement('div')
-//            holderThree.classList = "holderThree";
-          
-//             var cryptoTotalSupply = document.createElement('p')
-//              var totalSupplyInt;
-//           cryptoTotalSupply.classList = "";
-//           totalSupplyInt = response.data[i].msupply
-//             cryptoTotalSupply.textContent = "Total Supply " +  parseInt(response.data[i].msupply).toLocaleString("en-US");
-       
-//             holderThree.append(cryptoTotalSupply)
-       
-//             //  console.log(totalSupplyInt)
-
-//             var holderFour = document.createElement('div')
-//             holderFour.classList = "holderFour";
-
-//           var cryptoPrice = document.createElement('p')
-//             cryptoPrice.classList = "";
-//             cryptoPrice.textContent = "Price: " + "$"+ response.data[i].price_usd
-
-//             holderFour.append(cryptoPrice)
-
-        
-//             var holderFive = document.createElement('div')
-//             holderFive.classList = "holderFive";
-
-//             var percentMined = document.createElement('p')
-//             percentMined.classList = "";
-//             percentMined.textContent = "Percent Mined: " + parseInt((cryptoSupplyInt /  totalSupplyInt)*100)+ "%";
-           
-//             holderFive.append(percentMined)
-
-//             var holderSix = document.createElement('div')
-//             holderSix.classList = "holderSix";
-
-//             var cryptoButton = document.createElement('button')
-//             // cryptoButton.classList = "button onclick()";
-//             cryptoButton.innerText = "Social Stats";
-//             cryptoButton.setAttribute("symbol", response.data[i].symbol);
-//             cryptoButton.setAttribute("onClick", "modalHandler(event)")
-//             console.log(response.data[i].symbol);
-
-//             holderSix.append(cryptoButton)
-
-//             hotCryptoElementsHolder.append( holderTwo,  holderThree, holderFour, holderFive, holderSix)
-           
-//             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
-//             crytposHere.append(hotCryptoDivHolder)
- 
-//             // cryptoName.addEventListener("click", modalHandler);
-//           }
-
-//     const feed = {
-//         "async": true,
-//         "crossDomain": true,
-//         "url": "https://api.coinlore.net/api/coin/social_stats/?=" + id,
-//         "method": "GET",
-//         "headers": {
-           
-//         }
-        
-//     };
-
-//  $.ajax(feed).done(function (response) {
-
-//     console.log(response)
-//     // var cryptoList = response.reddit.avg_active_users
-//     // console.log(cryptoList)
-
-//     for (var i = 0; i < response.length; i++) {
-//             var cryptoList = id[i].reddit.avg_active_users
-//             console.log(cryptoList)
-
-
-
-
-            
-//     }
-//     });
-  
-
-// });
-
-// // const coinRanking = {
-// // 	"async": true,
-// // 	"crossDomain": true,
-// // 	"url": "https://coinranking1.p.rapidapi.com/stats?referenceCurrencyUuid=yhjMzLPhuIDl",
-// // 	"method": "GET",
-// // 	"headers": {
-// // 		"x-rapidapi-host": "coinranking1.p.rapidapi.com",
-// // 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
-// // 	}
-// // };
-
-// // $.ajax(coinRanking).done(function (response) {
-// // 	console.log(response);
-// // });
-
-// // //crypto News 2000/mo
-// // const investing = {
-// // 	"async": true,
-// // 	"crossDomain": true,
-// // 	"url": "https://crypto-news15.p.rapidapi.com/news/",
-// // 	"method": "GET",
-// // 	"headers": {
-// // 		"x-rapidapi-host": "crypto-news15.p.rapidapi.com",
-// // 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
-// // 	}
-// };
-
-// $.ajax(investing).done(function (response) {
-// 	console.log(response);
-// });
-
-
 const cryptoPulse = {
 	"async": true,
 	"crossDomain": true,
@@ -405,10 +216,6 @@ var getCrypto = function () {
   };
 
   $.ajax(settings).done(function (response) {
-    //console.log(response);
-
-    //console.log(response.data[0].csupply)
-
     for (var i = 0; i < 100; i++) {
       ///div holder to hold everything
       var hotCryptoDivHolder = document.createElement("div");
@@ -450,7 +257,6 @@ var getCrypto = function () {
       cryptoSupply.textContent =
         "Current Mined Supply " +
         parseInt(response.data[i].csupply).toLocaleString("en-US");
-      // console.log(cryptoSupplyInt)
 
       holderTwo.append(cryptoSupply);
 
@@ -467,7 +273,6 @@ var getCrypto = function () {
 
       holderThree.append(cryptoTotalSupply);
 
-      //  console.log(totalSupplyInt)
 
       var holderFour = document.createElement("div");
       holderFour.classList = "holderFour";
@@ -520,47 +325,13 @@ var getCrypto = function () {
     };
 
     $.ajax(feed).done(function (response) {
-      console.log(response);
       // var cryptoList = response.reddit.avg_active_users
-      // console.log(cryptoList)
 
       for (var i = 0; i < response.length; i++) {
         var cryptoList = id[i].reddit.avg_active_users;
-        console.log(cryptoList);
       }
     });
   });
-
-  // const coinRanking = {
-  // 	"async": true,
-  // 	"crossDomain": true,
-  // 	"url": "https://coinranking1.p.rapidapi.com/stats?referenceCurrencyUuid=yhjMzLPhuIDl",
-  // 	"method": "GET",
-  // 	"headers": {
-  // 		"x-rapidapi-host": "coinranking1.p.rapidapi.com",
-  // 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
-  // 	}
-  // };
-
-  // $.ajax(coinRanking).done(function (response) {
-  // 	console.log(response);
-  // });
-
-  // //crypto News 2000/mo
-  // const investing = {
-  // 	"async": true,
-  // 	"crossDomain": true,
-  // 	"url": "https://crypto-news15.p.rapidapi.com/news/",
-  // 	"method": "GET",
-  // 	"headers": {
-  // 		"x-rapidapi-host": "crypto-news15.p.rapidapi.com",
-  // 		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
-  // 	}
-  // };
-
-  // $.ajax(investing).done(function (response) {
-  // 	console.log(response);
-  // });
 
   const cryptoPulse = {
     async: true,
@@ -574,8 +345,6 @@ var getCrypto = function () {
   };
 
   $.ajax(cryptoPulse).done(function (response) {
-    console.log(response);
-
     for (var i = 0; i < 15; i++) {
       var cryptoHeadline = document.createElement("h5");
       cryptoHeadline.classList = "";
@@ -584,15 +353,12 @@ var getCrypto = function () {
       var cryptoImageLink = document.createElement("img");
       cryptoImageLink.src = response[i].tags[0].icon;
       cryptoImageLink.classList = "image-size";
-      // console.log(cryptoImageLink)
 
       var provider = document.createElement("p");
       provider.classList = "";
       provider.textContent = response[i].source;
 
       cryptoNews.append(cryptoHeadline, provider, cryptoImageLink);
-
-      //console.log(cryptoNews)
     }
   });
 
@@ -608,8 +374,6 @@ var getCrypto = function () {
   };
 
   $.ajax(gainers).done(function (response) {
-    //  console.log(response);
-
     for (var i = 0; i < 10; i++) {
       var topGainer = document.createElement("h3");
       topGainer.classList = "";
@@ -635,14 +399,13 @@ var getCrypto = function () {
     }
   });
 };
-// search coin filter
+
 function searchCrypto() {
   var input = document.getElementById("search");
   var divs = document.getElementsByClassName("crypto-div");
   filter = input.value.toUpperCase();
   for (i = 0; i < divs.length; i++) {
     h2 = divs[i].getElementsByTagName("h2")[0];
-    console.log(h2);
     txtValue = h2.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       divs[i].style.display = "";
@@ -782,12 +545,30 @@ function getChart(symbol) {
 }
 
 function modalHandler() {
-  console.log('hello')
   modal.style.display = "block";
   var symbol = this.getAttribute("symbol");
   getChart(symbol);
 }
 
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close");
+// When the user clicks on <span> (x), close the modal
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    resetModal();
+    modal.style.display = "none";
+  }
+  for (i = 0; i < span.length; i++) {
+    span[i].onclick = function () {
+      resetModal();
+      modal.style.display = "none";
+    };
+  }
+};
 
 
 
@@ -796,8 +577,6 @@ function modalHandler() {
 
 // start screen by running cityList to show previous storage cities
 getCrypto();
-
-// closeBtn.addEventListener("click", closeModal);
 
 const populateMediaScroller = (twitterRes) => {
   for (let i = 0; i < twitterRes.data.length; i++) {
@@ -886,7 +665,6 @@ const scrollButtonHandler = (event) => {
     targetEl.className === "right-button-container" ||
     targetEl.className === "right-arrow"
   ) {
-    console.log(scrollEl.scrollLeft);
     scrollIntervalHandler(false, true); // Restart timer
     if (scrollEl.scrollLeft >= -10) {
       scrollEl.scrollTo({
@@ -918,7 +696,6 @@ async function altGetReq() {
     if (response.ok) {
       response.json().then((data) => {
         populateMediaScroller(data);
-        console.log("Request Successful");
       });
     }
   });
@@ -931,7 +708,7 @@ scrollEl.scrollTo({
 
 scrollIntervalHandler(true, false);
 
-// getCrypto();
-populateMediaScroller(twitterRes); // Comment this out to test api
-// altGetReq(); // Uncomment this to test api
+populateMediaScroller(twitterRes); 
+
+
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
