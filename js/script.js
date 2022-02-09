@@ -1,10 +1,10 @@
-// Create DOM elements from IDs and Class
-var hotCryptos = document.querySelector(".hot-cryptos");
-var crytposHere = document.querySelector(".cryptos-here");
-var tbl = document.querySelector(".table");
-var cryptoNews = document.querySelector(".crypto-news");
-var topGainers = document.querySelector(".top-gainers");
-var cryptoNameArr = [];
+var hotCryptos = document.querySelector(".hot-cryptos")
+var crytposHere = document.querySelector(".cryptos-here")
+var tbl = document.querySelector(".table")
+var cryptoNews = document.querySelector(".crypto-news")
+var topGainers = document.querySelector(".top-gainers")
+var modalContent = document.querySelector(".modals")
+
 
 var modal = document.getElementById('coin-form-modal')
 var closeBtn = document.getElementById('closeBtn')
@@ -49,7 +49,7 @@ var getCrypto = function (){
             cryptoName.classList = "cryptoheader flex flex-row";
             cryptoName.innerHTML = `<a class="${response.data[i].name}" href="#${response.data[i].name}"><span id='${response.data[i].name}'>${response.data[i].name}</span></a>`;
             cryptoName.setAttribute("symbol", response.data[i].symbol);
-            // cryptoName.setAttribute("onClick", "modalhandler(event)")
+
 
             var rank = document.createElement('p')
             rank.classList = "flex flex-row";
@@ -95,8 +95,8 @@ var getCrypto = function (){
           
             var cryptoTotalSupply = document.createElement('p')
              var totalSupplyInt;
-            cryptoTotalSupply.classList = "";
-            totalSupplyInt = response.data[i].msupply
+          cryptoTotalSupply.classList = "";
+          totalSupplyInt = response.data[i].msupply
             cryptoTotalSupply.textContent = "Total Supply " +  parseInt(response.data[i].msupply).toLocaleString("en-US");
        
             holderThree.append(cryptoTotalSupply)
@@ -106,7 +106,7 @@ var getCrypto = function (){
             var holderFour = document.createElement('div')
             holderFour.classList = "holderFour";
 
-            var cryptoPrice = document.createElement('p')
+          var cryptoPrice = document.createElement('p')
             cryptoPrice.classList = "";
             cryptoPrice.textContent = "Price: " + "$"+ response.data[i].price_usd
 
@@ -128,9 +128,7 @@ var getCrypto = function (){
             var cryptoButton = document.createElement('button')
             cryptoButton.classList = "button onclick()";
             cryptoButton.innerText = "Social Stats";
-            // cryptoButton.setAttribute("onClick", "openModal(event)")
-            // cryptoButton.setAttribute("symbol", response.data[i].symbol);
-      
+            cryptoButton.setAttribute("onClick", "openModal(event)")
 
             holderSix.append(cryptoButton)
 
@@ -139,12 +137,15 @@ var getCrypto = function (){
             hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder )
             crytposHere.append(hotCryptoDivHolder)
 
-            // cryptoButton.addEventListener("click", modalhandler);
             cryptoName.addEventListener("click", modalhandler);
+ 
         }
         
-        genCryptoNameArr(response);
+ 
           
+
+
+
     const feed = {
         "async": true,
         "crossDomain": true,
@@ -442,40 +443,6 @@ function getChart(symbol) {
     });
 }
 
-function modalhandler() {
-  modal.style.display = "block";
-  var symbol = this.getAttribute("symbol");
-  getChart(symbol);
-}
-
-// Get the modal
-var modal = document.getElementById("myModal");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close");
-// When the user clicks on <span> (x), close the modal
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    resetModal();
-    modal.style.display = "none";
-  }
-  for (i = 0; i < span.length; i++) {
-    span[i].onclick = function () {
-      resetModal();
-      modal.style.display = "none";
-    };
-  }
-};
-
-function genCryptoNameArr(response) {
-  for (var i = 0; i < response.data.length; i++) {
-    var namePush = response.data[i].name;
-    cryptoNameArr.push(namePush);
-  }
-  console.log(cryptoNameArr);
-}
-
 
 function openModal() {
   console.log(event.id)
@@ -526,4 +493,3 @@ getCrypto();
 
 
 closeBtn.addEventListener('click', closeModal)
-
