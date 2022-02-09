@@ -8,20 +8,30 @@
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap" rel="stylesheet">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/style.css" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style.css" />
   <title>CoinHiz</title>
 </head>
 
-<header class="container-flud w-110 text-center">
-  <h1 class="row header w-100 ">CoinHiz</h1>
+<header class="container-flud text-center">
+  <h1 class="header  flex flex-row top-row-gainers bg-blue-200">CoinHiz</h1>
   <h3> Top Gainers</h3>
-  <div class="row top-gainers flex flex-row">
-
+  
+  <div class="top-gainers flex flex-row top-row-gainers ">
+  </div>
+  <div class="top-gainers-container">
+  <div class="media-scroller-container">
+    <div class="left-button-container">
+      <p class="left-arrow"></p>
+    </div>
+    <div class="media-scroller" id="media-scroller"></div>
+    <div class="right-button-container">
+      <p class="right-arrow">></p>
+    </div>
+  </div>
   </div>
 </header>
 
@@ -46,57 +56,40 @@
   </div>
 </div>
 
-<!--Modal-->
-<div class="modal flex flex-row" id="coin-form-modal"> 
-  <div class="modal-content">
-    <h2>Modal Form I am the modal, can you see me?</h2>
-
-
-  </div>
-</div>
 
 
 <!--Main class to hold main day data-->
-<main class="flex flex-row">
-  <body class="container-flud">
-    <div class="col-12 p-2 border-0 col-lg-3 bg-primary text-light sticky-top d-flex flex-column p-4 p-lg-3">
+
+<body class="container-flud h-screen bg-gradient-to-b from-green-200 to-green-500">
+  <main class="flex flex-row">
+    <div class="">
 
       <!--Holds list and form data-->
-      <div class="flex flex-row">
-        <h3 class=" bg-secondary border-0 text-uppercase">Search Crypto</h3>
-        <div class="input-group mb-6">
-          <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control" />
-          <button type="submit" id="submitBtn" class="input-group-append btn text-white bg-success">Find
-            Crypto</button>
-        </div>    <div class=" city-list city-list-button bg-primary crypto-news" id="cityListId"> Add list of search here</div>
+      <div class="bg-gradient-to-b from-green-200 to-green-500">
+        
+         <h2>Crypto News! </h2>
+        <div class="w-50 crypto-news  " id="cityListId"> </div>
       </div>
     </div>
 
 
     <div id=""
-      class="   ">
-
-      <div class=" cryptos-here" id=""></div>
+      class=" coins-holder bg-gradient-to-b from-green-200 to-green-500 ">
+      <div class="input-group mb-6"><h3 class="">Search Crypto</h3>
+        <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control" />
+        <button type="submit" id="submitBtn" class="input-group-append btn text-white bg-success">Find
+          Crypto</button>
+      </div>  
+      <div class="cryptos-here" id=""></div>
     </div>
-</main>
+  </main>
 
 
 <!--Holds 5 day data-->
 <div class="container-fluid">
   <div class=" row ">
     <h3 class="  hot-cryptos ">Top 100 Hot Cryptos</h3>
-    <div class=" five-day row flex-row col-12 list-group justify-content-md-center"></div>
+    <div class=""></div>
   </div>
 </div>
 </div>
-
-
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-<script src="js/script.js"></script>
-</body>
-
-</html>
