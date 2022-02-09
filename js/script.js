@@ -6,6 +6,8 @@ var cryptoNews = document.querySelector(".crypto-news");
 var topGainers = document.querySelector(".top-gainers");
 var modalContent = document.querySelector(".modals");
 
+var storeCryptoArray = [];
+
 var modal = document.getElementById("myModal");
 var closeBtn = document.getElementById("closeBtn");
 
@@ -225,6 +227,14 @@ var getCrypto = function () {
       var hotCryptoHeader = document.createElement("div");
       hotCryptoHeader.classList = "flex flex-row";
 
+      var cryptoFave = document.createElement("button");
+      cryptoFave.classList = "fa fa-star text-3xl mx-2";
+      cryptoFave.setAttribute('id',`${response.data[i].name}`);
+      cryptoFave.addEventListener('click', function() {
+        this.classList.toggle("text-yellow-500");
+      });
+      cryptoFave.addEventListener('click', storeCrypto);
+
       var crytpoName = document.createElement("h2");
       crytpoName.classList = "cryptoheader flex flex-row";
       crytpoName.textContent = response.data[i].name;
@@ -233,7 +243,7 @@ var getCrypto = function () {
       rank.classList = "flex flex-row";
       rank.textContent = "Rank: " + response.data[i].rank;
 
-      hotCryptoHeader.append(crytpoName, rank);
+      hotCryptoHeader.append(cryptoFave, crytpoName, rank);
 
       var hotCryptoElementsHolder = document.createElement("div");
       hotCryptoElementsHolder.classList = "flex flex-row";
@@ -419,6 +429,24 @@ function searchCrypto() {
       divs[i].style.display = "none";
     }
   }
+}
+
+function storeCrypto(e) {
+  e.preventDefault();
+  var id = e.target.getAttribute("id");
+  const cryptoObject = {
+    id: id
+  }
+  if (storeCryptoArray.length) {
+    for (var i = 0; i < storeCryptoArray.length; i++) {
+      if (storeCryptoArray[i].id === id) {
+        storeCryptoArray.splice(i, 1);
+      }
+    }
+  }
+  storeCryptoArray.push(cryptoObject);
+
+  console.log(storeCryptoArray);
 }
 
 function resetModal(){
@@ -721,3 +749,12 @@ populateMediaScroller(twitterRes);
 
 
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
+
+
+function genCryptoNameArr(response) {
+  for (var i = 0; i < response.data.length; i++) {
+    var namePush = response.data[i].name;
+    cryptoNameArr.push(namePush);
+  }
+  console.log(cryptoNameArr);
+}
