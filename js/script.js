@@ -441,6 +441,8 @@ function storeCrypto(e) {
     for (var i = 0; i < storeCryptoArray.length; i++) {
       if (storeCryptoArray[i].id === id) {
         storeCryptoArray.splice(i, 1);
+        console.log(storeCryptoArray);
+        return;
       }
     }
   }
