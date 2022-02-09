@@ -510,7 +510,7 @@ const startScroll = () => {
         behavior: "smooth",
       });
     }
-  }, 2500);
+  }, 5000);
 };
 
 const scrollIntervalHandler = (start, pause) => {
