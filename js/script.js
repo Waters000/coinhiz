@@ -626,6 +626,6 @@ scrollEl.scrollTo({
 scrollIntervalHandler(true, false);
 
 // getCrypto();
-populateMediaScroller(twitterRes); // Comment this out to test api
-// altGetReq(); // Uncomment this to test api
+ populateMediaScroller(twitterRes); // Comment this out to test api
+ // altGetReq(); // Uncomment this to test api
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
