@@ -8,6 +8,7 @@
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap" rel="stylesheet">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
@@ -16,11 +17,12 @@
 </head>
 
 <header class="container-flud text-center">
-  <h1 class="header  flex flex-row top-row-gainers">CoinHiz</h1>
+  <h1 class="header  flex flex-row top-row-gainers bg-blue-200">CoinHiz</h1>
   <h3> Top Gainers</h3>
-  <div class=" top-gainers flex flex-row top-row-gainers">
-    
+  
+  <div class="top-gainers flex flex-row top-row-gainers ">
   </div>
+  <div class="top-gainers-container">
   <div class="media-scroller-container">
     <div class="left-button-container">
       <p class="left-arrow"></p>
@@ -30,28 +32,49 @@
       <p class="right-arrow">></p>
     </div>
   </div>
+  </div>
 </header>
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="cards">
+      <span class="close">&times;</span>
+    <div class="symbol">
+      <div class="asset-info">
+        <div class="title">
+          <h1></h1>
+        </div>
+        <div class="details">
+          <h2 class="asset-price" id="Price"></h2>
+        </div>
+      </div>
+      <canvas id="chart"></canvas>
+    </div>
+    </div>
+  </div>
+</div>
 
 
 
 <!--Main class to hold main day data-->
 
-<body class="container-flud">
+<body class="container-flud h-screen bg-gradient-to-b from-green-200 to-green-500">
   <main class="flex flex-row">
     <div class="">
 
       <!--Holds list and form data-->
-      <div class="">
+      <div class="bg-gradient-to-b from-green-200 to-green-500">
         
          <h2>Crypto News! </h2>
-        <div class="w-50 crypto-news " id="cityListId"> </div>
+        <div class="w-50 crypto-news  " id="cityListId"> </div>
       </div>
     </div>
 
 
     <div id=""
-      class=" coins-holder  ">
+      class=" coins-holder bg-gradient-to-b from-green-200 to-green-500 ">
       <div class="input-group mb-6"><h3 class="">Search Crypto</h3>
         <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control" />
         <button type="submit" id="submitBtn" class="input-group-append btn text-white bg-success">Find
@@ -72,24 +95,12 @@
 </div>
 
 
-<!--Modal-->
-<div class="modal flex flex-row" id="coin-form-modal"> 
-  <div class="modal-content">
-    <span id="closeBtn">&times; Close Window</span>
-    <div><h3>This is Reddit: </h3><span class="modals"></span>
-      <p>New line here</p>
-    </div>
 
-    <h2></h2>
-   
-
-  </div>
-</div>
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="js/script.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+<script src="js/script.js"></script>
 </body>
 
 </html>
