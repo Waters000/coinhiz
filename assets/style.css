@@ -5,8 +5,8 @@
 }
 
 .crypto-div {
-    color: blue;
-    background-color: rgb(0, 0, 0);
+    color: grey;
+    background-color: white;
     border-radius: 5px;
     columns: auto;
    
@@ -14,7 +14,7 @@
 }
 
 .holderone {
-    color:rgb(255, 102, 0);
+    color:green(255, 102, 0);
     background-color: black;
     padding-right:1em;
     width: auto;
@@ -27,12 +27,12 @@
 }
 
 .coins-holder {
-    background-color: greenyellow;
+    background-color: grey;
 }
 
 .holdertwo {
     flex-wrap: wrap;
-    background-color: #2BD2FF;
+    background-color: white;
     padding-right:1em;
     width: auto;
     width: auto;
@@ -41,7 +41,7 @@
 
 .holderThree {
     flex-wrap: wrap;
-    background-color: blueviolet;
+    background-color: white;
     padding-right:1em;
     width: auto;
    
@@ -49,26 +49,26 @@
 
 .holderFour {
     padding-right:1em;
-    background-color: rgb(0, 230, 50);
+    background-color: white;
     width: auto;
    
 }
 
 .holderFive {
     padding-right:1em;
-    background-color: rgb(255, 102, 0);
+    background-color: white;
     width: auto;
 }
 
 .holderSix {
     padding-right:1em;
-    background-color: rgb(214, 0, 132);
+    background-color: white;
     width: auto;
 }
 
 
 .cryptoheader {
-    background-color: brown;
+    background-color: white;
     width: 90%;
     
 }
@@ -94,16 +94,16 @@
     flex-direction: column;
 }
 body {
-    background-color: black;
+    background-color: grey;
 }
 
 h2 {
-    color: green;
+    color: black;
 
 }
 
 h5 {
-    color: white;
+    color: black;
 }
 
 
@@ -172,7 +172,7 @@ h5 {
 }
 
 .green {
-    background-color: green;
+    background-color: grey;
 }
 
 .yellow {
