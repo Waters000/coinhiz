@@ -22,7 +22,8 @@ var apiUrl = `https://api.coinpaprika.com/v1/coins/${coinsToSearchTweetsFor}/twi
 
 // set up variables for functions.
 var crypto;
-let myInterval;
+let scrollInterval;
+let initialScroll = false;
 
 function createCryptoEl(response) {
   ///div holder to hold everything
@@ -596,7 +597,7 @@ if (
 
   // START MEDIA SCROLLER LOGIC
   const startScroll = () => {
-    myInterval = setInterval(function () {
+    scrollInterval = setInterval(function () {
       // If at the end of the list, scroll to start
       if (scrollEl.scrollLeft >= -10) {
         scrollEl.scrollTo({
@@ -616,7 +617,7 @@ if (
     if (start) {
       startScroll();
     } else if (pause) {
-      clearInterval(myInterval);
+      clearInterval(scrollInterval);
       startScroll();
     }
   };
@@ -688,8 +689,7 @@ if (
 
   scrollIntervalHandler(true, false);
 
-  //populateMediaScroller(twitterRes); // Comment this out to test api
-  getTweets(); // Uncomment this to test api
+  getTweets(); 
   scrollEl.addEventListener("click", tweetClickHandler);
   scrollContainerEl.addEventListener("click", scrollButtonHandler);
 
