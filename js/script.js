@@ -10,203 +10,130 @@ var storeCryptoArray = [];
 
 var modal = document.getElementById("myModal");
 var closeBtn = document.getElementById("closeBtn");
-
+const coinsToSearchTweetsFor = "btc-bitcoin";
+var cryptoList = [];
 // set up variables for functions.
 var crypto;
 var id;
-// set up API key as variable...API key can not go in URL string or
-// browser will say there is a security issue
 
 // Create DOM elements from IDs and Class
 var scrollEl = document.querySelector("#media-scroller");
 var scrollContainerEl = document.querySelector(".media-scroller-container");
-var apiUrl =
-  "https://api.twitter.com/1.1/search/tweets.json?q=%23crypto&src=typed_query";
-var apiBearerToken =
-  "AAAAAAAAAAAAAAAAAAAAALljYwEAAAAASl%2BKPo2KBcpLkazky1jIgCG%2FzeY%3DEZJ4YlPiXm8KisMDSM8TEbXfaSZoS94eQj9h19cXqm3LjMJLPZ";
-
-const cryptoPulse = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://crypto-pulse.p.rapidapi.com/news",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "crypto-pulse.p.rapidapi.com",
-		"x-rapidapi-key": "ace563b49cmshf51f6b2f277eccfp1bc75djsn9f362115f89a"
-	}}
-var twitterRes = {
-  data: [
-    {
-      author_id: "1723531020",
-      id: "1490430366930411523",
-      text: "RT @crypto_dago: The most important principle of journalism is to show both sides of the story. 99% of the news is guilty of showing only o…",
-    },
-    {
-      author_id: "1267773564352069634",
-      id: "1490430366234169344",
-      text: "#valerstudios #VLR #blockchain #cryptocurrency #technology #bitcoin #money #crypto #Binance #BNB #cryptocurrencies #fintech @Valerstudios https://t.co/WKhOgXnLGl",
-    },
-    {
-      author_id: "1465309920891265031",
-      id: "1490430362261938177",
-      text:
-        "Everyone check out #crypto services of https://t.co/XxcyJqDnrN! I am so hyped to get in the whitelist for @ChoiseCom MetaFi 🤩🤩\n" +
-        "Invite your friends to get more! https://t.co/azcBR67KfU",
-    },
-    {
-      author_id: "1482347600305078281",
-      id: "1490430362006216704",
-      text:
-        "RT @KriptoCeltics: Şubat Ayı Çekilişi 🎺\n" +
-        "\n" +
-        "Ödül 4.000TL\n" +
-        "\n" +
-        "✅Takip, \n" +
-        "✅RT+Beğeni\n" +
-        "\n" +
-        "#ValentinesDay #SevgililerGünü #BTC  #Ethereum #BNB  #Crypto #B…",
-    },
-    {
-      author_id: "1468881170691760135",
-      id: "1490430361733640199",
-      text:
-        "🦧 @fatapeclub Roadmap 2.0 step 3 🦧\n" +
-        "\n" +
-        "📣 Exclusive Live Conferences For #FatApeClub #HODLers 📣\n" +
-        "\n" +
-        "💎 Rewarding the #DiamondHands 💎\n" +
-        "\n" +
-        "👀 What live conference subjects would you like to see? #Crypto ? #NFTs ? #Business ? 👀\n" +
-        "\n" +
-        "#FACfollowFAC #NFT #NFTCommunity https://t.co/4fRIAnfMfC",
-    },
-    {
-      author_id: "1487613831287566336",
-      id: "1490430360110628867",
-      text:
-        "Magandang balita! Nagkaroon ang web3 streaming service ng Dehub ng isang strategic partnership sa ritestream na ilalaunch ngayong February 22, 2022!\n" +
-        "\n" +
-        "#tothemoon #crypto #dehub #altcoin #metaverse https://t.co/b5gEnY00cn",
-    },
-    {
-      author_id: "1459934042086940673",
-      id: "1490430359263084546",
-      text:
-        "RT @MyRichFarm: The reward rises to 8⃣USDT!🤩🤩\n" +
-        "📌$1,000,000 for Sharing\n" +
-        "📌LP was locked\n" +
-        "📌Completed the audit \n" +
-        "📌Earlier in and higher returns\n" +
-        "📌…",
-    },
-    {
-      author_id: "1470096558658138112",
-      id: "1490430358889848838",
-      text:
-        "Jig0lo olup ayda 2500-5000 arası para kazanmak için burdan kayıt olabilirsiniz : https://t.co/EMupq5y1XQ \n" +
-        "\n" +
-        "#tuerkifsaalemi #türkifşa #turkifsa #MahmutOzerİstifa #millişerefsiz #cemyilmaz #pazartesi #pars #Berna #yekta #ıspartaelektrikistiyor #SoemestrTatiliuzatilsin #Crypto #sex https://t.co/zAu7KNbZLh",
-    },
-    {
-      author_id: "1479274498578919432",
-      id: "1490430356822106116",
-      text:
-        "RT @hiRavenCrypto: I just want to remind you\n" +
-        "“Crypto don’t sleep but Bank do”🔥\n" +
-        "\n" +
-        "#Crypto #Altcoins",
-    },
-    {
-      author_id: "1421117552399314946",
-      id: "1490430355857281024",
-      text: "RT @SerpentXSF: We ended the week around $40.4k so I wouldn't be surprised if we pull back before opening tomorrow. Looks like something tr…",
-    },
-  ],
-  includes: {
-    users: [
-      {
-        name: "Crypto_Dago",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1389001527210221572/LnT6Y0qT_normal.jpg",
-        username: "crypto_dago",
-        id: "1723531020",
-      },
-      {
-        name: "Yuli",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1267774202008031233/KZTFh1Os_normal.jpg",
-        username: "cryptofarma",
-        id: "1267773564352069634",
-      },
-      {
-        name: "kinanthi",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1465310754752503809/ccYDGrh6_normal.jpg",
-        username: "kinanth14439230",
-        id: "1465309920891265031",
-      },
-      {
-        name: "nft cenifer",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1482347916597633029/b_muEm1H_normal.jpg",
-        username: "myssteery",
-        id: "1482347600305078281",
-      },
-      {
-        name: "ThatNFTGuy",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1489720939210280960/2WNdXaqh_normal.jpg",
-        username: "ThatNFTGuyy",
-        id: "1468881170691760135",
-      },
-      {
-        name: "DeHub Philippines",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1487613881287843841/7aW3HBz__normal.png",
-        username: "DehubP",
-        id: "1487613831287566336",
-      },
-      {
-        name: "Dionne Frisby",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1462659667885051905/m6ObAeKl_normal.jpg",
-        username: "FrisbyDionne",
-        id: "1459934042086940673",
-      },
-      {
-        name: "Mersinli Aysu",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1470097292300632066/YFsmG4oZ_normal.jpg",
-        username: "aysu_mersinli",
-        id: "1470096558658138112",
-      },
-      {
-        name: "ابن جدددة",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1479277759352479745/EzVtv7AF_normal.jpg",
-        username: "AJdddt",
-        id: "1479274498578919432",
-      },
-      {
-        name: "M C",
-        profile_image_url:
-          "https://pbs.twimg.com/profile_images/1454239020431462400/tuM1YpLt_normal.jpg",
-        username: "MC78970480",
-        id: "1421117552399314946",
-      },
-    ],
-  },
-  meta: {
-    newest_id: "1490430366930411523",
-    oldest_id: "1490430355857281024",
-    result_count: 10,
-    next_token: "b26v89c19zqg8o3fpe74w2kxtrw0amj40feon4f38r4ot",
-  },
-};
+var apiUrl = `https://api.coinpaprika.com/v1/coins/${coinsToSearchTweetsFor}/twitter`;
 
 // set up variables for functions.
 var crypto;
 let myInterval;
+
+function createCryptoEl(response) {
+  ///div holder to hold everything
+  var hotCryptoDivHolder = document.createElement("div");
+  hotCryptoDivHolder.classList = "crypto-div";
+
+  // div header holder
+  var hotCryptoHeader = document.createElement("div");
+  hotCryptoHeader.classList = "rank-class-header flex flex-row";
+
+  var cryptoFave = document.createElement("button");
+  cryptoFave.classList = "fa fa-star text-3xl mx-2";
+  cryptoFave.setAttribute("id", `${response.name}`);
+  cryptoFave.addEventListener("click", function () {
+    this.classList.toggle("text-yellow-500");
+  });
+  if (isCryptoExists(response.name)) {
+    cryptoFave.classList.add("text-yellow-500");
+  }
+  cryptoFave.addEventListener("click", storeCrypto);
+
+  var crytpoName = document.createElement("h2");
+  crytpoName.classList = "cryptoheader flex flex-row";
+  crytpoName.textContent = response.name;
+
+  var rank = document.createElement("p");
+  rank.classList = "rank-class ";
+  rank.textContent = "Rank: " + response.rank;
+
+  hotCryptoHeader.append(cryptoFave, crytpoName, rank);
+
+  var hotCryptoElementsHolder = document.createElement("div");
+  hotCryptoElementsHolder.classList = "flex flex-row";
+
+  var holderOne = document.createElement("div");
+  holderOne.classList = "holderone";
+
+  var cryptoId = document.createElement("p");
+  cryptoId.classList = "";
+  cryptoId.textContent = "ID: " + response.id;
+  var id = response.id;
+  holderOne.append(cryptoId);
+
+  var holderTwo = document.createElement("div");
+  holderTwo.classList = "holdertwo";
+
+  var cryptoSupply = document.createElement("p");
+  cryptoSupply.classList = "";
+  var cryptoSupplyInt;
+  cryptoSupplyInt = response.csupply;
+  cryptoSupply.textContent =
+    "Current Mined Supply " +
+    parseInt(response.csupply).toLocaleString("en-US");
+
+  holderTwo.append(cryptoSupply);
+
+  var holderThree = document.createElement("div");
+  holderThree.classList = "holderThree";
+
+  var cryptoTotalSupply = document.createElement("p");
+  var totalSupplyInt;
+  cryptoTotalSupply.classList = "";
+  totalSupplyInt = response.msupply;
+  cryptoTotalSupply.textContent =
+    "Total Supply " + parseInt(response.msupply).toLocaleString("en-US");
+
+  holderThree.append(cryptoTotalSupply);
+
+  var holderFour = document.createElement("div");
+  holderFour.classList = "holderFour";
+
+  var cryptoPrice = document.createElement("p");
+  cryptoPrice.classList = "";
+  cryptoPrice.textContent = "Price: " + "$" + response.price_usd;
+
+  holderFour.append(cryptoPrice);
+
+  var holderFive = document.createElement("div");
+  holderFive.classList = "holderFive";
+
+  var percentMined = document.createElement("p");
+  percentMined.classList = "";
+  percentMined.textContent =
+    "Percent Mined: " +
+    parseInt((cryptoSupplyInt / totalSupplyInt) * 100) +
+    "%";
+
+  holderFive.append(percentMined);
+
+  var holderSix = document.createElement("div");
+  holderSix.classList = "holderSix";
+
+  var cryptoButton = document.createElement("button");
+  cryptoButton.innerText = "Price History Chart";
+  cryptoButton.classList = "button-chart";
+  cryptoButton.setAttribute("symbol", response.symbol);
+  cryptoButton.addEventListener("click", modalHandler);
+  holderSix.append(cryptoButton);
+
+  hotCryptoElementsHolder.append(
+    holderTwo,
+    holderThree,
+    holderFour,
+    holderFive,
+    holderSix
+  );
+
+  hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder);
+  crytposHere.append(hotCryptoDivHolder);
+}
 
 var getCrypto = function () {
   const settings = {
@@ -218,130 +145,41 @@ var getCrypto = function () {
   };
 
   $.ajax(settings).done(function (response) {
-    for (var i = 0; i < 100; i++) {
-      ///div holder to hold everything
-      var hotCryptoDivHolder = document.createElement("div");
-      hotCryptoDivHolder.classList = "crypto-div";
-
-      // div header holder
-      var hotCryptoHeader = document.createElement("div");
-      hotCryptoHeader.classList = "flex flex-row";
-
-      var cryptoFave = document.createElement("button");
-      cryptoFave.classList = "fa fa-star text-3xl mx-2";
-      cryptoFave.setAttribute('id',`${response.data[i].name}`);
-      cryptoFave.addEventListener('click', function() {
-        this.classList.toggle("text-yellow-500");
-      });
-      cryptoFave.addEventListener('click', storeCrypto);
-
-      var crytpoName = document.createElement("h2");
-      crytpoName.classList = "cryptoheader flex flex-row";
-      crytpoName.textContent = response.data[i].name;
-
-      var rank = document.createElement("p");
-      rank.classList = "flex flex-row";
-      rank.textContent = "Rank: " + response.data[i].rank;
-
-      hotCryptoHeader.append(cryptoFave, crytpoName, rank);
-
-      var hotCryptoElementsHolder = document.createElement("div");
-      hotCryptoElementsHolder.classList = "flex flex-row";
-
-      var holderOne = document.createElement("div");
-      holderOne.classList = "holderone";
-
-      var cryptoId = document.createElement("p");
-      cryptoId.classList = "";
-      cryptoId.textContent = "ID: " + response.data[i].id;
-      var id = response.data[i].id;
-      holderOne.append(cryptoId);
-
-      var holderTwo = document.createElement("div");
-      holderTwo.classList = "holdertwo";
-
-      var cryptoSupply = document.createElement("p");
-      cryptoSupply.classList = "";
-      var cryptoSupplyInt;
-      cryptoSupplyInt = response.data[i].csupply;
-      cryptoSupply.textContent =
-        "Current Mined Supply " +
-        parseInt(response.data[i].csupply).toLocaleString("en-US");
-
-      holderTwo.append(cryptoSupply);
-
-      var holderThree = document.createElement("div");
-      holderThree.classList = "holderThree";
-
-      var cryptoTotalSupply = document.createElement("p");
-      var totalSupplyInt;
-      cryptoTotalSupply.classList = "";
-      totalSupplyInt = response.data[i].msupply;
-      cryptoTotalSupply.textContent =
-        "Total Supply " +
-        parseInt(response.data[i].msupply).toLocaleString("en-US");
-
-      holderThree.append(cryptoTotalSupply);
-
-
-      var holderFour = document.createElement("div");
-      holderFour.classList = "holderFour";
-
-      var cryptoPrice = document.createElement("p");
-      cryptoPrice.classList = "";
-      cryptoPrice.textContent = "Price: " + "$" + response.data[i].price_usd;
-
-      holderFour.append(cryptoPrice);
-
-      var holderFive = document.createElement("div");
-      holderFive.classList = "holderFive";
-
-      var percentMined = document.createElement("p");
-      percentMined.classList = "";
-      percentMined.textContent =
-        "Percent Mined: " +
-        parseInt((cryptoSupplyInt / totalSupplyInt) * 100) +
-        "%";
-
-      holderFive.append(percentMined);
-
-      var holderSix = document.createElement("div");
-      holderSix.classList = "holderSix";
-
-      var cryptoButton = document.createElement("button");
-      cryptoButton.innerText = "Price History Chart";
-      cryptoButton.setAttribute('symbol', response.data[i].symbol)
-      cryptoButton.addEventListener("click", modalHandler);
-      holderSix.append(cryptoButton);
-
-      hotCryptoElementsHolder.append(
-        holderTwo,
-        holderThree,
-        holderFour,
-        holderFive,
-        holderSix
-      );
-
-      hotCryptoDivHolder.append(hotCryptoHeader, hotCryptoElementsHolder);
-      crytposHere.append(hotCryptoDivHolder);
-    }
-
-    const feed = {
-      async: true,
-      crossDomain: true,
-      url: "https://api.coinlore.net/api/coin/social_stats/?=" + id,
-      method: "GET",
-      headers: {},
+    var cryptoObj = {
+      data: response.data,
     };
-
-    $.ajax(feed).done(function (response) {
-      // var cryptoList = response.reddit.avg_active_users
-
-      for (var i = 0; i < response.length; i++) {
-        var cryptoList = id[i].reddit.avg_active_users;
+    cryptoList = cryptoObj;
+    for (var i = 0; i < 100; i++) {
+      // var cryptoObj = {
+      //   name: response[i].name,
+      //   symbol: response[i].symbol,
+      // };
+      if (
+        window.location.pathname === "/" ||
+        window.location.pathname === "/index.html" ||
+        window.location.pathname === "/coinhiz/" ||
+        window.location.pathname === "/coinhiz/index.html"
+      ) {
+        createCryptoEl(response.data[i]);
       }
-    });
+    }
   });
+
+  var createTopGainerEl = function (response) {
+    var cryptoHeadline = document.createElement("h5");
+    cryptoHeadline.classList = "";
+    cryptoHeadline.textContent = response.description;
+
+    var cryptoImageLink = document.createElement("img");
+    cryptoImageLink.src = response.tags[0].icon;
+    cryptoImageLink.classList = "image-size";
+
+    var provider = document.createElement("p");
+    provider.classList = "";
+    provider.textContent = response.source;
+
+    cryptoNews.append(cryptoHeadline, provider, cryptoImageLink);
+  };
 
   const cryptoPulse = {
     async: true,
@@ -355,20 +193,15 @@ var getCrypto = function () {
   };
 
   $.ajax(cryptoPulse).done(function (response) {
-    for (var i = 0; i < 15; i++) {
-      var cryptoHeadline = document.createElement("h5");
-      cryptoHeadline.classList = "";
-      cryptoHeadline.textContent = response[i].description;
-
-      var cryptoImageLink = document.createElement("img");
-      cryptoImageLink.src = response[i].tags[0].icon;
-      cryptoImageLink.classList = "image-size";
-
-      var provider = document.createElement("p");
-      provider.classList = "";
-      provider.textContent = response[i].source;
-
-      cryptoNews.append(cryptoHeadline, provider, cryptoImageLink);
+    for (var i = 0; i < 25; i++) {
+      if (
+        window.location.pathname === "/" ||
+        window.location.pathname === "/index.html" ||
+        window.location.pathname === "/coinhiz/" ||
+        window.location.pathname === "/coinhiz/index.html"
+      ) {
+        createTopGainerEl(response[i]);
+      }
     }
   });
 
@@ -385,34 +218,39 @@ var getCrypto = function () {
 
   $.ajax(gainers).done(function (response) {
     for (var i = 0; i < 10; i++) {
-      var topGainer = document.createElement("h3");
-      topGainer.classList = "";
-      topGainer.textContent = response.result[i].name;
+      if (
+        window.location.pathname === "/" ||
+        window.location.pathname === "/index.html" ||
+        window.location.pathname === "/coinhiz/" ||
+        window.location.pathname === "/coinhiz/index.html"
+      ) {
+        var topGainer = document.createElement("h3");
+        topGainer.classList = "";
+        topGainer.textContent = response.result[i].name;
 
-      var priceChange = document.createElement("h7");
-      priceChange.classList = "green";
-      priceChange.textContent =
-        "Price: $" + parseInt(response.result[i].priceChange.price);
+        var priceChange = document.createElement("h7");
+        priceChange.classList = "green";
+        priceChange.textContent =
+          "Price: $" + parseInt(response.result[i].priceChange.price);
 
-      var priceChangePercent = document.createElement("h7");
-      priceChangePercent.classList = "green";
-      priceChangePercent.textContent =
-        "% Gain" +
-        parseInt(response.result[i].priceChange.priceChange24h) +
-        "%";
+        var priceChangePercent = document.createElement("h6");
+        priceChangePercent.classList = "green";
+        priceChangePercent.textContent =
+          "Gain: " +
+          parseInt(response.result[i].priceChange.priceChange24h) +
+          "%";
 
-      var gainerRank = document.createElement("p");
-      gainerRank.classList = "";
-      gainerRank.textContent = "  rank: " + response.result[i].rank;
+        var gainerRank = document.createElement("p");
+        gainerRank.classList = "";
+        gainerRank.textContent = "Rank: " + response.result[i].rank;
 
-      var topCoins = document.createElement("div")
-      topCoins.classList = "top-coins"
+        var topCoins = document.createElement("div");
+        topCoins.classList = "top-coins";
 
-
-      topCoins.append(topGainer, priceChange, priceChangePercent, gainerRank);
-      topGainers.append(topCoins);
+        topCoins.append(topGainer, priceChange, priceChangePercent, gainerRank);
+        topGainers.append(topCoins);
+      }
     }
-    
   });
 };
 
@@ -431,27 +269,49 @@ function searchCrypto() {
   }
 }
 
+function saveCrypto() {
+  localStorage.setItem("fav", JSON.stringify(storeCryptoArray));
+}
+
 function storeCrypto(e) {
   e.preventDefault();
   var id = e.target.getAttribute("id");
   const cryptoObject = {
-    id: id
-  }
+    id: id,
+  };
   if (storeCryptoArray.length) {
     for (var i = 0; i < storeCryptoArray.length; i++) {
       if (storeCryptoArray[i].id === id) {
         storeCryptoArray.splice(i, 1);
-        console.log(storeCryptoArray);
+        saveCrypto();
         return;
       }
     }
   }
   storeCryptoArray.push(cryptoObject);
-
-  console.log(storeCryptoArray);
+  saveCrypto();
 }
 
-function resetModal(){
+function onLoad() {
+  var fav = JSON.parse(localStorage.getItem("fav"));
+  if (!fav) {
+    storeCryptoArray = [];
+  } else {
+    storeCryptoArray = fav;
+  }
+}
+onLoad();
+
+function isCryptoExists(symbol) {
+  for (var i = 0; i < storeCryptoArray.length; i++) {
+    if (storeCryptoArray[i].id === symbol) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function resetModal() {
   modal.innerHTML = "";
   var modalContent = document.createElement("div");
   var span = document.createElement("span");
@@ -544,7 +404,7 @@ function getChart(symbol) {
             },
           },
 
-          // removes the grid lines 
+          // removes the grid lines
           scales: {
             xAxes: [
               {
@@ -606,154 +466,178 @@ window.onclick = function (event) {
   }
 };
 
-
-
-
-
-
 // start screen by running cityList to show previous storage cities
 getCrypto();
 
-const populateMediaScroller = (twitterRes) => {
-  for (let i = 0; i < twitterRes.data.length; i++) {
-    let mediaItemEl = document.createElement("div");
-    mediaItemEl.className = "media-item";
+if (
+  window.location.pathname === "/" ||
+  window.location.pathname === "/index.html" ||
+  window.location.pathname === "/coinhiz/" ||
+  window.location.pathname === "/coinhiz/index.html"
+) {
+  const truncateTweetStatus = (status) => {
+    if (status.length > 175) {
+      let newStatus = status.substring(0, 175);
+      newStatus += "...";
 
-    let userInfoEl = document.createElement("div");
-    userInfoEl.className = "user-info";
-
-    let userImgEl = document.createElement("img");
-    userImgEl.setAttribute(
-      "src",
-      twitterRes.includes.users[i].profile_image_url
-    );
-    userInfoEl.append(userImgEl);
-
-    let textContainerEl = document.createElement("div");
-    textContainerEl.className = "text-container";
-
-    let usernameEl = document.createElement("p");
-    usernameEl.className = "username";
-    usernameEl.innerHTML = twitterRes.includes.users[i].name;
-    textContainerEl.append(usernameEl);
-
-    let handleEl = document.createElement("p");
-    handleEl.className = "handle";
-    handleEl.innerHTML = "@" + twitterRes.includes.users[i].username;
-    textContainerEl.append(handleEl);
-
-    userInfoEl.append(textContainerEl);
-    mediaItemEl.append(userInfoEl);
-
-    let tweetContentEl = document.createElement("div");
-    tweetContentEl.className = "tweet-content";
-
-    let tweetTextEl = document.createElement("p");
-    tweetTextEl.innerHTML = twitterRes.data[i].text;
-    tweetContentEl.append(tweetTextEl);
-
-    mediaItemEl.append(tweetContentEl);
-
-    scrollEl.append(mediaItemEl);
-  }
-};
-
-// START MEDIA SCROLLER LOGIC
-const startScroll = () => {
-  myInterval = setInterval(function () {
-    // If at the end of the list, scroll to start
-    if (scrollEl.scrollLeft >= -10) {
-      scrollEl.scrollTo({
-        left: -100000, // Dummy value so that it always scrolls back to start
-        behavior: "smooth",
-      });
-    } else {
-      scrollEl.scrollTo({
-        left: scrollEl.scrollLeft + 250, // Increment scroll
-        behavior: "smooth",
-      });
+      status = newStatus;
     }
-  }, 2500);
-};
 
-const scrollIntervalHandler = (start, pause) => {
-  if (start) {
-    startScroll();
-  } else if (pause) {
-    clearInterval(myInterval);
-    startScroll();
-  }
-};
+    return status;
+  };
 
-const scrollButtonHandler = (event) => {
-  let targetEl = event.target;
+  const redirectToTweetSource = (src) => {
+    window.open(src, "_blank");
+  };
 
-  if (
-    targetEl.className === "left-button-container" ||
-    targetEl.className === "left-arrow"
-  ) {
-    scrollIntervalHandler(false, true);
-    scrollEl.scrollTo({
-      left: scrollEl.scrollLeft - 250,
-      behavior: "smooth",
+  const populateMediaScroller = (twitterRes) => {
+    for (let i = 0; i < twitterRes.length; i++) {
+      let mediaItemEl = document.createElement("div");
+      mediaItemEl.setAttribute("data-tweet-source", twitterRes[i].status_link);
+      // mediaItemEl.setAttribute("onclick", "test(mediaItemEl.getAttribute('data-tweet-source))");
+      mediaItemEl.className = "media-item";
+
+      let userInfoEl = document.createElement("div");
+      userInfoEl.className = "user-info";
+
+      let userImgEl = document.createElement("img");
+      userImgEl.className = "userImg";
+      userImgEl.setAttribute("src", twitterRes[i].user_image_link);
+      userInfoEl.append(userImgEl);
+
+      let textContainerEl = document.createElement("div");
+      textContainerEl.className = "text-container";
+
+      let usernameEl = document.createElement("p");
+      usernameEl.className = "username";
+      usernameEl.innerHTML = twitterRes[i].user_name;
+      textContainerEl.append(usernameEl);
+
+      let handleEl = document.createElement("p");
+      handleEl.className = "handle";
+      handleEl.innerHTML = "@" + twitterRes[i].user_name;
+      // textContainerEl.append(handleEl);
+
+      userInfoEl.append(textContainerEl);
+      mediaItemEl.append(userInfoEl);
+
+      let tweetContentEl = document.createElement("div");
+      tweetContentEl.className = "tweet-content";
+
+      let tweetTextEl = document.createElement("p");
+      tweetTextEl.className = "tweet-text";
+      tweetTextEl.innerHTML = truncateTweetStatus(twitterRes[i].status);
+      tweetContentEl.append(tweetTextEl);
+
+      mediaItemEl.append(tweetContentEl);
+
+      scrollEl.append(mediaItemEl);
+    }
+  };
+
+  // START MEDIA SCROLLER LOGIC
+  const startScroll = () => {
+    myInterval = setInterval(function () {
+      // If at the end of the list, scroll to start
+      if (scrollEl.scrollLeft >= -10) {
+        scrollEl.scrollTo({
+          left: -100000, // Dummy value so that it always scrolls back to start
+          behavior: "smooth",
+        });
+      } else {
+        scrollEl.scrollTo({
+          left: scrollEl.scrollLeft + 250, // Increment scroll
+          behavior: "smooth",
+        });
+      }
+    }, 5000);
+  };
+
+  const scrollIntervalHandler = (start, pause) => {
+    if (start) {
+      startScroll();
+    } else if (pause) {
+      clearInterval(myInterval);
+      startScroll();
+    }
+  };
+
+  const scrollButtonHandler = (event) => {
+    let targetEl = event.target;
+
+    if (
+      targetEl.className === "left-button-container" ||
+      targetEl.className === "left-arrow"
+    ) {
+      scrollIntervalHandler(false, true);
+      scrollEl.scrollTo({
+        left: scrollEl.scrollLeft - 250,
+        behavior: "smooth",
+      });
+    } else if (
+      targetEl.className === "right-button-container" ||
+      targetEl.className === "right-arrow"
+    ) {
+      scrollIntervalHandler(false, true); // Restart timer
+      if (scrollEl.scrollLeft >= -10) {
+        scrollEl.scrollTo({
+          left: -100000,
+          behavior: "smooth",
+        });
+      } else {
+        scrollEl.scrollTo({
+          left: scrollEl.scrollLeft + 250,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+  // END MEDIA SCROLLER LOGIC
+
+  async function getTweets() {
+    fetch(apiUrl).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          populateMediaScroller(data);
+        });
+      }
     });
-  } else if (
-    targetEl.className === "right-button-container" ||
-    targetEl.className === "right-arrow"
-  ) {
-    scrollIntervalHandler(false, true); // Restart timer
-    if (scrollEl.scrollLeft >= -10) {
-      scrollEl.scrollTo({
-        left: -100000,
-        behavior: "smooth",
-      });
-    } else {
-      scrollEl.scrollTo({
-        left: scrollEl.scrollLeft + 250,
-        behavior: "smooth",
-      });
-    }
   }
-};
-// END MEDIA SCROLLER LOGIC
 
-async function altGetReq() {
-  fetch(
-    "https://cors-anywhere.herokuapp.com/https://api.twitter.com/2/tweets/search/recent?query=%23crypto&tweet.fields=author_id&expansions=author_id&user.fields=profile_image_url,name,username&max_results=10",
-    {
-      method: "GET",
-      // "mode": "no-cors",
-      headers: {
-        "User-Agent": "v2RecentSearchJS",
-        Authorization: `Bearer ${apiBearerToken}`,
-      },
+  const tweetClickHandler = (event) => {
+    let targetEl = event.target;
+
+    // TODO: Refactor this, this sucks
+    if (
+      targetEl.className === "media-item" ||
+      targetEl.className === "username" ||
+      targetEl.className === "handle" ||
+      targetEl.className === "userImg" ||
+      targetEl.className === "tweet-text"
+    ) {
+      if (targetEl.className !== "media-item") {
+        targetEl = targetEl.closest(".media-item");
+      }
+      redirectToTweetSource(targetEl.getAttribute("data-tweet-source"));
     }
-  ).then((response) => {
-    if (response.ok) {
-      response.json().then((data) => {
-        populateMediaScroller(data);
-      });
-    }
+  };
+
+  scrollEl.scrollTo({
+    left: -100000,
+    behavior: "smooth",
   });
-}
 
-scrollEl.scrollTo({
-  left: -100000,
-  behavior: "smooth",
-});
+  scrollIntervalHandler(true, false);
 
-scrollIntervalHandler(true, false);
+  //populateMediaScroller(twitterRes); // Comment this out to test api
+  getTweets(); // Uncomment this to test api
+  scrollEl.addEventListener("click", tweetClickHandler);
+  scrollContainerEl.addEventListener("click", scrollButtonHandler);
 
-populateMediaScroller(twitterRes); 
-
-
-scrollContainerEl.addEventListener("click", scrollButtonHandler);
-
-
-function genCryptoNameArr(response) {
-  for (var i = 0; i < response.data.length; i++) {
-    var namePush = response.data[i].name;
-    cryptoNameArr.push(namePush);
+  function genCryptoNameArr(response) {
+    for (var i = 0; i < response.data.length; i++) {
+      var namePush = response.data[i].name;
+      cryptoNameArr.push(namePush);
+    }
   }
-  console.log(cryptoNameArr);
 }
