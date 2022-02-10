@@ -13,3 +13,4 @@ Anyone interested in the fascinating world of Crypto can use this as a guide to 
 ##### How to use?
 Find the top coin gainer for the past 24 hours, latest twitter feed postings, info with chart on top 100 coins.  
 
+![Screenshot 2022-02-10 140025](https://user-images.githubusercontent.com/94644749/153478151-a308b75a-92ce-47db-a80e-01d837f19280.png)
