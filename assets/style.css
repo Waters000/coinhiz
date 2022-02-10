@@ -44,6 +44,12 @@
     padding: 10px;
     color: white;
 }
+.find-crypto-button:hover {
+    background-color: rgb(71, 255, 71);
+    border-radius: 25px;
+    padding: 10px;
+    color: white;
+}
 
 .holdertwo {
     flex-wrap: wrap;
@@ -120,6 +126,20 @@ h5 {
     color: black;
 }
 
+footer {
+    font-size: 60px;
+    padding: 20px 35px;
+    background-color: var(--tertiary-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    top: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: 80%;
+    z-index: 9999;
+}
 
 header {
     font-size: 60px;
@@ -128,12 +148,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    
     top: 0;
-    /*Prefix for safari brower only */
-    
-    top: 0;
-    
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -495,10 +510,13 @@ p {
 
 .top-coins {
     border: 2px solid black;
+    width: 100%;
     background-color: #666666;
-    margin: 10px auto;
+    justify-content: space-between;
     border-radius: 10px;
     padding: 5px 5px;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
 .top-coins h6 {
@@ -509,71 +527,9 @@ p {
     text-align: center;
     text-decoration: underline;
     font-size: 15px;
+    flex-wrap: wrap;
+    flex: auto;
+    text-align: center;
 }
 
 
-
-
-/*Media query for smaller desktop screens and smaller */
-@media screen and (max-width: 980px) {
-    header {
-        padding-bottom: 0;
-        justify-content: center;
-        position: relative;
-       
-    }
-    header h1 {
-        width: 100%;
-        text-align: center;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    header nav ul {
-        margin-top: 20px;
-        width: 100%;
-        justify-content: center;
-  
-    }
-
-   
-    header nav ul li a {
-        font-size: 20px;
-        text-shadow:0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    
-    .media-scroller {
-        width: 100%;
-    }
-   
-    
-    .news {
-        flex: 1 100%;
-    }
-   
-  }
-  /*Media query for tablets and smaller*/
-  @media screen and (max-width: 768px) {
-     
-     
-   
-     .coins-holder{
-         flex: 100%;
-     }
-  }
-  
-  /*Media query for mobile phones and smaller */
-  @media screen and (max-width: 575px) {
-      .header {
-          width: 100%;
-      }
-      .media-scroller {
-          width: 95%;
-      }
-      .coins-holder {
-          width: 100%;
-      }
-      .top-coins {
-          flex: 0 100%;
-      }
-      
-
-  }

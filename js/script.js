@@ -150,21 +150,7 @@ var getCrypto = function () {
       createCryptoEl(response.data[i])
     }
 
-    const feed = {
-      async: true,
-      crossDomain: true,
-      url: "https://api.coinlore.net/api/coin/social_stats/?=" + id,
-      method: "GET",
-      headers: {},
-    };
-
-    $.ajax(feed).done(function (response) {
-      // var cryptoList = response.reddit.avg_active_users
-
-      for (var i = 0; i < response.length; i++) {
-        var cryptoList = id[i].reddit.avg_active_users;
-      }
-    });
+    
   });
 
   const cryptoPulse = {
@@ -179,7 +165,7 @@ var getCrypto = function () {
   };
 
   $.ajax(cryptoPulse).done(function (response) {
-    for (var i = 0; i < 15; i++) {
+    for (var i = 0; i < 25; i++) {
       var cryptoHeadline = document.createElement("h5");
       cryptoHeadline.classList = "";
       cryptoHeadline.textContent = response[i].description;

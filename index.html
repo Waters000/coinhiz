@@ -19,7 +19,7 @@
 
 
 
-<header class="header flex flex-row">
+<header class="header lg:flex flex-row">
   <h1 class="">
      <a href="/">CoinHiz</a>
   </h1>
@@ -40,9 +40,9 @@
   </header>
 
 
-  <h3 class="top-row-gainer"> Top Gainers</h3>
+  <h3 class="lg:flex top-row-gainer"> Top Gainers</h3>
   
-  <div class="top-gainers flex flex-row top-row-gainers ">
+  <div class=" top-gainers md:flex lg:flex flex-row top-row-gainers ">
   </div>
   <div class="top-gainers-container">
   <div class="media-scroller-container">
@@ -82,8 +82,8 @@
 
 <!--Main class to hold main day data-->
 
-<body class="container-flud h-screen bg-gradient-to-b from-green-200 to-green-500">
-  <main class="flex flex-row">
+<body class="break-after-auto container-flud h-screen bg-gradient-to-b from-green-200 to-green-500">
+  <main class=" md:flex lg:flex flex-row">
     <div class="flex-wrap">
 
       <!--Holds list and form data-->
@@ -95,7 +95,7 @@
     </div>
 
 
-    <div id=""
+    <div id=" md:flex lg:flex"
       class=" coins-holder bg-gradient-to-b from-green-200 to-green-500 ">
       <div class="input-group mb-6"><h3 class="">Search Crypto</h3>
         <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control" />
@@ -106,14 +106,15 @@
   </main>
 
 
-<!--Holds 5 day data-->
-<div class="container-fluid">
-  <div class=" row ">
-    <h3 class="  hot-cryptos ">Top 100 Hot Cryptos</h3>
-    <div class=""></div>
-  </div>
-</div>
-</div>
+  <footer class="header md:flex lg:flex flex-row">
+    <h1 class="">
+       <a href="/">CoinHiz</a>
+    </h1>
+      <nav class=" navigation  ">
+        <!--Unordered list element-->
+      <p>Made with Love by UCF coders</p>
+      </nav>
+    </footer>
 
 
 
