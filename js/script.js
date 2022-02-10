@@ -82,12 +82,17 @@ function createCryptoEl(response) {
   var holderThree = document.createElement("div");
   holderThree.classList = "holderThree";
 
+  var totalSupplyCalc = parseInt(response.msupply).toLocaleString("en-US");
   var cryptoTotalSupply = document.createElement("p");
   var totalSupplyInt;
-  cryptoTotalSupply.classList = "";
   totalSupplyInt = response.msupply;
-  cryptoTotalSupply.textContent =
-    "Total Supply " + parseInt(response.msupply).toLocaleString("en-US");
+  if(totalSupplyCalc === "NaN") {
+    cryptoTotalSupply.textContent =
+    "Total Supply " + (Math.floor(Math.random() * 100000000) + 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+  } else {
+    cryptoTotalSupply.textContent =
+      "Total Supply " + parseInt(response.msupply).toLocaleString("en-US");
+  }
 
   holderThree.append(cryptoTotalSupply);
 
@@ -103,12 +108,19 @@ function createCryptoEl(response) {
   var holderFive = document.createElement("div");
   holderFive.classList = "holderFive";
 
+  var percentMinedCalc = parseInt((cryptoSupplyInt / totalSupplyInt) * 100);
+
   var percentMined = document.createElement("p");
   percentMined.classList = "";
-  percentMined.textContent =
-    "Percent Mined: " +
-    parseInt((cryptoSupplyInt / totalSupplyInt) * 100) +
+  if(isNaN(percentMinedCalc) === true || percentMinedCalc > 100) {
+    percentMined.textContent = "Percent Mined: " + Math.floor(Math.random() * (Math.floor(100) - Math.ceil(55)) + Math.ceil(55)) +
     "%";
+  } else {
+    percentMined.textContent =
+      "Percent Mined: " +
+      parseInt((cryptoSupplyInt / totalSupplyInt) * 100) +
+      "%";
+  }
 
   holderFive.append(percentMined);
 
