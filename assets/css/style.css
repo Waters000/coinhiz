@@ -27,10 +27,14 @@
 }
 
 .coins-holder {
-
-    width: 80%;
+    width: auto;
+    width: 100%;
     margin: 0 auto;
 
+}
+.cryptoelements-holder {
+    width: auto;
+    margin: 0 auto;
 }
 
 #search {
@@ -88,10 +92,11 @@
 }
 
 .crypto-div p {
-    font-size: 18px;
+    font-size: 15px;
     background-color: rgb(255, 255, 255);
     columns: auto;
     width: fit-content;
+    width: 100%;
 }
 
 .columns {
@@ -495,4 +500,28 @@ p {
 
 .top-coins h6 {
     background-color: green;
+}
+
+
+
+/*Media query for mobile phones and smaller */
+@media screen and (max-width: 575px) {
+    .crypto-div p {
+        font-size: 10px;
+        background-color: rgb(255, 255, 255);
+        columns: auto;
+        width: fit-content;
+        width: 100%;
+    }
+    .cryptoheader {
+        background-color: white;
+        width: 90%;
+        font-size: 30px;
+        
+    }
+
+    .news {
+       display: none;
+    }
+    
 }

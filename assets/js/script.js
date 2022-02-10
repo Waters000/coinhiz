@@ -55,7 +55,7 @@ function createCryptoEl(response) {
   hotCryptoHeader.append(cryptoFave, crytpoName, rank);
 
   var hotCryptoElementsHolder = document.createElement("div");
-  hotCryptoElementsHolder.classList = "flex flex-row";
+  hotCryptoElementsHolder.classList = "cryptoelements-holder flex flex-row";
 
   var holderOne = document.createElement("div");
   holderOne.classList = "holderone";
