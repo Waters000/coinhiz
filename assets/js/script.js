@@ -55,7 +55,7 @@ function createCryptoEl(response) {
   hotCryptoHeader.append(cryptoFave, crytpoName, rank);
 
   var hotCryptoElementsHolder = document.createElement("div");
-  hotCryptoElementsHolder.classList = "cryptoelements-holder flex flex-row";
+  hotCryptoElementsHolder.classList = "flex flex-row";
 
   var holderOne = document.createElement("div");
   holderOne.classList = "holderone";
@@ -86,7 +86,7 @@ function createCryptoEl(response) {
   var cryptoTotalSupply = document.createElement("p");
   var totalSupplyInt;
   totalSupplyInt = response.msupply;
-  if(totalSupplyCalc === "NaN" || totalSupplyCalc === "") {
+  if(totalSupplyCalc === "NaN") {
     cryptoTotalSupply.innerHTML =
     "Total Supply <span class='font-semibold'>" + (Math.floor(Math.random() * 100000000) + 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>";
   } else {
@@ -111,7 +111,7 @@ function createCryptoEl(response) {
   var percentMinedCalc = parseInt((cryptoSupplyInt / totalSupplyInt) * 100);
 
   var percentMined = document.createElement("p");
-  if(isNaN(percentMinedCalc) === true || percentMinedCalc > 100 || percentMinedCalc === "") {
+  if(isNaN(percentMinedCalc) === true || percentMinedCalc > 100) {
     percentMined.innerHTML = "Percent Mined: <span class='font-semibold'>" + Math.floor(Math.random() * (Math.floor(100) - Math.ceil(55)) + Math.ceil(55)) +
     "%</span>";
   } else {
@@ -306,13 +306,7 @@ function createFavEl() {
         var items = document.createElement("div");
         items.classList = "items col-6 col-lg-3";
         var p = document.createElement("p");
-        if(cryptoList.data[j].msupply === "NaN" || cryptoList.data[j].msupply === "") {
-          p.innerHTML =
-          "Total Supply " + (Math.floor(Math.random() * 100000000) + 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        } else {
-          p.innerHTML =
-            "Total Supply " + parseInt(response.msupply).toLocaleString("en-US");
-        }
+        p.textContent = "Total Supply: " + cryptoList.data[j].msupply;
         items.append(p);
         row.append(items);
         var items = document.createElement("div");
@@ -324,16 +318,7 @@ function createFavEl() {
         var items = document.createElement("div");
         items.classList = "items col-6 col-lg-3";
         var p = document.createElement("p");
-        if(isNaN(percentMinedCalc) === true || percentMinedCalc > 100 || percentMinedCalc === "") {
-          p.innerHTML = "Percent Mined: " + Math.floor(Math.random() * (Math.floor(100) - Math.ceil(55)) + Math.ceil(55)) +
-          "%";
-        } else {
-          p.innerHTML =
-            "Percent Mined: " +
-            parseInt((cryptoList.data[j].csupply / cryptoList.data[j].msupply) * 100) +
-            "%";
-        }
-        var percentMinedCalc = parseInt((cryptoList.data[j].csupply / cryptoList.data[j].msupply) * 100);
+        p.textContent = "Percent Mined: " + parseInt((cryptoList.data[j].csupply / cryptoList.data[j].msupply) * 100) + "%";
         items.append(p);
         row.append(items);
         cryptoDiv.append(star, h3, row);
