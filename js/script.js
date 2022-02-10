@@ -13,7 +13,6 @@ var closeBtn = document.getElementById("closeBtn");
 const coinsToSearchTweetsFor = "btc-bitcoin";
 var cryptoList = [];
 // set up variables for functions.
-var crypto;
 var id;
 
 // Create DOM elements from IDs and Class
@@ -149,11 +148,14 @@ var getCrypto = function () {
       data: response.data,
     };
     cryptoList = cryptoObj;
+    if (
+      window.location.pathname === "/favorites.html" ||
+      window.location.pathname === "/coinhiz/favorites" ||
+      window.location.pathname === "/coinhiz/favorites.html"
+    ) {
+      createFavEl();
+    }
     for (var i = 0; i < 100; i++) {
-      // var cryptoObj = {
-      //   name: response[i].name,
-      //   symbol: response[i].symbol,
-      // };
       if (
         window.location.pathname === "/" ||
         window.location.pathname === "/index.html" ||
@@ -265,6 +267,52 @@ function searchCrypto() {
       divs[i].style.display = "";
     } else {
       divs[i].style.display = "none";
+    }
+  }
+}
+
+function createFavEl() {
+  for (var i = 0; i < storeCryptoArray.length; i++) {
+    for (var j = 0; j < cryptoList.data.length; j++) {
+      if (storeCryptoArray[i].id === cryptoList.data[j].name) {
+        var cryptoDiv = document.createElement("div");
+        cryptoDiv.classList =
+          "my-3 border rounded shadow p-3 position-relative";
+        var star = document.createElement("img");
+        star.classList = "star position-absolute";
+        star.src = "./assets/img/favorite.png";
+        var h3 = document.createElement("h3");
+        h3.classList = "border-bottom fw-bold pb-2";
+        h3.textContent = cryptoList.data[j].name;
+        var row = document.createElement("div");
+        row.classList = "row pt-3 px-3";
+        var items = document.createElement("div");
+        items.classList = "items col-6 col-lg-3";
+        var p = document.createElement("p");
+        p.textContent = "Mined Supply: " + cryptoList.data[j].csupply;
+        items.append(p);
+        row.append(items);
+        var items = document.createElement("div");
+        items.classList = "items col-6 col-lg-3";
+        var p = document.createElement("p");
+        p.textContent = "Total Supply: " + cryptoList.data[j].msupply;
+        items.append(p);
+        row.append(items);
+        var items = document.createElement("div");
+        items.classList = "items col-6 col-lg-3";
+        var p = document.createElement("p");
+        p.textContent = "Price: $" + cryptoList.data[j].price_usd;
+        items.append(p);
+        row.append(items);
+        var items = document.createElement("div");
+        items.classList = "items col-6 col-lg-3";
+        var p = document.createElement("p");
+        p.textContent = "Percent Mined: " + parseInt((cryptoList.data[j].csupply / cryptoList.data[j].msupply) * 100) + "%";
+        items.append(p);
+        row.append(items);
+        cryptoDiv.append(star, h3, row);
+        document.getElementById("fav-card").append(cryptoDiv);
+      }
     }
   }
 }
