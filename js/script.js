@@ -156,7 +156,9 @@ var getCrypto = function () {
       // };
       if (
         window.location.pathname === "/" ||
-        window.location.pathname === "/index.html"
+        window.location.pathname === "/index.html" ||
+        window.location.pathname === "/coinhiz/" ||
+        window.location.pathname === "/coinhiz/index.html"
       ) {
         createCryptoEl(response.data[i]);
       }
@@ -194,7 +196,9 @@ var getCrypto = function () {
     for (var i = 0; i < 25; i++) {
       if (
         window.location.pathname === "/" ||
-        window.location.pathname === "/index.html"
+        window.location.pathname === "/index.html" ||
+        window.location.pathname === "/coinhiz/" ||
+        window.location.pathname === "/coinhiz/index.html"
       ) {
         createTopGainerEl(response[i]);
       }
@@ -216,7 +220,9 @@ var getCrypto = function () {
     for (var i = 0; i < 10; i++) {
       if (
         window.location.pathname === "/" ||
-        window.location.pathname === "/index.html"
+        window.location.pathname === "/index.html" ||
+        window.location.pathname === "/coinhiz/" ||
+        window.location.pathname === "/coinhiz/index.html"
       ) {
         var topGainer = document.createElement("h3");
         topGainer.classList = "";
@@ -465,7 +471,9 @@ getCrypto();
 
 if (
   window.location.pathname === "/" ||
-  window.location.pathname === "/index.html"
+  window.location.pathname === "/index.html" ||
+  window.location.pathname === "/coinhiz/" ||
+  window.location.pathname === "/coinhiz/index.html"
 ) {
   const truncateTweetStatus = (status) => {
     if (status.length > 175) {
