@@ -17,22 +17,22 @@
   <title>CoinHiz</title>
 </head>
 
+<body class="bg-green-300">
 
-
-<header class="header lg:flex flex-row">
-  <h1 class="">
+<header class="header lg:flex flex-row bg-green-600 sticky">
+  <h1 class="bg-green-600">
      <a href="/coinhiz">CoinHiz</a>
   </h1>
     <nav class=" navigation  ">
       <!--Unordered list element-->
-      <ul class=" flex flex-row align-items-center">
+      <ul class="flex flex-row align-items-center">
           <!--List item element-->
           
-          <li>
-              <a href="/coinhiz/atm">ATM</a>
+          <li class="bg-green-600">
+              <a href="/coinhiz/atm" class="bg-green-400">ATM</a>
           </li>
-          <li>
-              <a href="/coinhiz/favorites">FAVORITES</a>
+          <li class="bg-green-600">
+              <a href="/coinhiz/favorites" class="bg-green-400">FAVORITES</a>
           </li>
          
       </ul>
@@ -40,7 +40,7 @@
   </header>
 
 
-  <h3 class="lg:flex top-row-gainer"> Top Gainers</h3>
+  <h3 class="lg:flex text-2xl ml-2"> Top Gainers</h3>
   
   <div class=" top-gainers md:flex lg:flex flex-row top-row-gainers ">
   </div>
@@ -82,38 +82,41 @@
 
 <!--Main class to hold main day data-->
 
-<body class="break-after-auto container-flud h-screen bg-gradient-to-b from-green-200 to-green-500">
-  <main class=" md:flex lg:flex flex-row">
+<main class="break-after-auto container-flud h-screen bg-green-500">
+  <!-- bg-gradient-to-b from-green-200 to-green-500 -->
+  <section class=" md:flex lg:flex flex-row">
     <div class="flex-wrap">
 
       <!--Holds list and form data-->
-      <div class="news  bg-gradient-to-b from-green-200 to-green-500">
+      <div class="news bg-gradient-to-b from-green-500 to-green-300">
         
          <h2>Crypto News! </h2>
-        <div class= " w-50 crypto-news  " id="cityListId"> </div>
+        <div class= "w-50 crypto-news" id="cityListId"> </div>
       </div>
     </div>
 
 
-    <div id=" md:flex lg:flex"
-      class=" coins-holder bg-gradient-to-b from-green-200 to-green-500 ">
+    <div id="md:flex lg:flex"
+      class="coins-holder">
       <div class="input-group mb-6"><h3 class="">Filter By Crypto Name</h3>
-        <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control" />
+        <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control"/>
       </div>  
-      <div class="cryptos-here" id=""></div>
+      <div class="cryptos-here bg-green-400" id=""></div>
     </div>
-  </main>
+  </section>
 
 
-  <footer class="header md:flex lg:flex flex-row">
-    <h1 class="">
+  <footer class="header md:flex lg:flex flex-row bg-green-600">
+    <h1>
        <a href="/">CoinHiz</a>
     </h1>
       <nav class=" navigation  ">
         <!--Unordered list element-->
-      <p>Made with Love by UCF coders</p>
+      <p class="text-xl">By Chris Waters, </br>Raul Jimenez, </br>Jonathan McDonnell, </br>Garrett Hilberling, </br>Douglas Knowles, & </br>Brady Stafford</p>
       </nav>
     </footer>
+
+</main>
 
 
 

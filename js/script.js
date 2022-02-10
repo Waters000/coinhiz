@@ -73,9 +73,9 @@ function createCryptoEl(response) {
   cryptoSupply.classList = "";
   var cryptoSupplyInt;
   cryptoSupplyInt = response.csupply;
-  cryptoSupply.textContent =
-    "Current Mined Supply " +
-    parseInt(response.csupply).toLocaleString("en-US");
+  cryptoSupply.innerHTML =
+    "Current Mined Supply <span class='font-semibold'>" +
+    parseInt(response.csupply).toLocaleString("en-US") + "</span>";
 
   holderTwo.append(cryptoSupply);
 
@@ -87,11 +87,11 @@ function createCryptoEl(response) {
   var totalSupplyInt;
   totalSupplyInt = response.msupply;
   if(totalSupplyCalc === "NaN") {
-    cryptoTotalSupply.textContent =
-    "Total Supply " + (Math.floor(Math.random() * 100000000) + 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+    cryptoTotalSupply.innerHTML =
+    "Total Supply <span class='font-semibold'>" + (Math.floor(Math.random() * 100000000) + 1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</span>";
   } else {
-    cryptoTotalSupply.textContent =
-      "Total Supply " + parseInt(response.msupply).toLocaleString("en-US");
+    cryptoTotalSupply.innerHTML =
+      "Total Supply <span class='font-semibold'>" + parseInt(response.msupply).toLocaleString("en-US") + "</span>";
   }
 
   holderThree.append(cryptoTotalSupply);
@@ -100,8 +100,8 @@ function createCryptoEl(response) {
   holderFour.classList = "holderFour";
 
   var cryptoPrice = document.createElement("p");
-  cryptoPrice.classList = "";
-  cryptoPrice.textContent = "Price: " + "$" + response.price_usd;
+  cryptoPrice.classList = "bg-green-400";
+  cryptoPrice.innerHTML = "Price: <span class='font-semibold'>" + "$" + response.price_usd + "</span>";
 
   holderFour.append(cryptoPrice);
 
@@ -111,15 +111,14 @@ function createCryptoEl(response) {
   var percentMinedCalc = parseInt((cryptoSupplyInt / totalSupplyInt) * 100);
 
   var percentMined = document.createElement("p");
-  percentMined.classList = "";
   if(isNaN(percentMinedCalc) === true || percentMinedCalc > 100) {
-    percentMined.textContent = "Percent Mined: " + Math.floor(Math.random() * (Math.floor(100) - Math.ceil(55)) + Math.ceil(55)) +
-    "%";
+    percentMined.innerHTML = "Percent Mined: <span class='font-semibold'>" + Math.floor(Math.random() * (Math.floor(100) - Math.ceil(55)) + Math.ceil(55)) +
+    "%</span>";
   } else {
-    percentMined.textContent =
-      "Percent Mined: " +
+    percentMined.innerHTML =
+      "Percent Mined: <span class='font-semibold'>" +
       parseInt((cryptoSupplyInt / totalSupplyInt) * 100) +
-      "%";
+      "%</span>";
   }
 
   holderFive.append(percentMined);
