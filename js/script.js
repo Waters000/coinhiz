@@ -10,7 +10,7 @@ var storeCryptoArray = [];
 
 var modal = document.getElementById("myModal");
 var closeBtn = document.getElementById("closeBtn");
-const coinsToSearchTweetsFor = "btc-bitcoin"
+const coinsToSearchTweetsFor = "btc-bitcoin";
 
 // set up variables for functions.
 var crypto;
@@ -19,15 +19,13 @@ var id;
 // Create DOM elements from IDs and Class
 var scrollEl = document.querySelector("#media-scroller");
 var scrollContainerEl = document.querySelector(".media-scroller-container");
-var apiUrl =
-  `https://api.coinpaprika.com/v1/coins/${coinsToSearchTweetsFor}/twitter`;
+var apiUrl = `https://api.coinpaprika.com/v1/coins/${coinsToSearchTweetsFor}/twitter`;
 
 // set up variables for functions.
 var crypto;
 let myInterval;
 
 function createCryptoEl(response) {
-  console.log(response)
   ///div holder to hold everything
   var hotCryptoDivHolder = document.createElement("div");
   hotCryptoDivHolder.classList = "crypto-div";
@@ -38,11 +36,14 @@ function createCryptoEl(response) {
 
   var cryptoFave = document.createElement("button");
   cryptoFave.classList = "fa fa-star text-3xl mx-2";
-  cryptoFave.setAttribute('id',`${response.name}`);
-  cryptoFave.addEventListener('click', function() {
+  cryptoFave.setAttribute("id", `${response.name}`);
+  cryptoFave.addEventListener("click", function () {
     this.classList.toggle("text-yellow-500");
   });
-  cryptoFave.addEventListener('click', storeCrypto);
+  if (isCryptoExists(response.name)) {
+    cryptoFave.classList.add("text-yellow-500");
+  }
+  cryptoFave.addEventListener("click", storeCrypto);
 
   var crytpoName = document.createElement("h2");
   crytpoName.classList = "cryptoheader flex flex-row";
@@ -87,11 +88,9 @@ function createCryptoEl(response) {
   cryptoTotalSupply.classList = "";
   totalSupplyInt = response.msupply;
   cryptoTotalSupply.textContent =
-    "Total Supply " +
-    parseInt(response.msupply).toLocaleString("en-US");
+    "Total Supply " + parseInt(response.msupply).toLocaleString("en-US");
 
   holderThree.append(cryptoTotalSupply);
-
 
   var holderFour = document.createElement("div");
   holderFour.classList = "holderFour";
@@ -119,8 +118,8 @@ function createCryptoEl(response) {
 
   var cryptoButton = document.createElement("button");
   cryptoButton.innerText = "Price History Chart";
-  cryptoButton.classList = "button-chart"
-  cryptoButton.setAttribute('symbol', response.symbol)
+  cryptoButton.classList = "button-chart";
+  cryptoButton.setAttribute("symbol", response.symbol);
   cryptoButton.addEventListener("click", modalHandler);
   holderSix.append(cryptoButton);
 
@@ -147,10 +146,8 @@ var getCrypto = function () {
 
   $.ajax(settings).done(function (response) {
     for (var i = 0; i < 100; i++) {
-      createCryptoEl(response.data[i])
+      createCryptoEl(response.data[i]);
     }
-
-    
   });
 
   const cryptoPulse = {
@@ -215,14 +212,12 @@ var getCrypto = function () {
       gainerRank.classList = "";
       gainerRank.textContent = "Rank: " + response.result[i].rank;
 
-      var topCoins = document.createElement("div")
-      topCoins.classList = "top-coins"
-
+      var topCoins = document.createElement("div");
+      topCoins.classList = "top-coins";
 
       topCoins.append(topGainer, priceChange, priceChangePercent, gainerRank);
       topGainers.append(topCoins);
     }
-    
   });
 };
 
@@ -241,27 +236,49 @@ function searchCrypto() {
   }
 }
 
+function saveCrypto() {
+  localStorage.setItem("fav", JSON.stringify(storeCryptoArray));
+}
+
 function storeCrypto(e) {
   e.preventDefault();
   var id = e.target.getAttribute("id");
   const cryptoObject = {
-    id: id
-  }
+    id: id,
+  };
   if (storeCryptoArray.length) {
     for (var i = 0; i < storeCryptoArray.length; i++) {
       if (storeCryptoArray[i].id === id) {
         storeCryptoArray.splice(i, 1);
-        console.log(storeCryptoArray);
+        saveCrypto();
         return;
       }
     }
   }
   storeCryptoArray.push(cryptoObject);
-
-  console.log(storeCryptoArray);
+  saveCrypto();
 }
 
-function resetModal(){
+function onLoad() {
+  var fav = JSON.parse(localStorage.getItem("fav"))
+  if (!fav) {
+    storeCryptoArray = []
+  } else {
+    storeCryptoArray = fav
+  }
+}
+onLoad()
+
+function isCryptoExists(symbol) {
+  for (var i = 0; i < storeCryptoArray.length; i++) {
+    if (storeCryptoArray[i].id === symbol) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function resetModal() {
   modal.innerHTML = "";
   var modalContent = document.createElement("div");
   var span = document.createElement("span");
@@ -354,7 +371,7 @@ function getChart(symbol) {
             },
           },
 
-          // removes the grid lines 
+          // removes the grid lines
           scales: {
             xAxes: [
               {
@@ -419,7 +436,7 @@ window.onclick = function (event) {
 // start screen by running cityList to show previous storage cities
 getCrypto();
 
-const truncateTweetStatus = status => {
+const truncateTweetStatus = (status) => {
   if (status.length > 175) {
     let newStatus = status.substring(0, 175);
     newStatus += "...";
@@ -428,11 +445,11 @@ const truncateTweetStatus = status => {
   }
 
   return status;
-}
+};
 
-const redirectToTweetSource = src => {
-  window.open(src, '_blank');
-}
+const redirectToTweetSource = (src) => {
+  window.open(src, "_blank");
+};
 
 const populateMediaScroller = (twitterRes) => {
   for (let i = 0; i < twitterRes.length; i++) {
@@ -446,10 +463,7 @@ const populateMediaScroller = (twitterRes) => {
 
     let userImgEl = document.createElement("img");
     userImgEl.className = "userImg";
-    userImgEl.setAttribute(
-      "src",
-      twitterRes[i].user_image_link
-    );
+    userImgEl.setAttribute("src", twitterRes[i].user_image_link);
     userInfoEl.append(userImgEl);
 
     let textContainerEl = document.createElement("div");
@@ -542,28 +556,32 @@ const scrollButtonHandler = (event) => {
 // END MEDIA SCROLLER LOGIC
 
 async function getTweets() {
-  fetch(apiUrl)
-    .then((response) => {
-      if (response.ok) {
-        response.json().then((data) => {
-          populateMediaScroller(data);
-          console.log(data);
-        });
-      }
+  fetch(apiUrl).then((response) => {
+    if (response.ok) {
+      response.json().then((data) => {
+        populateMediaScroller(data);
+      });
+    }
   });
 }
 
-const tweetClickHandler = event => {
+const tweetClickHandler = (event) => {
   let targetEl = event.target;
 
   // TODO: Refactor this, this sucks
-  if (targetEl.className === "media-item" || targetEl.className === "username" || targetEl.className === "handle" || targetEl.className === "userImg" || targetEl.className === "tweet-text") {
+  if (
+    targetEl.className === "media-item" ||
+    targetEl.className === "username" ||
+    targetEl.className === "handle" ||
+    targetEl.className === "userImg" ||
+    targetEl.className === "tweet-text"
+  ) {
     if (targetEl.className !== "media-item") {
       targetEl = targetEl.closest(".media-item");
     }
     redirectToTweetSource(targetEl.getAttribute("data-tweet-source"));
   }
-}
+};
 
 scrollEl.scrollTo({
   left: -100000,
@@ -577,11 +595,9 @@ getTweets(); // Uncomment this to test api
 scrollEl.addEventListener("click", tweetClickHandler);
 scrollContainerEl.addEventListener("click", scrollButtonHandler);
 
-
 function genCryptoNameArr(response) {
   for (var i = 0; i < response.data.length; i++) {
     var namePush = response.data[i].name;
     cryptoNameArr.push(namePush);
   }
-  console.log(cryptoNameArr);
 }
