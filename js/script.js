@@ -207,7 +207,7 @@ var getCrypto = function () {
   };
 
   $.ajax(cryptoPulse).done(function (response) {
-    for (var i = 0; i < response.legend; i++) {
+    for (var i = 0; i < response.length; i++) {
       if (
         window.location.pathname === "/" ||
         window.location.pathname === "/index.html" ||
