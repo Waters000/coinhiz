@@ -38,19 +38,6 @@
     min-width: 50%;
 }
 
-.find-crypto-button {
-    background-color: green;
-    border-radius: 25px;
-    padding: 10px;
-    color: white;
-}
-.find-crypto-button:hover {
-    background-color: rgb(71, 255, 71);
-    border-radius: 25px;
-    padding: 10px;
-    color: white;
-}
-
 .holdertwo {
     flex-wrap: wrap;
     background-color: white;
@@ -454,7 +441,7 @@ h2 {
     z-index: 0;
     transition: 400ms;
 }
-.button-chart {
+/* .button-chart {
     background-color: yellow;
     color: black;
     border-radius: 25px;
@@ -472,7 +459,7 @@ h2 {
    border: 3px solid rgb(255, 255, 255);
    flex-wrap: flex;
 
-}
+} */
 
 
 .rank-class-header p {
@@ -531,5 +518,3 @@ p {
     flex: auto;
     text-align: center;
 }
-
-

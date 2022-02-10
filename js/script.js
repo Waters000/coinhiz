@@ -35,7 +35,7 @@ function createCryptoEl(response) {
   hotCryptoHeader.classList = "rank-class-header flex flex-row";
 
   var cryptoFave = document.createElement("button");
-  cryptoFave.classList = "fa fa-star text-3xl mx-2";
+  cryptoFave.classList = "fa fa-star text-3xl mx-2 focus:outline-none";
   cryptoFave.setAttribute("id", `${response.name}`);
   cryptoFave.addEventListener("click", function () {
     this.classList.toggle("text-yellow-500");
@@ -117,8 +117,8 @@ function createCryptoEl(response) {
   holderSix.classList = "holderSix";
 
   var cryptoButton = document.createElement("button");
-  cryptoButton.innerText = "Price History Chart";
-  cryptoButton.classList = "button-chart";
+  cryptoButton.innerText = `${response.name} Chart`;
+  cryptoButton.classList = "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded focus:outline-none click:mt-2";
   cryptoButton.setAttribute("symbol", response.symbol);
   cryptoButton.addEventListener("click", modalHandler);
   holderSix.append(cryptoButton);
