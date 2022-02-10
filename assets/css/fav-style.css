@@ -25,15 +25,21 @@
         url(/coinhiz/assets/img/bitcoin.jpg) no-repeat center center;
     background-size: cover;
     height: 400px;
-    width: 100%;
 }
 
 /* hero title */
 .hero-title {
-    text-align: end;
-    border-right: 2px solid #fff;
+    font-size: 2rem;
 }
 
+.hero h2{
+    font-size: x-large;
+}
+
+.img-search{
+    display: inline-block;
+    width: 20px;
+}
 /* star size and position */
 .star{
     width: 30px;
@@ -53,7 +59,7 @@ footer p{
 
 /* css for atm page */
 
-.gps, .img-search {
+.gps, .img-serch {
     width: 20px;
     height: 20px;
 }

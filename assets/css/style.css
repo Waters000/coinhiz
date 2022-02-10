@@ -227,8 +227,8 @@ header nav ul li a:hover {
 }
 
 .image-size {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
 }
 
 .yellow {
@@ -355,8 +355,6 @@ h2 {
 }
 
 .media-scroller {
-    height: 270px; /* !!!TAKE OUT HEIGHT PROP!!! */
-    /* width: 90%; */
     border-radius: 15px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
     background-color: rgb(192, 192, 192);
@@ -365,7 +363,6 @@ h2 {
     overflow-x: auto;
     direction: rtl;
     position: relative;
-    overflow: hidden;
     z-index: 1;
 }
 

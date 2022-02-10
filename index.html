@@ -3,47 +3,49 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>CoinHiz</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./assets/css/fav-style.css">
+  <title>COINHIZ | HOME</title>
 </head>
 
 <body class="bg-green-300">
+  <!-- Nabvar -->
+  <nav class="bg-green-800 text-gray-100">
+    <div class="container mx-auto">
+      <div class="flex flex-wrap justify-between">
+        <div class="flex w-full lg:w-1/2 justify-center lg:justify-start">
+          <h1 class="text-xl font-bold p-3">CoinHiz</h1>
+        </div>
+        <div class="flex flex-row w-full lg:w-1/2 justify-center lg:justify-end">
+          <a class="p-3 hover:bg-gray-100 hover:text-gray-700" href="/coinhiz/">HOME</a>
+          <a class="p-3 hover:bg-gray-100 hover:text-gray-700" href="/coinhiz/atm">ATM</a>
+          <a class="p-3 hover:bg-gray-100 hover:text-gray-700" href="/coinhiz/favorites">FAVORITES</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End of Nabvar -->
 
-<header class="header lg:flex flex-row bg-green-600 sticky">
-  <h1 class="bg-green-600">
-     <a href="/coinhiz">CoinHiz</a>
-  </h1>
-    <nav class=" navigation  ">
-      <!--Unordered list element-->
-      <ul class="flex flex-row align-items-center">
-          <!--List item element-->
-          
-          <li class="bg-green-600">
-              <a href="/coinhiz/atm" class="bg-green-400">ATM</a>
-          </li>
-          <li class="bg-green-600">
-              <a href="/coinhiz/favorites" class="bg-green-400">FAVORITES</a>
-          </li>
-         
-      </ul>
-    </nav>
-  </header>
-
+  <!-- Hero -->
+  <!-- <section class="hero flex justify-center content-center text-gray-100">
+    <div class="flex justify-end items-center w-1/2">
+      <h1 class="hero-title border-r-2 py-7 pr-7 align-middle font-bold">CoinHiz</h1>
+    </div>
+    <div class="flex justify-start items-center w-1/2 text-xl">
+      <h2 class="text-gray-100 hero-h2 pl-7">HOME</h2>
+    </div>
+  </section> -->
+  <!-- End Hero -->
 
   <h3 class="lg:flex text-2xl ml-2"> Top Gainers</h3>
   
   <div class=" top-gainers md:flex lg:flex flex-row top-row-gainers ">
   </div>
+  
   <div class="top-gainers-container">
   <div class="media-scroller-container">
     <div class="left-button-container">
