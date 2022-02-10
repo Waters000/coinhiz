@@ -84,13 +84,13 @@
 
 <body class="container-flud h-screen bg-gradient-to-b from-green-200 to-green-500">
   <main class="flex flex-row">
-    <div class="">
+    <div class="flex-wrap">
 
       <!--Holds list and form data-->
-      <div class="bg-gradient-to-b from-green-200 to-green-500">
+      <div class="news  bg-gradient-to-b from-green-200 to-green-500">
         
          <h2>Crypto News! </h2>
-        <div class="w-50 crypto-news  " id="cityListId"> </div>
+        <div class= " w-50 crypto-news  " id="cityListId"> </div>
       </div>
     </div>
 
@@ -99,8 +99,7 @@
       class=" coins-holder bg-gradient-to-b from-green-200 to-green-500 ">
       <div class="input-group mb-6"><h3 class="">Search Crypto</h3>
         <input name="input-search" id="search" onkeyup="searchCrypto()" placeholder="Coin Name" type="text" autofocus="true" class="form-control" />
-        <button type="submit" id="submitBtn" class="input-group-append btn text-white bg-success">Find
-          Crypto</button>
+        <button type="submit" id="submitBtn" class="find-crypto-button">Find Crypto</button>
       </div>  
       <div class="cryptos-here" id=""></div>
     </div>

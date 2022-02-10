@@ -218,16 +218,16 @@ var getCrypto = function () {
       priceChange.textContent =
         "Price: $" + parseInt(response.result[i].priceChange.price);
 
-      var priceChangePercent = document.createElement("h7");
+      var priceChangePercent = document.createElement("h6");
       priceChangePercent.classList = "green";
       priceChangePercent.textContent =
-        "% Gain" +
+        "Gain: " +
         parseInt(response.result[i].priceChange.priceChange24h) +
         "%";
 
       var gainerRank = document.createElement("p");
       gainerRank.classList = "";
-      gainerRank.textContent = "  rank: " + response.result[i].rank;
+      gainerRank.textContent = "Rank: " + response.result[i].rank;
 
       var topCoins = document.createElement("div")
       topCoins.classList = "top-coins"

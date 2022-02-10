@@ -21,17 +21,28 @@
 }
 
 .crypto-news {
-    width: 200px;
+    width: 300px;
     padding: 20px;
     margin: 10px;
 }
 
 .coins-holder {
 
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     background-color: grey;
 
+}
+
+#search {
+    min-width: 50%;
+}
+
+.find-crypto-button {
+    background-color: green;
+    border-radius: 25px;
+    padding: 10px;
+    color: white;
 }
 
 .holdertwo {
@@ -72,12 +83,10 @@
 
 
 .cryptoheader {
-    background-color: white;
+    background-color: rgb(211, 211, 211);
     width: 90%;
     
 }
-
-
 
 
 
@@ -150,12 +159,28 @@ header nav ul {
     justify-content: space-between;
     align-items: center;
     list-style: none;
+    
 }
+
+
+
 
 header nav ul li a {
     margin: 10px 15px;
     font-weight: lighter;
     font-size: 1.55vw;
+    background-color: rgb(45, 170, 45);
+    border-radius: 25px;
+    padding: 5px;
+}
+
+header nav ul li a:hover {
+    margin: 10px 15px;
+    font-weight: lighter;
+    font-size: 1.55vw;
+    background-color: rgb(161, 255, 161);
+    border-radius: 25px;
+    padding: 5px;
 }
 
 
@@ -196,10 +221,8 @@ header nav ul li a {
     
 }
 
-/* Add Animation */
-@keyframes animatetop {
-  from {top: -300px; opacity: 100}
-  to {top: 0; opacity: 1}
+.news {
+    padding-left: 20px;
 }
 
 .image-size {
@@ -389,6 +412,7 @@ h2 {
     text-align: left;
 }
 
+
 .handle {
     color: gray;
 }
@@ -475,10 +499,81 @@ p {
     margin: 10px auto;
     border-radius: 10px;
     padding: 5px 5px;
-
 }
+
+.top-coins h6 {
+    background-color: green;
+}
+
 .top-row-gainer {
     text-align: center;
     text-decoration: underline;
     font-size: 15px;
 }
+
+
+
+
+/*Media query for smaller desktop screens and smaller */
+@media screen and (max-width: 980px) {
+    header {
+        padding-bottom: 0;
+        justify-content: center;
+        position: relative;
+       
+    }
+    header h1 {
+        width: 100%;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    header nav ul {
+        margin-top: 20px;
+        width: 100%;
+        justify-content: center;
+  
+    }
+
+   
+    header nav ul li a {
+        font-size: 20px;
+        text-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .media-scroller {
+        width: 100%;
+    }
+   
+    
+    .news {
+        flex: 1 100%;
+    }
+   
+  }
+  /*Media query for tablets and smaller*/
+  @media screen and (max-width: 768px) {
+     
+     
+   
+     .coins-holder{
+         flex: 100%;
+     }
+  }
+  
+  /*Media query for mobile phones and smaller */
+  @media screen and (max-width: 575px) {
+      .header {
+          width: 100%;
+      }
+      .media-scroller {
+          width: 95%;
+      }
+      .coins-holder {
+          width: 100%;
+      }
+      .top-coins {
+          flex: 0 100%;
+      }
+      
+
+  }
