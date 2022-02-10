@@ -355,8 +355,8 @@ h2 {
 }
 
 .media-scroller {
-   /* height: 270px; /* !!!TAKE OUT HEIGHT PROP!!! */
-    /* width: 90%; */
+    height: 270px; 
+    width: 90%;
     border-radius: 15px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
     background-color: rgb(192, 192, 192);
