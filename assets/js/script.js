@@ -682,12 +682,15 @@ if (
     }
   };
 
-  scrollEl.scrollTo({
-    left: -100000,
-    behavior: "smooth",
-  });
+  setTimeout(() => {
+    scrollEl.scrollTo({
+      left: -100000,
+      behavior: "smooth",
+    });
 
-  scrollIntervalHandler(true, false);
+    scrollIntervalHandler(true, false);
+  }, 500);
+  
 
   getTweets(); 
   scrollEl.addEventListener("click", tweetClickHandler);
