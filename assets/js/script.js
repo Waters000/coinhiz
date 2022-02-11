@@ -101,7 +101,7 @@ function createCryptoEl(response) {
   holderFour.classList = "holderFour";
 
   var cryptoPrice = document.createElement("p");
-  cryptoPrice.classList = "bg-green-400";
+  cryptoPrice.classList = "bg-slate-400";
   cryptoPrice.innerHTML = "Price: <span class='font-semibold'>" + "$" + response.price_usd + "</span>";
 
   holderFour.append(cryptoPrice);
@@ -248,7 +248,7 @@ var getCrypto = function () {
           "Price: $" + parseInt(response.result[i].priceChange.price);
 
         var priceChangePercent = document.createElement("h6");
-        priceChangePercent.classList = "green";
+        priceChangePercent.classList = "green text-slate-50";
         priceChangePercent.textContent =
           "Gain: " +
           parseInt(response.result[i].priceChange.priceChange24h) +

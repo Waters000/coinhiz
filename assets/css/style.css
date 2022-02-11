@@ -429,7 +429,8 @@ h2 {
 .right-button-container {
     display: flex;
     align-items: center;
-    background-color: burlywood;
+    background-color: #155e75;
+    /* bg-cyan-800 */
     padding: 15px;
     border-radius: 10px;
     margin: 5px;
@@ -488,9 +489,11 @@ p {
 }
 
 .top-coins {
-    border: 1px solid #14532d;
+    border: 1px solid #164e63;
+    /* bg-cyan-900 */
     width: 100%;
-    background-color: #bbf7d0;
+    background-color: #cffafe;
+    /* bg-cyan-100 */
     justify-content: space-between;
     border-radius: 10px;
     padding: 5px 5px;
@@ -499,7 +502,7 @@ p {
 }
 
 .top-coins h6 {
-    background-color: green;
+    background-color: #059669;
 }
 
 
